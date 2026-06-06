@@ -265,6 +265,148 @@ const calculateUserScore = (profile: UserProfile | null, selectedType: WorkType)
   }
 };
 
+function getDetailedContent(alert: MockAlert) {
+  const publication = alert.senderOrPublication;
+  const content = alert.content;
+  
+  if (alert.source === "Media") {
+    const isMic = /interview|press|podcast|radio/i.test(publication);
+    const mediaName = publication.split(" ")[0];
+    
+    let headline = `${publication} — 深度專題報導`;
+    let paragraphs = [
+      "【本報訊】針對製作團隊近日公布的關鍵決策，本報進行了深入追蹤與社群輿情調查。隨著大眾市場對於作品內容的要求日益嚴苛，每一次的設計變更或選角調整，都在網路上掀起軒然大波。",
+      "根據業內資深分析師指出，現代受眾在尋求感官刺激與深度共鳴之間存在著顯著的分歧。支持派認為大膽的創新有助於推動媒介的邊界，而反對派則警告過度偏離經典可能導致核心群體的流失。",
+      "本報將持續鎖定後續進度。不論這項決策最終引領作品走向何方，它無疑已經成為今年最具討論度與爭議性的行業焦點之一。"
+    ];
+
+    if (/多元|代表性|人設|種族/.test(content)) {
+      headline = "【專題】進步多元與核心情懷的對立：新主角設定引發的產業思考";
+      paragraphs = [
+        "【本報訊】近日隨著主角造型與設定的公開，有關多元代表性（DEI）的議題再度成為社群討論的風暴中心。主流評審與部分進步派媒體對此表示高度支持，認為這是作品走向現代化、展現包容力的重要一步。",
+        "然而，核心玩家社群的反應卻十分兩極。在論壇上，大量質疑「強行修改人設」與「為迎合評級而妥協」的討論串迅速被置頂，甚至發起了抵制預購的活動。分析人士指出，如何在投資人要求的 ESG 標準與核心玩家的滿意度之間取得平衡，已成為現代工作室的必修課。",
+        "「這不再只是娛樂產品，它已經成為一場文化價值觀的縮影。」一位不願透露姓名的發行商主管向記者透露。"
+      ];
+    } else if (/爽度|視覺|奇觀|場面/.test(content)) {
+      headline = "【熱點】場面拉滿！視覺特效與大螢幕奇觀引發的感官狂歡";
+      paragraphs = [
+        "【本報評測】令人窒息的畫面細節與頂級的音效表現，這部作品在釋出預告片的第一秒就牢牢抓住了所有人的眼球。毫無疑問，製作團隊將極大比例的預算傾注在了奇觀的塑造上。",
+        "「我們希望給觀眾一個無法拒絕的感官盛宴，」製作組長在接受本報採訪時表示。影評人也紛紛給出高分，認為這代表了當前行業的最高技術水準。但與此同時，部分深度影迷也提出質疑：在華麗的外殼之下，劇本的厚度是否能撐得起這份視覺的重量？",
+        "目前市場的預售數據非常樂觀，視覺派受眾的狂熱將本作的期待度推上了全新高峰。"
+      ];
+    } else if (/說教|教育|台詞/.test(content)) {
+      headline = "【評論】角色靈魂還是硬塞標籤？談台詞「說教感」對沈浸體驗的雙刃效應";
+      paragraphs = [
+        "【記者專題】隨著第一批測試反饋流出，部分體驗者對於作品中直白且高頻率出現的社會議題台詞表示了憂慮。他們認為，過於硬核的說教感會打破故事的沉浸感，讓作品更像是政治宣導，而非互動娛樂。",
+        "但也有議題研究學者指出，藝術創作本就肩負著反映社會現實與啟發思考的責任。將身分認同、環境保護等現代困境寫入角色動機，能賦予作品更長久的生命力與社會學價值。",
+        "如何在「說教宣傳」與「自然融合」之間找到平衡點，將是影響本作發售後最終評分的重要分水嶺。"
+      ];
+    }
+
+    return { headline, paragraphs };
+  }
+
+  if (alert.source === "Forum") {
+    const title = `這一次的決策大家怎麼看？老實說我有點被破防了...`;
+    const comments = [
+      {
+        user: "u/GamerAlpha_99",
+        score: "2.4k",
+        time: "5 hr. ago",
+        text: `老實說，這決策真的讓我對這家工作室刮目相看。${content.replace(/「|」/g, "")} 至少他們聽到了我們的聲音。`,
+      },
+      {
+        user: "u/Lvl100Paladin",
+        score: "1.8k",
+        time: "4 hr. ago",
+        text: "樓上＋1！原本超擔心會被強塞奇怪的價值觀，現在看來原作的靈魂還是保住了，買爆支持！",
+      },
+      {
+        user: "u/WokeSlayer_PRO",
+        score: "850",
+        time: "3 hr. ago",
+        text: "支持！不要再讓那些外部顧問來指手畫腳了，遊戲好玩、電影好看才是硬道理，希望發售時不要翻車。",
+      },
+      {
+        user: "u/ProgressiveGamer",
+        score: "-240",
+        time: "2 hr. ago",
+        text: "只有我覺得這很倒退嗎？保留那些過時的設定，不願意做出一點現代化的包容性修改，簡直是向保守輿論低頭。",
+      },
+      {
+        user: "u/MemeLord_X",
+        score: "125",
+        time: "1 hr. ago",
+        text: "不管怎樣，我已經準備好爆米花看首發當天的 Metacritic 評分大戰了，感覺留言區會直接血流成河 🍿",
+      }
+    ];
+
+    if (/魔改|面目全非|閹割|背叛|吐槽/.test(content)) {
+      return {
+        title: "「別買了！這根本是借殼上市的魔改垃圾，原作粉集體破防中」",
+        comments: [
+          {
+            user: "u/CanonIsHoly",
+            score: "5.2k",
+            time: "6 hr. ago",
+            text: "我真的氣到發抖。老粉等了這麼多年，結果給我們看這個？核心人設全部被改掉，編劇到底懂不懂原作？",
+          },
+          {
+            user: "u/GoWokeGoBroke_2026",
+            score: "3.1k",
+            time: "5 hr. ago",
+            text: "經典的 Go Woke, Go Broke。又一個被 DEI 毀掉的經典 IP。不退款對不起我自己的錢包。",
+          },
+          {
+            user: "u/OptimistPrime",
+            score: "510",
+            time: "3 hr. ago",
+            text: "大家冷靜點，也許這只是預告片剪輯的問題？等實際出來看故事邏輯怎麼樣再噴也不遲吧？",
+          },
+          {
+            user: "u/AngryGamer_99",
+            score: "1.2k",
+            time: "2 hr. ago",
+            text: "樓上還在洗？設定圖都洩漏了，主角連性別氣質都變了，這還有救？洗地的可以省省力氣了。",
+          }
+        ]
+      };
+    }
+
+    return { title, comments };
+  }
+
+  return {
+    channel: "#marketing-pr-channel",
+    messages: [
+      {
+        user: "公關總監 (Director)",
+        avatar: "PR",
+        time: "11:34 AM",
+        text: `團隊注意，最新決策影響評估已出來：${content.replace(/「|」/g, "")}`,
+      },
+      {
+        user: "社群經理 (Community)",
+        avatar: "CM",
+        time: "11:36 AM",
+        text: "目前 Reddit 和 X 平台上的討論度已經衝上來了，核心老粉的反應有些激烈，我們的公關稿要不要先準備？",
+      },
+      {
+        user: "主企劃 (Lead Designer)",
+        avatar: "LD",
+        time: "11:39 AM",
+        text: "設計組這邊認為既然路子定下了就不要隨便縮，現在如果又道歉退讓，只會被兩邊同時唾棄，堅持品質才是正解。",
+      },
+      {
+        user: "專案經理 (Producer)",
+        avatar: "PM",
+        time: "11:42 AM",
+        text: "同意。預算和時程都不允許我們再做大改動了，研發組長要注意成員心理壓力，公關部隨時監控輿情動態。",
+      }
+    ]
+  };
+}
+
 function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: WorkType): MockAlert {
   const keys = Object.keys(effects) as TagKey[];
   if (keys.length === 0) {
@@ -592,17 +734,32 @@ function CriticUserPredictor({ profile, selectedType }: { profile: UserProfile |
   );
 }
 
-function DiscourseAlert({ alert, controversyRisk = 50 }: { alert: MockAlert | null; controversyRisk?: number }) {
+function DiscourseAlert({ 
+  alert, 
+  controversyRisk = 50,
+  onOpenDetails
+}: { 
+  alert: MockAlert | null; 
+  controversyRisk?: number;
+  onOpenDetails?: (alert: MockAlert) => void;
+}) {
   const currentAlert: MockAlert = alert ?? {
     source: "Slack",
     senderOrPublication: "公關主管 #pr-monitoring",
     content: "「輿論與市場監控模組已連線。正在評估首期製作決策... 請進行您的下一步選擇。」"
   };
 
+  const [isHovered, setIsHovered] = useState(false);
+
   if (currentAlert.source === "Forum") {
     const isLocked = controversyRisk >= 75;
     return (
-      <div className="rounded-lg border border-orange-500/30 bg-gradient-to-br from-white/[0.08] to-white/[0.01] p-5 shadow-glow backdrop-blur-xl saturate-150 text-slate-100 transition-all duration-300">
+      <div 
+        onClick={() => onOpenDetails?.(currentAlert)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="relative rounded-lg border border-orange-500/30 bg-gradient-to-br from-white/[0.08] to-white/[0.01] p-5 shadow-glow backdrop-blur-xl saturate-150 text-slate-100 transition-all duration-300 cursor-pointer hover:scale-[1.01] hover:shadow-2xl hover:border-orange-500/50 active:scale-[0.99] group"
+      >
         <div className="flex items-center justify-between gap-3 text-xs text-slate-400 mb-3 border-b border-white/5 pb-2">
           <div className="flex items-center gap-2">
             <span className="h-5 w-5 rounded-full bg-[#FF4500] flex items-center justify-center text-white p-0.5 shadow-inner shrink-0">
@@ -623,14 +780,46 @@ function DiscourseAlert({ alert, controversyRisk = 50 }: { alert: MockAlert | nu
         <p className="text-sm font-semibold text-white mb-3 leading-6">
           " {currentAlert.content} "
         </p>
-        <div className="flex items-center gap-4 text-xs font-bold text-slate-400">
-          <div className="flex items-center gap-1 rounded-full bg-white/5 px-3 py-1 hover:bg-white/10 cursor-pointer">
-            <span>▲</span>
-            <span className="font-mono text-orange-400">{isLocked ? "24.5k" : "8.4k"}</span>
-            <span>▼</span>
+        <div className="flex items-center justify-between gap-4 text-xs font-bold text-slate-400">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1 rounded-full bg-white/5 px-3 py-1 hover:bg-white/10 cursor-pointer">
+              <span>▲</span>
+              <span className="font-mono text-orange-400">{isLocked ? "24.5k" : "8.4k"}</span>
+              <span>▼</span>
+            </div>
+            <div className="rounded-full bg-white/5 px-3 py-1 hover:bg-white/10 cursor-pointer">
+              <span>💬 {isLocked ? "3.2k" : "1.1k"} Comments</span>
+            </div>
           </div>
-          <div className="rounded-full bg-white/5 px-3 py-1 hover:bg-white/10 cursor-pointer">
-            <span>💬 {isLocked ? "3.2k" : "1.1k"} Comments</span>
+          <span className="text-[10px] text-orange-400 font-normal animate-pulse group-hover:underline">
+            💬 點擊進入討論區...
+          </span>
+        </div>
+
+        {/* Hover popup preview always in DOM but animated */}
+        <div className={`absolute bottom-[105%] left-0 w-full z-40 bg-[#0b1416] border border-orange-500/50 rounded-lg shadow-2xl p-4 transition-all duration-300 pointer-events-none text-left ${
+          isHovered 
+            ? "opacity-100 translate-y-0 scale-100 visible" 
+            : "opacity-0 translate-y-2 scale-95 invisible"
+        }`}>
+          <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-white/5 text-xs text-orange-400 font-bold">
+            <span>💬 討論區即時熱帖預覽 (r/gaming)</span>
+          </div>
+          <h4 className="text-sm font-bold text-white mb-2 line-clamp-1">{getDetailedContent(currentAlert).title}</h4>
+          <div className="space-y-2.5 border-t border-white/5 pt-2 mt-1">
+            {(getDetailedContent(currentAlert) as any).comments?.slice(0, 2).map((comment: any, idx: number) => (
+              <div key={idx} className="border-l border-white/10 pl-2 text-[11px] mb-2">
+                <div className="flex items-center gap-1.5 text-slate-400 mb-0.5">
+                  <span className="font-semibold text-slate-300">{comment.user}</span>
+                  <span>{comment.time}</span>
+                  <span className="font-mono text-orange-400">▲ {comment.score}</span>
+                </div>
+                <p className="text-slate-200 line-clamp-1">{comment.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-3 text-[10px] text-center text-orange-400 border-t border-white/5 pt-1.5 font-semibold">
+            👉 點擊卡片進入完整討論區查看更多評論
           </div>
         </div>
       </div>
@@ -641,7 +830,12 @@ function DiscourseAlert({ alert, controversyRisk = 50 }: { alert: MockAlert | nu
     const isMic = /interview|press|podcast|radio/i.test(currentAlert.senderOrPublication);
     const mediaTag = currentAlert.senderOrPublication.split(" ")[0];
     return (
-      <div className="rounded-lg border-2 border-stone-800 bg-[#FAF9F5] p-6 text-stone-900 shadow-[5px_5px_0px_0px_rgba(28,25,23,1)] transition-all duration-300 relative overflow-hidden font-serif">
+      <div 
+        onClick={() => onOpenDetails?.(currentAlert)}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="rounded-lg border-2 border-stone-800 bg-[#FAF9F5] p-6 text-stone-900 shadow-[5px_5px_0px_0px_rgba(28,25,23,1)] transition-all duration-300 relative overflow-visible font-serif cursor-pointer hover:scale-[1.01] hover:shadow-2xl hover:brightness-[1.03] active:scale-[0.99] group"
+      >
         {/* Newspaper masthead */}
         <div className="border-b-4 border-double border-stone-800 pb-3 mb-4">
           <div className="flex items-center justify-between gap-4">
@@ -698,10 +892,36 @@ function DiscourseAlert({ alert, controversyRisk = 50 }: { alert: MockAlert | nu
             <span className="italic font-medium text-stone-900 bg-stone-100 p-1.5 rounded block border-l-4 border-stone-800 my-2">
               {currentAlert.content}
             </span>
-            <p className="mt-3 text-xs text-stone-500 font-sans border-t border-stone-200 pt-2 flex items-center justify-between">
+            <div className="mt-3 text-xs text-stone-500 font-sans border-t border-stone-200 pt-2 flex items-center justify-between">
               <span>記者：社群輿情觀測組 報導</span>
-              <span>© {new Date().getFullYear()} {mediaTag} Media Group.</span>
-            </p>
+              <span className="text-[10px] text-stone-900 font-bold animate-pulse group-hover:underline">
+                👉 點擊閱讀完整報紙頭條...
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Hover popup preview always in DOM but animated */}
+        <div className={`absolute bottom-[105%] left-0 w-full z-45 bg-[#FAF9F5] border-2 border-stone-800 rounded-lg shadow-2xl p-4 transition-all duration-300 pointer-events-none text-left ${
+          isHovered 
+            ? "opacity-100 translate-y-0 scale-100 visible" 
+            : "opacity-0 translate-y-2 scale-95 invisible"
+        }`}>
+          <div className="flex items-center gap-1.5 mb-2 pb-1.5 border-b border-stone-300 text-[10px] font-sans font-bold text-red-600">
+            <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
+            <span>📰 報紙頭條社論預覽 ({mediaTag} DAILY)</span>
+          </div>
+          <h4 className="text-sm font-black text-stone-900 mb-2 font-serif leading-tight line-clamp-1">
+            {(getDetailedContent(currentAlert) as any).headline}
+          </h4>
+          <p className="text-[11px] text-stone-700 leading-relaxed font-serif line-clamp-2 italic bg-stone-100 p-1.5 rounded border-l-2 border-stone-800 mb-2">
+            「 {currentAlert.content} 」
+          </p>
+          <p className="text-[11px] text-stone-800 font-serif line-clamp-2">
+            {(getDetailedContent(currentAlert) as any).paragraphs?.[0]}
+          </p>
+          <div className="mt-3 text-[10px] text-center text-stone-900 border-t border-stone-200 pt-1.5 font-sans font-bold">
+            👉 點擊卡片閱讀完整報紙頭條報導
           </div>
         </div>
       </div>
@@ -709,7 +929,12 @@ function DiscourseAlert({ alert, controversyRisk = 50 }: { alert: MockAlert | nu
   }
 
   return (
-    <div className="rounded-lg border border-indigo-500/20 bg-gradient-to-br from-white/[0.08] to-white/[0.01] p-5 shadow-glow backdrop-blur-xl saturate-150 text-slate-100 transition-all duration-300">
+    <div 
+      onClick={() => onOpenDetails?.(currentAlert)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative rounded-lg border border-indigo-500/20 bg-gradient-to-br from-white/[0.08] to-white/[0.01] p-5 shadow-glow backdrop-blur-xl saturate-150 text-slate-100 transition-all duration-300 cursor-pointer hover:scale-[1.01] hover:shadow-2xl hover:border-indigo-500/50 active:scale-[0.99] group"
+    >
       <div className="flex items-center gap-2 mb-3 border-b border-white/5 pb-2">
         <span className="h-5 w-5 rounded bg-white/10 flex items-center justify-center p-0.5 shrink-0">
           <svg viewBox="0 0 24 24" className="h-3.5 w-3.5">
@@ -736,6 +961,42 @@ function DiscourseAlert({ alert, controversyRisk = 50 }: { alert: MockAlert | nu
           <p className="text-sm leading-6 text-slate-200 mt-1 italic font-medium">
             {currentAlert.content}
           </p>
+        </div>
+      </div>
+      <div className="mt-3 text-xs text-slate-500 border-t border-white/5 pt-2 flex items-center justify-between">
+        <span className="text-[10px] text-slate-400 font-normal">Slack 團隊頻道</span>
+        <span className="text-[10px] text-indigo-400 font-bold animate-pulse group-hover:underline">
+          👉 點擊查看內部討論...
+        </span>
+      </div>
+
+      {/* Slack Hover Popup Preview */}
+      <div className={`absolute bottom-[105%] left-0 w-full z-40 bg-[#1e1d24] border border-indigo-500/50 rounded-lg shadow-2xl p-4 transition-all duration-300 pointer-events-none text-left ${
+        isHovered 
+          ? "opacity-100 translate-y-0 scale-100 visible" 
+          : "opacity-0 translate-y-2 scale-95 invisible"
+      }`}>
+        <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-white/5 text-xs text-indigo-400 font-bold">
+          <span>💬 團隊內部 Slack 頻道預覽 ({currentAlert.senderOrPublication.split(" ")[0]})</span>
+        </div>
+        <div className="space-y-2.5 mt-1">
+          {(getDetailedContent(currentAlert) as any).messages?.slice(0, 2).map((msg: any, idx: number) => (
+            <div key={idx} className="flex gap-2 text-[11px] mb-2 border-l border-white/5 pl-2">
+              <div className="h-5 w-5 rounded bg-teal-600 flex items-center justify-center font-bold text-white text-[9px] shrink-0">
+                {msg.avatar}
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-baseline gap-1 text-[10px] text-slate-400">
+                  <span className="font-bold text-slate-300">{msg.user}</span>
+                  <span>{msg.time}</span>
+                </div>
+                <p className="text-slate-200 line-clamp-1">{msg.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 text-[10px] text-center text-indigo-400 border-t border-white/5 pt-1.5 font-semibold">
+          👉 點擊卡片查看內部討論詳情
         </div>
       </div>
     </div>
@@ -838,6 +1099,7 @@ export default function QuizPage() {
   const [lastAlert, setLastAlert] = useState<MockAlert | null>(null);
   const [currentEvent, setCurrentEvent] = useState<SuddenEvent | null>(null);
   const [gameQuestions, setGameQuestions] = useState<typeof questions>([]);
+  const [activeDetailAlert, setActiveDetailAlert] = useState<MockAlert | null>(null);
   
   const [isGameOver, setIsGameOver] = useState(false);
   const [gameOverReason, setGameOverReason] = useState<"esg_bankruptcy" | "pr_firestorm" | "user_rating_death" | null>(null);
@@ -849,6 +1111,7 @@ export default function QuizPage() {
     setStep(0);
     setLastAlert(null);
     setCurrentEvent(null);
+    setActiveDetailAlert(null);
     setIsGameOver(false);
     setGameOverReason(null);
 
@@ -1155,7 +1418,11 @@ export default function QuizPage() {
               </div>
             </section>
             
-            <DiscourseAlert alert={lastAlert} controversyRisk={profile ? axisFromProfile(profile).y : 50} />
+            <DiscourseAlert 
+              alert={lastAlert} 
+              controversyRisk={profile ? axisFromProfile(profile).y : 50} 
+              onOpenDetails={(alert) => setActiveDetailAlert(alert)}
+            />
           </div>
 
           <AxisPanel profile={profile} selectedType={selectedType} />
@@ -1206,7 +1473,7 @@ export default function QuizPage() {
                   type="button"
                   key={option.label}
                   onClick={() => answer(option.effects, undefined)}
-                  className="rounded-lg border border-red-500/25 bg-red-950/20 p-5 text-left transition hover:border-red-400 hover:bg-red-950/30 hover:shadow-glow focus:outline-none"
+                  className="rounded-lg border border-red-500/25 bg-red-950/20 p-5 text-left transition hover:border-red-400/50 hover:bg-red-950/30 hover:shadow-glow focus:outline-none"
                 >
                   <div className="text-base font-bold text-white mb-1">{option.label}</div>
                   <div className="text-xs text-slate-300 leading-6">{option.description}</div>
@@ -1216,6 +1483,187 @@ export default function QuizPage() {
           </div>
         </div>
       )}
+
+      {/* Detailed Alert Dialog Overlay */}
+      {activeDetailAlert && (() => {
+        const detail = getDetailedContent(activeDetailAlert);
+        if (activeDetailAlert.source === "Media") {
+          const isMic = /interview|press|podcast|radio/i.test(activeDetailAlert.senderOrPublication);
+          const mediaTag = activeDetailAlert.senderOrPublication.split(" ")[0];
+          const media = detail as { headline: string; paragraphs: string[] };
+          return (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+              <div className="relative max-w-3xl w-full rounded-lg border-2 border-stone-800 bg-[#FAF9F5] p-6 sm:p-8 text-stone-900 shadow-[10px_10px_0px_0px_rgba(28,25,23,1)] overflow-y-auto max-h-[90vh] font-serif animate-in zoom-in-95 duration-200">
+                {/* Close button */}
+                <button
+                  onClick={() => setActiveDetailAlert(null)}
+                  className="absolute top-4 right-4 bg-stone-900 text-white font-sans text-xs uppercase tracking-wider font-bold px-3 py-1.5 rounded hover:bg-stone-700 transition"
+                >
+                  關閉本頁 [X]
+                </button>
+
+                {/* Newspaper Masthead */}
+                <div className="border-b-4 border-double border-stone-800 pb-4 mb-6 mt-4 font-sans">
+                  <div className="text-center mb-2">
+                    <span className="text-4xl sm:text-5xl font-black uppercase tracking-widest border-b-2 border-stone-900 pb-1 px-4 inline-block">
+                      {mediaTag} DAILY NEWS
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-xs text-stone-600 font-bold border-t border-stone-300 pt-2 px-1">
+                    <span>VOL. XLVI NO. 204</span>
+                    <span className="uppercase">{isMic ? "EXCLUSIVE PRESS CORNER" : "LATE CITY EDITION"}</span>
+                    <span>PRICE: $0.25</span>
+                  </div>
+                  <div className="text-center text-[10px] text-stone-500 uppercase tracking-widest mt-1.5 font-semibold">
+                    Published in New York & San Francisco • Sunday, June 7, 2026
+                  </div>
+                </div>
+
+                {/* Editorial Headline */}
+                <h1 className="text-2xl sm:text-3xl font-black text-stone-900 leading-tight mb-5 border-b border-stone-200 pb-3">
+                  {media.headline}
+                </h1>
+
+                {/* Multi-column layout */}
+                <div className="grid gap-6 md:grid-cols-2 text-stone-800 text-sm leading-relaxed text-justify border-b border-stone-200 pb-6 mb-4">
+                  <div>
+                    <span className="float-left text-5xl font-black mr-2.5 leading-[0.7] mt-1.5 text-stone-950 font-sans bg-stone-950 text-white p-2 rounded">
+                      📢
+                    </span>
+                    <p className="font-semibold text-stone-900 mb-3 italic">
+                      「 {activeDetailAlert.content} 」
+                    </p>
+                    <p>{media.paragraphs[0]}</p>
+                  </div>
+                  <div className="flex flex-col justify-between">
+                    <p className="mb-4">{media.paragraphs[1]}</p>
+                    {media.paragraphs[2] ? <p className="mb-4">{media.paragraphs[2]}</p> : null}
+                    
+                    {/* Fake ad box for retro style */}
+                    <div className="border border-stone-400 p-3 bg-stone-50/50 text-center font-sans text-xs text-stone-500 rounded border-dashed mt-auto">
+                      <div className="font-bold uppercase tracking-wider text-stone-700">WANTED: CREATIVE DESIGNERS</div>
+                      <div className="mt-1">Join the next-gen production studio today. Apply at info@gamingstudio.com</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center text-xs text-stone-500 font-sans">
+                  <span>責任編輯：社群輿情專題組</span>
+                  <span>© {new Date().getFullYear()} {mediaTag} Media Group. All Rights Reserved.</span>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        if (activeDetailAlert.source === "Forum") {
+          const forum = detail as { title: string; comments: { user: string; score: string; time: string; text: string }[] };
+          return (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+              <div className="relative max-w-2xl w-full rounded-xl border border-white/10 bg-[#0b1416]/95 p-6 sm:p-8 text-slate-100 shadow-[0_0_50px_rgba(255,69,0,0.15)] overflow-y-auto max-h-[85vh] font-sans animate-in zoom-in-95 duration-200">
+                {/* Close button */}
+                <button
+                  onClick={() => setActiveDetailAlert(null)}
+                  className="absolute top-4 right-4 text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 text-xs px-3 py-1.5 rounded transition"
+                >
+                  關閉討論區 [X]
+                </button>
+
+                {/* Subreddit Header */}
+                <div className="flex items-center gap-2 mb-4 mt-2 border-b border-white/5 pb-3">
+                  <span className="h-6 w-6 rounded-full bg-[#FF4500] flex items-center justify-center text-white p-0.5 shrink-0 shadow-inner">
+                    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="h-4.5 w-4.5">
+                      <path d="M17.16,9.15a2,2,0,0,0-3.38-1.42,10.65,10.65,0,0,0-4.32-1l.92-2.91,3,.64a1.23,1.23,0,1,0,.11-.53l-3.3-.7a.33.33,0,0,0-.4.24L8.8,6.75a10.82,10.82,0,0,0-4.43,1A2,2,0,0,0,1,9.15a2,2,0,0,0,1.06,1.75A7.83,7.83,0,0,0,2,11.8a8.21,8.21,0,0,0,.76,3.46,7.57,7.57,0,0,0,2.1,2.6,8.21,8.21,0,0,0,3.09,1.52,11,11,0,0,0,4.1,0,8.21,8.21,0,0,0,3.09-1.52,7.57,7.57,0,0,0,2.1-2.6A8.21,8.21,0,0,0,18,11.8a7.83,7.83,0,0,0-.09-.9A2,2,0,0,0,17.16,9.15ZM5.77,13a1,1,0,1,1,1,1A1,1,0,0,1,5.77,13Zm7.68,2.37a5,5,0,0,1-6.9,0,.33.33,0,1,1,.46-.47,4.35,4.35,0,0,0,6,0,.33.33,0,0,1,.46.47Zm-.91-1.37a1,1,0,1,1,1-1A1,1,0,0,1,12.54,14Z"/>
+                    </svg>
+                  </span>
+                  <div>
+                    <span className="font-bold text-slate-200 text-sm">r/gaming</span>
+                    <span className="text-slate-400 text-xs ml-2">• Posted by u/CoreGamer99 • 6 hours ago</span>
+                  </div>
+                </div>
+
+                {/* Post Title & Body */}
+                <h1 className="text-xl font-bold text-white mb-3 leading-snug">
+                  {forum.title}
+                </h1>
+                <p className="text-sm text-slate-300 leading-relaxed mb-5 bg-white/[0.02] border border-white/5 p-4 rounded-lg italic">
+                  " {activeDetailAlert.content} "
+                </p>
+
+                {/* Comments Section */}
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4 border-b border-white/5 pb-2">
+                  熱門留言討論串 (Top Comments)
+                </h3>
+
+                <div className="flex flex-col gap-4">
+                  {forum.comments.map((comment, i) => (
+                    <div key={i} className="flex gap-3 border-l-2 border-white/10 pl-3">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 text-xs text-slate-400 mb-1">
+                          <span className="font-semibold text-slate-300">{comment.user}</span>
+                          <span>{comment.time}</span>
+                          <span className="font-mono text-orange-400 font-bold">▲ {comment.score}</span>
+                        </div>
+                        <p className="text-sm leading-6 text-slate-200">{comment.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        // Slack card detailed chat
+        const slack = detail as { channel: string; messages: { user: string; avatar: string; time: string; text: string }[] };
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+            <div className="relative max-w-2xl w-full rounded-xl border border-white/10 bg-[#1e1d24]/95 p-6 sm:p-8 text-slate-100 shadow-[0_0_50px_rgba(54,197,240,0.15)] overflow-y-auto max-h-[85vh] font-sans animate-in zoom-in-95 duration-200">
+              {/* Close button */}
+              <button
+                onClick={() => setActiveDetailAlert(null)}
+                className="absolute top-4 right-4 text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 text-xs px-3 py-1.5 rounded transition"
+              >
+                關閉頻道 [X]
+              </button>
+
+              {/* Slack Header */}
+              <div className="flex items-center gap-2 mb-4 mt-2 border-b border-white/5 pb-3">
+                <span className="h-5 w-5 rounded bg-white/10 flex items-center justify-center p-0.5 shrink-0">
+                  <svg viewBox="0 0 24 24" className="h-4 w-4">
+                    <g>
+                      <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523 2.528 2.528 0 0 1-2.522-2.523 2.528 2.528 0 0 1 2.522-2.52h2.52v2.52zm1.261 0a2.528 2.528 0 0 1 2.52-2.52h5.043a2.528 2.528 0 0 1 2.522 2.52v5.043a2.528 2.528 0 0 1-2.522 2.52H8.823a2.528 2.528 0 0 1-2.52-2.52v-5.043z" fill="#36C5F0"/>
+                      <path d="M8.823 5.043a2.528 2.528 0 0 1 2.52-2.52 2.528 2.528 0 0 1 2.522 2.52v2.52h-2.522a2.528 2.528 0 0 1-2.52-2.52zm0 1.261a2.528 2.528 0 0 1 2.52v5.043a2.528 2.528 0 0 1-2.52 2.52H3.78a2.528 2.528 0 0 1-2.52-2.52V8.824a2.528 2.528 0 0 1 2.52-2.52h5.043z" fill="#2EB67D"/>
+                      <path d="M18.958 8.824a2.528 2.528 0 0 1 2.52-2.52 2.528 2.528 0 0 1 2.522 2.52 2.528 2.528 0 0 1-2.522 2.52h-2.52V8.824zm-1.261 0a2.528 2.528 0 0 1-2.52 2.52h-5.043a2.528 2.528 0 0 1-2.522-2.52V3.78a2.528 2.528 0 0 1 2.522-2.52h5.043a2.528 2.528 0 0 1 2.52 2.52v5.043z" fill="#ECB22E"/>
+                      <path d="M15.177 18.958a2.528 2.528 0 0 1-2.52 2.52 2.528 2.528 0 0 1-2.522-2.52v-2.52h2.522a2.528 2.528 0 0 1 2.52 2.52zm0-1.261a2.528 2.528 0 0 1-2.52-2.52v-5.043a2.528 2.528 0 0 1 2.52-2.52h5.043a2.528 2.528 0 0 1 2.52 2.52v5.043a2.528 2.528 0 0 1-2.52 2.52h-5.043z" fill="#E01E5A"/>
+                    </g>
+                  </svg>
+                </span>
+                <span className="font-bold text-slate-200 text-sm">{slack.channel}</span>
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse ml-auto" />
+              </div>
+
+              {/* Chat Messages */}
+              <div className="flex flex-col gap-4 mt-4 font-sans">
+                {slack.messages.map((msg, i) => (
+                  <div key={i} className="flex gap-3 items-start">
+                    <div className="h-8 w-8 rounded bg-teal-600 flex items-center justify-center font-bold text-white text-xs shrink-0">
+                      {msg.avatar}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-xs font-bold text-slate-300">{msg.user}</span>
+                        <span className="text-[9px] text-slate-500">{msg.time}</span>
+                      </div>
+                      <p className="text-sm leading-6 text-slate-200 mt-1">{msg.text}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </main>
   );
 }
