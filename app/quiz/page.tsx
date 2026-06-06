@@ -641,51 +641,66 @@ function DiscourseAlert({ alert, controversyRisk = 50 }: { alert: MockAlert | nu
     const isMic = /interview|press|podcast|radio/i.test(currentAlert.senderOrPublication);
     const mediaTag = currentAlert.senderOrPublication.split(" ")[0];
     return (
-      <div className="rounded-lg border border-rose-500/30 bg-gradient-to-br from-white/[0.08] to-white/[0.01] p-5 shadow-glow backdrop-blur-xl saturate-150 text-slate-100 transition-all duration-300">
-        <div className="flex items-center gap-2 mb-3 border-b border-white/5 pb-2">
-          <span className="h-5 w-5 rounded bg-red-600/20 border border-red-500/30 flex items-center justify-center p-0.5 shrink-0 text-red-400">
-            {isMic ? (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3">
-                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
-                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-                <line x1="12" x2="12" y1="19" y2="22" />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3">
-                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
-                <path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z" />
-              </svg>
-            )}
-          </span>
-          <span className="bg-red-600 text-white text-[9px] font-black px-2 py-0.5 rounded font-sans tracking-wider uppercase shrink-0">
-            {mediaTag}
-          </span>
-          <span className="text-[10px] text-slate-300 font-bold uppercase tracking-wider">
-            {isMic ? "媒體獨家專訪" : "新聞頭條"}
-          </span>
-          <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse ml-auto" />
-        </div>
-        <div className="flex gap-3 items-start">
-          <div className="h-8 w-8 rounded-full bg-red-600/20 border border-red-500/30 flex items-center justify-center shrink-0 text-red-400">
-            {isMic ? (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
-                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-                <line x1="12" x2="12" y1="19" y2="22" />
-              </svg>
-            ) : (
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
-                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
-                <path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z" />
-              </svg>
-            )}
+      <div className="rounded-lg border-2 border-stone-800 bg-[#FAF9F5] p-6 text-stone-900 shadow-[5px_5px_0px_0px_rgba(28,25,23,1)] transition-all duration-300 relative overflow-hidden font-serif">
+        {/* Newspaper masthead */}
+        <div className="border-b-4 border-double border-stone-800 pb-3 mb-4">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <span className="h-6 w-6 rounded bg-stone-900 flex items-center justify-center p-1 shrink-0 text-white">
+                {isMic ? (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                    <line x1="12" x2="12" y1="19" y2="22" />
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                    <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                    <path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z" />
+                  </svg>
+                )}
+              </span>
+              <span className="text-xl font-black uppercase tracking-wider font-sans">
+                {mediaTag} DAILY
+              </span>
+            </div>
+            <div className="text-right text-[10px] text-stone-600 font-sans font-semibold">
+              <div>VOL. XLVI NO. 204</div>
+              <div>LATE CITY EDITION</div>
+            </div>
           </div>
-          <div className="min-w-0">
-            <h3 className="text-sm font-bold text-white leading-snug mb-1">
-              {currentAlert.senderOrPublication}
-            </h3>
-            <p className="text-sm leading-6 text-slate-300 italic">
-              「 {currentAlert.content} 」
+          <div className="flex justify-between text-[9px] uppercase tracking-widest text-stone-500 mt-2 font-sans font-bold border-t border-stone-300 pt-1">
+            <span>Special Report</span>
+            <span>Sunday Edition</span>
+            <span>Price: $0.25</span>
+          </div>
+        </div>
+
+        <div className="min-w-0">
+          <div className="flex gap-2 items-center mb-3">
+            <span className="bg-red-600 text-white text-[9px] font-bold px-2 py-0.5 rounded font-sans tracking-wider uppercase shrink-0">
+              {isMic ? "EXCLUSIVE INTERVIEW" : "HOT NEWS"}
+            </span>
+            <span className="text-[10px] text-stone-500 uppercase font-sans tracking-wider font-semibold">
+              {isMic ? "獨家專訪" : "輿情頭條新聞"}
+            </span>
+            <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse ml-auto" />
+          </div>
+
+          <h3 className="text-lg font-black text-stone-900 leading-snug mb-3 font-serif border-b border-stone-200 pb-2">
+            {currentAlert.senderOrPublication} — {isMic ? "專訪分析報導" : "最新專題評論"}
+          </h3>
+
+          <div className="text-stone-800 leading-relaxed font-serif text-sm">
+            <span className="float-left text-3xl font-black mr-2 leading-[0.8] mt-1 text-stone-950 font-sans bg-stone-950 text-white p-1 rounded-sm">
+              📢
+            </span>
+            <span className="italic font-medium text-stone-900 bg-stone-100 p-1.5 rounded block border-l-4 border-stone-800 my-2">
+              {currentAlert.content}
+            </span>
+            <p className="mt-3 text-xs text-stone-500 font-sans border-t border-stone-200 pt-2 flex items-center justify-between">
+              <span>記者：社群輿情觀測組 報導</span>
+              <span>© {new Date().getFullYear()} {mediaTag} Media Group.</span>
             </p>
           </div>
         </div>
@@ -1046,9 +1061,9 @@ export default function QuizPage() {
   const current = gameQuestions[step];
   const progress = Math.round(((step + 1) / gameQuestions.length) * 100);
 
-  const displayTitle = currentEvent ? currentEvent.title : current?.title;
-  const displaySubtitle = currentEvent ? currentEvent.subtitle : current?.subtitle;
-  const displayOptions = currentEvent ? currentEvent.options : current?.options ?? [];
+  const displayTitle = current?.title;
+  const displaySubtitle = current?.subtitle;
+  const displayOptions = current?.options ?? [];
 
   return (
     <main className="relative isolate min-h-screen overflow-hidden px-5 py-8">
@@ -1066,10 +1081,6 @@ export default function QuizPage() {
         <div className="mb-8">
           <button
             onClick={() => {
-              if (currentEvent) {
-                setCurrentEvent(null);
-                return;
-              }
               if (step === 0) {
                 setSelectedType(null);
                 setProfile(null);
@@ -1089,10 +1100,10 @@ export default function QuizPage() {
           </div>
           <div className="flex items-center justify-between gap-4 text-sm text-slate-300">
             <span>
-              {currentEvent ? "🚨 突發危機 (CRISIS EVENT)" : (selectedType === "film" ? "影視作品" : "遊戲作品")}
+              {selectedType === "film" ? "影視作品" : "遊戲作品"}
             </span>
             <span>
-              {currentEvent ? "🚨 CRISIS" : `${step + 1} / ${gameQuestions.length}`}
+              {`${step + 1} / ${gameQuestions.length}`}
             </span>
           </div>
         </div>
@@ -1101,17 +1112,13 @@ export default function QuizPage() {
           <div className="flex flex-col gap-4">
             
             <AdvisoryBubbles 
-              questionId={currentEvent ? currentEvent.id : current?.id} 
-              isEvent={!!currentEvent} 
+              questionId={current?.id} 
+              isEvent={false} 
             />
 
-            <section className={`rounded-lg border p-5 shadow-glow backdrop-blur-xl saturate-150 sm:p-8 transition-all duration-300 ${
-              currentEvent 
-                ? "border-red-500/40 bg-gradient-to-br from-red-950/20 to-red-950/5 shadow-[0_0_30px_rgba(239,68,68,0.2)] animate-[pulse_3s_infinite]" 
-                : "border-white/20 bg-gradient-to-br from-white/[0.08] to-white/[0.02]"
-            }`}>
-              <p className={`mb-3 text-sm font-semibold uppercase tracking-[0.22em] ${currentEvent ? "text-red-400" : "text-teal-200"}`}>
-                {currentEvent ? "SUDDEN CRISIS" : "Production Decision"}
+            <section className="rounded-lg border border-white/20 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-5 shadow-glow backdrop-blur-xl saturate-150 sm:p-8 transition-all duration-300">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-teal-200">
+                Production Decision
               </p>
               <h1 className="text-3xl font-black leading-tight text-white sm:text-4xl">{displayTitle}</h1>
               {displaySubtitle ? <p className="mt-3 text-slate-300 leading-7">{displaySubtitle}</p> : null}
@@ -1123,11 +1130,7 @@ export default function QuizPage() {
                       type="button"
                       key={option.label}
                       onClick={() => answer(option.effects, (option as typeof current.options[0]).matchTags)}
-                      className={`rounded-lg border p-5 text-left transition focus:outline-none focus:ring-1 focus:ring-teal-200/50 ${
-                        currentEvent 
-                          ? "border-red-500/20 bg-red-950/5 hover:border-red-400/50 hover:bg-red-950/15 hover:shadow-glow" 
-                          : "border-white/10 bg-white/[0.03] hover:border-teal-200/50 hover:bg-white/[0.08] hover:shadow-glow"
-                      }`}
+                      className="border-white/10 bg-white/[0.03] hover:border-teal-200/50 hover:bg-white/[0.08] hover:shadow-glow rounded-lg border p-5 text-left transition focus:outline-none focus:ring-1 focus:ring-teal-200/50"
                     >
                       <span className="flex gap-4">
                         {(option as typeof current.options[0])?.imageSrc ? (
@@ -1158,6 +1161,61 @@ export default function QuizPage() {
           <AxisPanel profile={profile} selectedType={selectedType} />
         </div>
       </div>
+
+      {/* Sudden Crisis Modal Overlay */}
+      {currentEvent && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+          <div className="relative max-w-2xl w-full rounded-xl border-2 border-red-500/40 bg-gradient-to-b from-[#180a0a] to-[#0a0303] p-6 sm:p-8 shadow-[0_0_50px_rgba(239,68,68,0.35)] text-slate-100 overflow-hidden animate-in zoom-in-95 duration-200">
+            {/* Pulsing red alarm border glow */}
+            <div className="absolute inset-0 border border-red-500/20 rounded-xl pointer-events-none animate-pulse" />
+            
+            {/* Top red siren line */}
+            <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-red-600 via-rose-500 to-red-600 animate-pulse" />
+            
+            <div className="flex items-center gap-2 text-red-500 font-bold text-xs uppercase tracking-widest mb-4">
+              <span className="animate-ping h-2.5 w-2.5 rounded-full bg-red-500 inline-block shrink-0" />
+              <span>🚨 突發公關危機 (CRISIS EVENT)</span>
+            </div>
+            
+            <h2 className="text-2xl font-black text-white leading-tight mb-3 sm:text-3xl">
+              {currentEvent.title}
+            </h2>
+            <p className="text-sm leading-6 text-slate-300 mb-6 bg-red-950/20 border border-red-900/30 p-4 rounded-lg">
+              {currentEvent.subtitle}
+            </p>
+
+            {/* Advisory in Crisis */}
+            <div className="grid gap-3 sm:grid-cols-2 mb-6 text-left">
+              <div className="rounded-lg border border-purple-500/20 bg-purple-950/20 p-4 text-xs text-slate-300">
+                <div className="font-bold text-purple-300 mb-1">👩‍💼 ESG價值合規顧問</div>
+                <div className="italic leading-5">
+                  {getAdviserOpinion(currentEvent.id, true).consultant}
+                </div>
+              </div>
+              <div className="rounded-lg border border-amber-500/20 bg-amber-950/20 p-4 text-xs text-slate-300">
+                <div className="font-bold text-amber-300 mb-1">👨‍💻 研發製作組長</div>
+                <div className="italic leading-5">
+                  {getAdviserOpinion(currentEvent.id, true).dev}
+                </div>
+              </div>
+            </div>
+
+            <div className="grid gap-3">
+              {currentEvent.options.map((option) => (
+                <button
+                  type="button"
+                  key={option.label}
+                  onClick={() => answer(option.effects, undefined)}
+                  className="rounded-lg border border-red-500/25 bg-red-950/20 p-5 text-left transition hover:border-red-400 hover:bg-red-950/30 hover:shadow-glow focus:outline-none"
+                >
+                  <div className="text-base font-bold text-white mb-1">{option.label}</div>
+                  <div className="text-xs text-slate-300 leading-6">{option.description}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
