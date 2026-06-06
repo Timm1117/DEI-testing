@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   // GitHub Pages 部署時若在子目錄下，需要動態設定 basePath
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || (process.env.GITHUB_ACTIONS ? "/DEI-testing" : ""),
 };
 
 export default nextConfig;
