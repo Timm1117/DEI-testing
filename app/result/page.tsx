@@ -341,6 +341,260 @@ function CaseComparison({ work }: { work: Work }) {
   );
 }
 
+const getProducerTitle = (work: Work) => {
+  const representation = work.politicalIndex.representation;
+  const controversy = work.politicalIndex.controversyRisk;
+  const entertainment = work.tags.commercialEntertainment;
+  const canon = work.tags.canonFaithful;
+  const media = work.politicalIndex.mediaFriendly;
+
+  if (representation >= 75 && controversy >= 75) {
+    return {
+      title: "🔥 輿論核彈引爆狂魔",
+      sub: "Controversy Catalyst",
+      desc: "您大膽推動進步多元價值，不惜與核心粉絲正面開戰。雖然在社群上引發了毀天滅地的炎上風暴，但絕對是今年度話題度最高的產業焦點！",
+      color: "from-red-500 via-rose-600 to-amber-500"
+    };
+  }
+  if (representation >= 75 && controversy <= 45) {
+    return {
+      title: "🌈 多元價值水利大師",
+      sub: "Diversity Diplomat",
+      desc: "您將多元代表性（DEI）與核心玩法或劇情完美融合，既獲得了主流媒體與投資人的熱烈掌聲，又成功安撫了玩家大眾，達成了難得的和諧定位！",
+      color: "from-teal-400 via-emerald-500 to-sky-400"
+    };
+  }
+  if (representation <= 35 && canon >= 75) {
+    return {
+      title: "🛡️ 鐵血原作聖經守護騎士",
+      sub: "Canon Fundamentalist",
+      desc: "您堅定捍衛原作設定，拒絕任何生硬的多元解構。雖然這可能讓部分進步派媒體和影評人略感不滿，但核心老粉對您的忠誠度直接拉滿！",
+      color: "from-yellow-400 via-amber-500 to-orange-500"
+    };
+  }
+  if (entertainment >= 78 && controversy <= 45) {
+    return {
+      title: "💸 極致商業票房巨賈",
+      sub: "Commercial Tycoon",
+      desc: "對您而言，好玩和好看才是唯一的硬道理。您精準地避開了所有政治雷區，將所有預算灌注在爽感與感官刺激上，賺得盆滿缽滿！",
+      color: "from-purple-500 via-indigo-600 to-blue-500"
+    };
+  }
+  if (media >= 78 && representation >= 70) {
+    return {
+      title: "🏆 影評人掌聲收割機",
+      sub: "Prestige Magnet",
+      desc: "您的作品充滿了深沉的社會關懷與文藝美學。主流媒體在各大頭條對您極盡讚美之能事，各大頒獎季的金牌已經在向您招手！",
+      color: "from-pink-500 via-purple-600 to-indigo-500"
+    };
+  }
+  return {
+    title: "⚖️ 業界端水大師",
+    sub: "Balanced Pragmatist",
+    desc: "您在各方利益之間小心翼翼地維持著平衡：既沒有過度招致保守群體的憤怒，也沒有在 ESG 文化合規評級上交白卷。平穩前行是您的座右銘。",
+    color: "from-slate-400 via-slate-500 to-slate-400"
+  };
+};
+
+const getPrDiagnosis = (work: Work) => {
+  const representation = work.politicalIndex.representation;
+  const controversy = work.politicalIndex.controversyRisk;
+  const canon = work.tags.canonFaithful;
+
+  const auditPoints = [];
+
+  if (representation >= 75) {
+    auditPoints.push({
+      status: "success",
+      title: "🌿 DEI 合規度高：資金安全與媒體綠色通道已開啟",
+      desc: "您的多元代表性與議題深度符合主流 ESG 文化認證標準。這能確保外部風投資金撥款順利，並使主流媒體在宣傳期給予正面推廣。"
+    });
+  } else {
+    auditPoints.push({
+      status: "warning",
+      title: "⚠️ DEI 評級偏低：面臨評獎冷落與融資門檻風險",
+      desc: "作品在多元包容性上較為保守，這可能導致評獎季（如 TGA、奧斯卡）或主流進步派影評人給予較低的主觀分。外部合規顧問也可能對此提出警告，影響後續 ESG 資金撥款。"
+    });
+  }
+
+  if (controversy >= 70) {
+    auditPoints.push({
+      status: "error",
+      title: "💥 輿論炎上警戒：核心受眾產生嚴重文化反彈",
+      desc: "您的改編解構或人設修改幅度過大，導致核心老粉產生強烈的「背叛感」。社群論壇（如 Reddit）正在形成抵制浪潮，首週退款率與評分分歧風險極高。"
+    });
+  } else {
+    auditPoints.push({
+      status: "success",
+      title: "🌿 輿情生態平穩：未踩中任何重大文化對立雷區",
+      desc: "您的決策十分溫和，社群討論度平穩。玩家並未感覺到被強塞說教，輿論反彈率低。這有利於保障產品的長尾銷量，避免陷入無意義的口水戰。"
+    });
+  }
+
+  if (canon >= 75) {
+    auditPoints.push({
+      status: "success",
+      title: "📖 原作忠實度高：情懷基本盤穩固",
+      desc: "您保留了原作的靈魂設定，這讓核心老粉極其受用。即使在其他地方有小瑕疵，基本盤依然會願意為您的誠意買單並發布正面口碑。"
+    });
+  } else if (canon <= 40) {
+    auditPoints.push({
+      status: "error",
+      title: "❌ 原作解構過度：面臨「借殼上市」的魔改指控",
+      desc: "對原作人設和世界觀的破壞過大，老粉在社交平台發起集體抗議。這使任何新加入的 DEI 元素都被放大解讀為「刻意政治正確」，直接摧毀了產品的自發傳播力。"
+    });
+  }
+
+  return auditPoints;
+};
+
+function RadarChart({ work }: { work: Work }) {
+  const size = 260;
+  const center = size / 2;
+  const maxVal = 100;
+  const r = 75; // maximum radius
+
+  const values = [
+    work.politicalIndex.representation,    // 0: 多元代表
+    work.politicalIndex.controversyRisk,   // 1: 輿論風險
+    work.tags.commercialEntertainment,     // 2: 商業娛樂
+    work.tags.canonFaithful,               // 3: 原作忠實
+    work.politicalIndex.mediaFriendly,     // 4: 媒體友善
+  ];
+
+  const labels = ["多元代表", "輿論風險", "商業娛樂", "原作忠實", "媒體友善"];
+
+  // Pentagram math
+  const getCoordinates = (index: number, value: number) => {
+    const angle = (Math.PI * 2 / 5) * index - Math.PI / 2;
+    const radius = (value / maxVal) * r;
+    return {
+      x: center + radius * Math.cos(angle),
+      y: center + radius * Math.sin(angle),
+    };
+  };
+
+  // Grid polygons
+  const gridLevels = [0.25, 0.5, 0.75, 1];
+  const gridPolygons = gridLevels.map((level) => {
+    return Array.from({ length: 5 }).map((_, i) => {
+      const { x, y } = getCoordinates(i, level * 100);
+      return `${x},${y}`;
+    }).join(" ");
+  });
+
+  // Actual data polygon
+  const dataPoints = values.map((val, i) => {
+    const { x, y } = getCoordinates(i, val);
+    return `${x},${y}`;
+  }).join(" ");
+
+  // Axes lines
+  const axesLines = Array.from({ length: 5 }).map((_, i) => {
+    const { x, y } = getCoordinates(i, 100);
+    return { x1: center, y1: center, x2: x, y2: y };
+  });
+
+  // Label positions
+  const labelPositions = Array.from({ length: 5 }).map((_, i) => {
+    const { x, y } = getCoordinates(i, 116);
+    let textAnchor = "middle";
+    if (i === 1 || i === 2) textAnchor = "start";
+    if (i === 3 || i === 4) textAnchor = "end";
+    
+    let dy = "0.33em";
+    if (i === 0) dy = "-0.3em";
+    if (i === 2 || i === 3) dy = "0.8em";
+
+    return { x, y, textAnchor, dy, text: labels[i], val: values[i] };
+  });
+
+  return (
+    <div className="flex flex-col items-center justify-center bg-black/40 rounded-lg border border-white/5 p-4 shadow-inner">
+      <svg width={size} height={size} className="overflow-visible">
+        {/* Grid Levels */}
+        {gridPolygons.map((pts, idx) => (
+          <polygon
+            key={idx}
+            points={pts}
+            fill="none"
+            stroke="rgba(255, 255, 255, 0.08)"
+            strokeWidth="1"
+          />
+        ))}
+
+        {/* Axes Lines */}
+        {axesLines.map((line, idx) => (
+          <line
+            key={idx}
+            x1={line.x1}
+            y1={line.y1}
+            x2={line.x2}
+            y2={line.y2}
+            stroke="rgba(255, 255, 255, 0.08)"
+            strokeWidth="1"
+            strokeDasharray="3 3"
+          />
+        ))}
+
+        {/* Grid Center Circle */}
+        <circle cx={center} cy={center} r={3} fill="rgba(94, 234, 212, 0.4)" />
+
+        {/* Data Area */}
+        <polygon
+          points={dataPoints}
+          fill="rgba(94, 234, 212, 0.15)"
+          stroke="rgba(94, 234, 212, 0.85)"
+          strokeWidth="2"
+          className="drop-shadow-[0_0_6px_rgba(94,234,212,0.4)]"
+        />
+
+        {/* Data Points */}
+        {values.map((val, i) => {
+          const { x, y } = getCoordinates(i, val);
+          return (
+            <circle
+              key={i}
+              cx={x}
+              cy={y}
+              r={3.5}
+              fill="#5eead4"
+              stroke="#090a0f"
+              strokeWidth="1.2"
+            />
+          );
+        })}
+
+        {/* Labels */}
+        {labelPositions.map((pos, i) => (
+          <g key={i}>
+            <text
+              x={pos.x}
+              y={pos.y}
+              textAnchor={pos.textAnchor}
+              dy={pos.dy}
+              fill="#94a3b8"
+              className="text-[10px] font-bold font-sans"
+            >
+              {pos.text}
+            </text>
+            <text
+              x={pos.x}
+              y={pos.y + 11}
+              textAnchor={pos.textAnchor}
+              dy={pos.dy}
+              fill="#5eead4"
+              className="text-[9px] font-mono font-bold"
+            >
+              {Math.round(pos.val)}
+            </text>
+          </g>
+        ))}
+      </svg>
+    </div>
+  );
+}
+
 export default function ResultPage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
 
@@ -526,14 +780,82 @@ export default function ResultPage() {
               <RatingCard ratings={work.ratings} type={work.type} />
               <ControversyTimeline work={work} />
             </div>
-            <section className="rounded-lg border border-white/10 bg-white/[0.06] p-5 backdrop-blur-xl saturate-150 shadow-glow">
-              <h2 className="text-lg font-semibold text-white">核心觀點</h2>
-              <p className="mt-3 text-sm leading-7 text-slate-300">
-                這個測驗要呈現的不是「DEI 一定加分或扣分」，而是 DEI 如何和娛樂性、角色功能、
-                改編忠實度、玩家自由度、媒體語境與社群期待交互作用。當代表性服務角色與體驗時，
-                它可能擴大共鳴；當它和原作期待或完成度衝突時，爭議就會成為評價主軸。
-              </p>
-            </section>
+
+            <div className="space-y-5">
+              <section className="rounded-lg border border-white/10 bg-white/[0.06] p-5 backdrop-blur-xl saturate-150 shadow-glow">
+                <h2 className="text-lg font-semibold text-white">核心觀點</h2>
+                <p className="mt-3 text-sm leading-7 text-slate-300">
+                  這個測驗要呈現的不是「DEI 一定加分或扣分」，而是 DEI 如何和娛樂性、角色功能、
+                  改編忠實度、玩家自由度、媒體語境與社群期待交互作用。當代表性服務角色與體驗時，
+                  它可能擴大共鳴；當它和原作期待或完成度衝突時，爭議就會成為評價主軸。
+                </p>
+              </section>
+
+              {/* Executive Dashboard */}
+              <section className="rounded-lg border border-teal-200/20 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-5 backdrop-blur-xl saturate-150 shadow-glow relative overflow-hidden">
+                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-teal-500 via-emerald-400 to-teal-500 opacity-60" />
+                
+                <div className="mb-5 flex items-center justify-between gap-4 border-b border-white/5 pb-3">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-200">EXECUTIVE DASHBOARD</p>
+                    <h2 className="mt-1 text-lg font-bold text-white">執行製作人控制面板</h2>
+                  </div>
+                  <span className="rounded-full bg-teal-200/10 border border-teal-200/20 px-2.5 py-0.5 text-xs text-teal-200 font-mono font-bold animate-pulse">
+                    LIVE DATA
+                  </span>
+                </div>
+
+                {/* 1. Title Badge Card */}
+                {(() => {
+                  const badge = getProducerTitle(work);
+                  return (
+                    <div className="mb-5 rounded-lg border border-white/10 bg-black/45 p-5 relative overflow-hidden shadow-inner group">
+                      <div className={`absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b ${badge.color} opacity-50 shrink-0`} />
+                      <div className="pl-3">
+                        <div className="flex items-baseline gap-2 flex-wrap">
+                          <span className={`text-base font-black bg-gradient-to-r ${badge.color} bg-clip-text text-transparent`}>
+                            {badge.title}
+                          </span>
+                          <span className="text-[9px] text-slate-400 font-mono font-semibold uppercase">{badge.sub}</span>
+                        </div>
+                        <p className="mt-2 text-xs leading-5 text-slate-300">
+                          {badge.desc}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })()}
+
+                {/* 2. Radar Chart */}
+                <div className="mb-6">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 mb-3 text-center">
+                    📊 專案文化與商業屬性雷達 (Cultural Alignment Radar)
+                  </p>
+                  <RadarChart work={work} />
+                </div>
+
+                {/* 3. PR Diagnosis Audit List */}
+                <div className="space-y-3">
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400 mb-2">
+                    📋 公關診斷審計報告 (PR Diagnosis Audit)
+                  </p>
+                  {getPrDiagnosis(work).map((item, idx) => {
+                    const icon = item.status === "success" ? "🌿" : item.status === "warning" ? "⚠️" : item.status === "error" ? "💥" : "ℹ️";
+                    const borderColor = item.status === "success" ? "border-emerald-500/20 bg-emerald-950/10" : item.status === "warning" ? "border-amber-500/20 bg-amber-950/10" : item.status === "error" ? "border-rose-500/20 bg-rose-950/10" : "border-white/5 bg-white/[0.02]";
+                    const titleColor = item.status === "success" ? "text-emerald-200" : item.status === "warning" ? "text-amber-200" : item.status === "error" ? "text-rose-200" : "text-white";
+                    return (
+                      <div key={idx} className={`rounded-lg border p-4 text-[11px] leading-5 ${borderColor}`}>
+                        <div className={`font-bold flex items-center gap-1.5 mb-1 ${titleColor}`}>
+                          <span>{icon}</span>
+                          <span>{item.title}</span>
+                        </div>
+                        <p className="text-slate-300 pl-5">{item.desc}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            </div>
           </div>
 
           <div className="pb-12">
