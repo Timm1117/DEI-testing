@@ -1032,51 +1032,72 @@ function AxisPanel({
   profile: UserProfile | null;
   selectedType: WorkType;
 }) {
+  const [isExpanded, setIsExpanded] = useState(false);
   const current = axisFromProfile(profile);
   const deiLevel = current.x >= 72 ? "價值高度合規" : current.x >= 45 ? "中度合規定位" : "保守大眾傾向";
   const controversyLevel = current.y >= 72 ? "高輿論反彈" : current.y >= 45 ? "中度敏感" : "社群輿論平穩";
 
   return (
     <aside className="rounded-lg border border-white/20 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-5 shadow-glow backdrop-blur-xl saturate-150 flex flex-col gap-4">
-      <div>
-        <div className="mb-4 flex items-center justify-between gap-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-200">POSITIONING</p>
-            <h2 className="mt-1 text-lg font-bold text-white">文化價值定位儀</h2>
+      {/* Mobile Toggle Button */}
+      <button
+        type="button"
+        onClick={() => setIsExpanded(!isExpanded)}
+        className="w-full lg:hidden flex items-center justify-between text-left focus:outline-none"
+      >
+        <div>
+          <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-teal-200">POSITIONING & PREDICTOR</p>
+          <h2 className="text-sm font-bold text-white flex items-center gap-2 mt-0.5">
+            📊 目前數據評估與預測 
+            <span className="text-[10px] text-teal-200 bg-teal-950/40 border border-teal-500/20 px-2 py-0.5 rounded font-mono font-bold shrink-0">
+              {isExpanded ? "收合 ▲" : "點擊展開 ▼"}
+            </span>
+          </h2>
+        </div>
+      </button>
+
+      {/* Main Content (always block on lg screen, toggleable on mobile) */}
+      <div className={`lg:block ${isExpanded ? "block animate-in fade-in duration-300" : "hidden"} space-y-4`}>
+        <div>
+          <div className="mb-4 hidden lg:flex items-center justify-between gap-4">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-200">POSITIONING</p>
+              <h2 className="mt-1 text-lg font-bold text-white">文化價值定位儀</h2>
+            </div>
+            <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300">
+              {selectedType === "film" ? "影視" : "遊戲"}
+            </span>
           </div>
-          <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300">
-            {selectedType === "film" ? "影視" : "遊戲"}
-          </span>
-        </div>
 
-        <div className="relative aspect-square overflow-hidden rounded-lg border border-white/10 bg-slate-950/85">
-          <div className="absolute inset-4 border-l border-b border-white/25" />
-          <div className="absolute left-1/2 top-4 h-[calc(100%-2rem)] w-px bg-white/10" />
-          <div className="absolute left-4 top-1/2 h-px w-[calc(100%-2rem)] bg-white/10" />
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:20%_20%]" />
+          <div className="relative aspect-square overflow-hidden rounded-lg border border-white/10 bg-slate-950/85">
+            <div className="absolute inset-4 border-l border-b border-white/25" />
+            <div className="absolute left-1/2 top-4 h-[calc(100%-2rem)] w-px bg-white/10" />
+            <div className="absolute left-4 top-1/2 h-px w-[calc(100%-2rem)] bg-white/10" />
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] bg-[size:20%_20%]" />
 
-          <div
-            className="absolute z-20 flex h-6 w-6 items-center justify-center rounded-full border border-teal-100 bg-teal-300 shadow-[0_0_24px_rgba(94,234,212,0.85)] transition-all duration-500"
-            style={{ left: `${current.x}%`, top: `${100 - current.y}%`, transform: "translate(-50%, -50%)" }}
-          >
-            <Crosshair size={14} className="text-slate-950" />
+            <div
+              className="absolute z-20 flex h-6 w-6 items-center justify-center rounded-full border border-teal-100 bg-teal-300 shadow-[0_0_24px_rgba(94,234,212,0.85)] transition-all duration-500"
+              style={{ left: `${current.x}%`, top: `${100 - current.y}%`, transform: "translate(-50%, -50%)" }}
+            >
+              <Crosshair size={14} className="text-slate-950" />
+            </div>
+
+            <span className="absolute left-4 top-3 text-[10px] font-semibold text-slate-400">輿論反彈高 (Backlash)</span>
+            <span className="absolute bottom-3 left-4 text-[10px] font-semibold text-slate-400">傳統保守</span>
+            <span className="absolute bottom-3 right-4 text-[10px] font-semibold text-slate-400">價值合規 (ESG/DEI)</span>
+            <span className="absolute bottom-10 left-4 text-[10px] font-semibold text-slate-500">輿論反彈低</span>
           </div>
 
-          <span className="absolute left-4 top-3 text-[10px] font-semibold text-slate-400">輿論反彈高 (Backlash)</span>
-          <span className="absolute bottom-3 left-4 text-[10px] font-semibold text-slate-400">傳統保守</span>
-          <span className="absolute bottom-3 right-4 text-[10px] font-semibold text-slate-400">價值合規 (ESG/DEI)</span>
-          <span className="absolute bottom-10 left-4 text-[10px] font-semibold text-slate-500">輿論反彈低</span>
+          <div className="mt-3 rounded-md border border-white/10 bg-white/[0.04] p-3 text-sm shadow-inner">
+            <p className="font-semibold text-white">
+              {deiLevel} / {controversyLevel}
+            </p>
+            <p className="mt-1 text-xs leading-5 text-slate-400">每個決策都會改變你作品的價值對齊與公關壓力位置。</p>
+          </div>
         </div>
 
-        <div className="mt-3 rounded-md border border-white/10 bg-white/[0.04] p-3 text-sm shadow-inner">
-          <p className="font-semibold text-white">
-            {deiLevel} / {controversyLevel}
-          </p>
-          <p className="mt-1 text-xs leading-5 text-slate-400">每個決策都會改變你作品的價值對齊與公關壓力位置。</p>
-        </div>
+        <CriticUserPredictor profile={profile} selectedType={selectedType} />
       </div>
-
-      <CriticUserPredictor profile={profile} selectedType={selectedType} />
     </aside>
   );
 }
