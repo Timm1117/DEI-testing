@@ -323,8 +323,6 @@ const baseQuestions: Question[] = [
       {
         label: "黑人主角，話題和放大鏡一起上桌",
         description: "角色可以很有衝擊力，但觀眾也會立刻檢查你是不是只在換皮。",
-        imageSrc: "/characters/snape-race-reference.png",
-        imageAlt: "黑人角色造型參考",
         effects: { representation: 30, genderPowerShift: 10, mediaFriendly: 16, controversyRisk: 14 },
       },
       {
@@ -478,8 +476,6 @@ const baseQuestions: Question[] = [
       {
         label: "黑人主角，直接把討論度拉到臉上",
         description: "角色辨識度高，社群會看得很仔細，優點和缺點都會被放大。",
-        imageSrc: "/characters/snape-race-reference.png",
-        imageAlt: "黑人角色造型參考",
         effects: { representation: 30, genderPowerShift: 8, mediaFriendly: 14, controversyRisk: 14 },
       },
       {

@@ -866,7 +866,6 @@ function DiscourseAlert({
           <div className="flex justify-between text-[9px] uppercase tracking-widest text-stone-500 mt-2 font-sans font-bold border-t border-stone-300 pt-1">
             <span>Special Report</span>
             <span>Sunday Edition</span>
-            <span>Price: $0.25</span>
           </div>
         </div>
 
@@ -1602,7 +1601,6 @@ export default function QuizPage() {
                   <div className="flex justify-between text-xs text-stone-600 font-bold border-t border-stone-300 pt-2 px-1">
                     <span>VOL. XLVI NO. 204</span>
                     <span className="uppercase">{isMic ? "EXCLUSIVE PRESS CORNER" : "LATE CITY EDITION"}</span>
-                    <span>PRICE: $0.25</span>
                   </div>
                   <div className="text-center text-[10px] text-stone-500 uppercase tracking-widest mt-1.5 font-semibold">
                     Published in New York & San Francisco • Sunday, June 7, 2026
