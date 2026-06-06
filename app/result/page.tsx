@@ -511,7 +511,7 @@ function RadarChart({ work }: { work: Work }) {
 
   return (
     <div className="flex flex-col items-center justify-center bg-black/40 rounded-lg border border-white/5 p-4 shadow-inner">
-      <svg width={size} height={size} className="overflow-visible">
+      <svg viewBox="0 0 260 260" className="w-full max-w-[260px] h-auto overflow-visible">
         {/* Grid Levels */}
         {gridPolygons.map((pts, idx) => (
           <polygon
@@ -666,7 +666,7 @@ export default function ResultPage() {
 
         <div className="relative z-20 mx-auto max-w-6xl">
           <div className="grid min-h-[84vh] gap-8 pt-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-            <div>
+            <div className="order-2 lg:order-1">
               <p className="mb-4 text-sm font-medium uppercase tracking-[0.25em] text-teal-200">
                 Most Similar Work
               </p>
@@ -715,7 +715,7 @@ export default function ResultPage() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-4 order-1 lg:order-2">
               <div className="overflow-hidden rounded-lg border border-white/15 bg-black/35 shadow-glow backdrop-blur-xl saturate-150">
                 <ResultArtwork work={work} />
                 <div className="border-t border-white/10 px-5 py-4">

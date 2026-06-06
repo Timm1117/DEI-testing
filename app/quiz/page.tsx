@@ -1499,7 +1499,7 @@ export default function QuizPage() {
       {/* Sudden Crisis Modal Overlay */}
       {currentEvent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-          <div className="relative max-w-2xl w-full rounded-xl border-2 border-red-500/40 bg-gradient-to-b from-[#180a0a] to-[#0a0303] p-6 sm:p-8 shadow-[0_0_50px_rgba(239,68,68,0.35)] text-slate-100 overflow-hidden animate-in zoom-in-95 duration-200">
+          <div className="relative max-w-2xl w-full rounded-xl border-2 border-red-500/40 bg-gradient-to-b from-[#180a0a] to-[#0a0303] p-6 sm:p-8 shadow-[0_0_50px_rgba(239,68,68,0.35)] text-slate-100 max-h-[92vh] overflow-y-auto animate-in zoom-in-95 duration-200">
             {/* Pulsing red alarm border glow */}
             <div className="absolute inset-0 border border-red-500/20 rounded-xl pointer-events-none animate-pulse" />
             
