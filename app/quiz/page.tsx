@@ -301,7 +301,7 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
     } else {
       return {
         source: "Forum",
-        senderOrPublication: "玩家討論區 / r/gaming",
+        senderOrPublication: "r/gaming",
         content: "「良心之作！這次沒有強加政治正確設定，主角人設經典扎實，預售準備支持！」"
       };
     }
@@ -409,6 +409,134 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
     }
   }
 
+  if (maxKey === "genreSpectacle") {
+    if (maxValue > 0) {
+      return {
+        source: "Media",
+        senderOrPublication: "IGN NEWS",
+        content: "「爽度突破天際！令人屏息的視覺特效與史詩級大場面，本作毫無疑問是年度娛樂盛宴。」"
+      };
+    } else {
+      return {
+        source: "Media",
+        senderOrPublication: "VARIETY REPORT",
+        content: "「缺乏視覺奇觀，本作在場面調度上顯得保守，難以吸引大眾市場注意。」"
+      };
+    }
+  }
+
+  if (maxKey === "genrePrestige") {
+    if (maxValue > 0) {
+      return {
+        source: "Media",
+        senderOrPublication: "INDIEWIRE REVIEW",
+        content: "「深邃的人性探索與極致的文藝美學，本作在藝術層面上達到了少見的高峰。」"
+      };
+    } else {
+      return {
+        source: "Media",
+        senderOrPublication: "KOTAKU COLUMN",
+        content: "「過於公式化與商業妥協，本作在議題深度與藝術探討上顯得有些心口不一。」"
+      };
+    }
+  }
+
+  if (maxKey === "adaptation") {
+    if (maxValue > 0) {
+      return {
+        source: "Forum",
+        senderOrPublication: "Reddit 原作改編板",
+        content: "「改編消息引發熱烈討論！原作忠實派與現代改編派在討論區已經吵翻了。」"
+      };
+    } else {
+      return {
+        source: "Forum",
+        senderOrPublication: "Steam 原創板",
+        content: "「全新原創 IP 雖然沒有情懷包袱，但前期知名度偏低，宣傳工作將是一大挑戰。」"
+      };
+    }
+  }
+
+  if (maxKey === "mediaFriendly") {
+    if (maxValue > 0) {
+      return {
+        source: "Media",
+        senderOrPublication: "KOTAKU COLUMN",
+        content: "「業界的良心！本作大膽擁抱多元價值，主流媒體齊聲稱讚其對當代社會的深刻關懷。」"
+      };
+    } else {
+      return {
+        source: "Media",
+        senderOrPublication: "IGN NEWS",
+        content: "「立場過於保守？部分影評人指出作品缺乏當代多元視角，對其老套的價值觀感到失望。」"
+      };
+    }
+  }
+
+  if (maxKey === "audienceAcceptance") {
+    if (maxValue > 0) {
+      return {
+        source: "Forum",
+        senderOrPublication: "r/gaming",
+        content: "「好評如潮！首波測試反饋極佳，核心與輕度玩家一致讚賞，預購量正在快速攀升。」"
+      };
+    } else {
+      return {
+        source: "Forum",
+        senderOrPublication: "貼吧老粉吐槽區",
+        content: "「雷作警告！玩家社群痛批遊戲內容敷衍，大量要求退款的呼聲正在蔓延。」"
+      };
+    }
+  }
+
+  if (maxKey === "studioRisk") {
+    if (maxValue > 0) {
+      return {
+        source: "Slack",
+        senderOrPublication: "主企劃 @Slack",
+        content: "「警告：頻繁的設計變更與加班壓力已讓團隊疲憊不堪，必須注意交付品質。」"
+      };
+    } else {
+      return {
+        source: "Slack",
+        senderOrPublication: "專案主管 @Slack",
+        content: "「好消息：開發進度完全在掌控之中，目前測試反饋穩定，沒有重大的技術或設計風險。」"
+      };
+    }
+  }
+
+  if (maxKey === "genderPowerShift") {
+    if (maxValue > 0) {
+      return {
+        source: "Media",
+        senderOrPublication: "VARIETY REPORT",
+        content: "「大膽突破！顛覆性的性別權力結構，女性與多元族群成為敘事核心，為類型作品注入全新活力。」"
+      };
+    } else {
+      return {
+        source: "Forum",
+        senderOrPublication: "Reddit 原作粉板",
+        content: "「Reddit 熱帖：『強行弱化經典男性配角？』，粉絲對角色設計被刻意矮化表示強烈不滿。」"
+      };
+    }
+  }
+
+  if (maxKey === "storyDriven") {
+    if (maxValue > 0) {
+      return {
+        source: "Forum",
+        senderOrPublication: "r/RPG_Gamers",
+        content: "「劇本殺瘋了！極具張力的故事線與令人心碎的兩難抉擇，讓愛看劇情的玩家徹底陷進去了。」"
+      };
+    } else {
+      return {
+        source: "Slack",
+        senderOrPublication: "行銷組長 @Slack",
+        content: "「部分社群反饋指出劇本過於平淡，缺乏情緒爆點，可能影響長線的討論度。」"
+      };
+    }
+  }
+
   return {
     source: "Slack",
     senderOrPublication: "#marketing",
@@ -510,21 +638,47 @@ function DiscourseAlert({ alert, controversyRisk = 50 }: { alert: MockAlert | nu
   }
 
   if (currentAlert.source === "Media") {
+    const isMic = /interview|press|podcast|radio/i.test(currentAlert.senderOrPublication);
+    const mediaTag = currentAlert.senderOrPublication.split(" ")[0];
     return (
       <div className="rounded-lg border border-rose-500/30 bg-gradient-to-br from-white/[0.08] to-white/[0.01] p-5 shadow-glow backdrop-blur-xl saturate-150 text-slate-100 transition-all duration-300">
         <div className="flex items-center gap-2 mb-3 border-b border-white/5 pb-2">
-          <span className="bg-red-600 text-white text-[9px] font-black px-2 py-0.5 rounded font-sans tracking-wider uppercase shrink-0">
-            {currentAlert.senderOrPublication.split(" ")[0]}
+          <span className="h-5 w-5 rounded bg-red-600/20 border border-red-500/30 flex items-center justify-center p-0.5 shrink-0 text-red-400">
+            {isMic ? (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                <line x1="12" x2="12" y1="19" y2="22" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-3 w-3">
+                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                <path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z" />
+              </svg>
+            )}
           </span>
-          <span className="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">媒體焦點頭條</span>
+          <span className="bg-red-600 text-white text-[9px] font-black px-2 py-0.5 rounded font-sans tracking-wider uppercase shrink-0">
+            {mediaTag}
+          </span>
+          <span className="text-[10px] text-slate-300 font-bold uppercase tracking-wider">
+            {isMic ? "媒體獨家專訪" : "新聞頭條"}
+          </span>
           <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse ml-auto" />
         </div>
         <div className="flex gap-3 items-start">
-          <div className="h-8 w-8 rounded-full bg-red-600/20 border border-red-500/30 flex items-center justify-center shrink-0">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-red-400">
-              <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
-              <path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z" />
-            </svg>
+          <div className="h-8 w-8 rounded-full bg-red-600/20 border border-red-500/30 flex items-center justify-center shrink-0 text-red-400">
+            {isMic ? (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                <line x1="12" x2="12" y1="19" y2="22" />
+              </svg>
+            ) : (
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2" />
+                <path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z" />
+              </svg>
+            )}
           </div>
           <div className="min-w-0">
             <h3 className="text-sm font-bold text-white leading-snug mb-1">
