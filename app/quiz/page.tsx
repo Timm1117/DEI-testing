@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Clapperboard, Crosshair, Gamepad2, ShieldAlert } from "lucide-react";
 import { questions } from "@/data/questions";
@@ -1100,9 +1100,75 @@ export default function QuizPage() {
   const [currentEvent, setCurrentEvent] = useState<SuddenEvent | null>(null);
   const [gameQuestions, setGameQuestions] = useState<typeof questions>([]);
   const [activeDetailAlert, setActiveDetailAlert] = useState<MockAlert | null>(null);
+  const [timeLeft, setTimeLeft] = useState<number | null>(null);
   
   const [isGameOver, setIsGameOver] = useState(false);
   const [gameOverReason, setGameOverReason] = useState<"esg_bankruptcy" | "pr_firestorm" | "user_rating_death" | null>(null);
+
+  const handleCrisisTimeout = () => {
+    if (!currentEvent || !profile) return;
+    
+    let timeoutEffects: Partial<Record<TagKey, number>> = {};
+    let message = "";
+    
+    if (currentEvent.id === "leak") {
+      timeoutEffects = { controversyRisk: 25, audienceAcceptance: -15 };
+      message = "「因未能及時公關，洩漏版本大範圍傳播，輿論徹底失控！」";
+    } else if (currentEvent.id === "consultant") {
+      timeoutEffects = { representation: -15, controversyRisk: 10, studioRisk: 25 };
+      message = "「融資死線已過，未能在規定時間內提交報告，資金遭遇凍結！」";
+    } else if (currentEvent.id === "journalist") {
+      timeoutEffects = { mediaFriendly: -25, controversyRisk: 20 };
+      message = "「由於您沉默未答，媒體頭條發布《沉默代表默認？製作組逃避輿論監督》，信任度大跌！」";
+    } else {
+      timeoutEffects = { controversyRisk: 15 };
+      message = "「未能在時限內做出決策，公關事件持續發酵！」";
+    }
+
+    const nextProfile = applyEffects(profile, timeoutEffects, undefined);
+    
+    const timeoutAlert: MockAlert = {
+      source: "Slack",
+      senderOrPublication: "🚨 公關危機超時",
+      content: message
+    };
+    
+    setLastAlert(timeoutAlert);
+    setCurrentEvent(null);
+    setTimeLeft(null);
+    
+    const isOver = handleGameOverCheck(nextProfile, step);
+    if (isOver) {
+      setProfile(nextProfile);
+      return;
+    }
+
+    setProfile(nextProfile);
+    setStep((current) => current + 1);
+  };
+
+  useEffect(() => {
+    if (!currentEvent) {
+      setTimeLeft(null);
+      return;
+    }
+
+    setTimeLeft(15); // 15 seconds countdown
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev === null) return null;
+        if (prev <= 1) {
+          clearInterval(timer);
+          handleCrisisTimeout();
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [currentEvent]);
 
   const start = (type: WorkType) => {
     setSelectedType(type);
@@ -1112,6 +1178,7 @@ export default function QuizPage() {
     setLastAlert(null);
     setCurrentEvent(null);
     setActiveDetailAlert(null);
+    setTimeLeft(null);
     setIsGameOver(false);
     setGameOverReason(null);
 
@@ -1168,6 +1235,7 @@ export default function QuizPage() {
   const answer = (effects: Parameters<typeof applyEffects>[1], matchTags: Parameters<typeof applyEffects>[2]) => {
     if (!profile) return;
 
+    setTimeLeft(null);
     const nextProfile = applyEffects(profile, effects, matchTags);
     const alert = generateAlert(effects, selectedType!);
     setLastAlert(alert);
@@ -1439,10 +1507,32 @@ export default function QuizPage() {
             {/* Top red siren line */}
             <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-red-600 via-rose-500 to-red-600 animate-pulse" />
             
-            <div className="flex items-center gap-2 text-red-500 font-bold text-xs uppercase tracking-widest mb-4">
-              <span className="animate-ping h-2.5 w-2.5 rounded-full bg-red-500 inline-block shrink-0" />
-              <span>🚨 突發公關危機 (CRISIS EVENT)</span>
+            <div className="flex items-center justify-between text-red-500 font-bold text-xs uppercase tracking-widest mb-2">
+              <div className="flex items-center gap-2">
+                <span className="animate-ping h-2.5 w-2.5 rounded-full bg-red-500 inline-block shrink-0" />
+                <span>🚨 突發公關危機 (CRISIS EVENT)</span>
+              </div>
+              {timeLeft !== null && (
+                <div className={`px-2.5 py-1 rounded border font-mono text-[11px] flex items-center gap-1.5 ${
+                  timeLeft <= 5 
+                    ? "bg-red-950 border-red-500 text-red-400 animate-pulse font-black animate-bounce" 
+                    : "bg-black/40 border-red-500/30 text-red-500"
+                }`}>
+                  <span>⏱️ 剩餘決策時間：</span>
+                  <span className="text-sm font-black text-white">{timeLeft}s</span>
+                </div>
+              )}
             </div>
+
+            {/* Visual timer progress bar */}
+            {timeLeft !== null && (
+              <div className="w-full bg-red-950/50 h-1.5 rounded-full overflow-hidden mb-5 border border-red-500/10">
+                <div 
+                  className="bg-gradient-to-r from-red-500 via-rose-500 to-red-600 h-full transition-all duration-1000 ease-linear"
+                  style={{ width: `${(timeLeft / 15) * 100}%` }}
+                />
+              </div>
+            )}
             
             <h2 className="text-2xl font-black text-white leading-tight mb-3 sm:text-3xl">
               {currentEvent.title}
