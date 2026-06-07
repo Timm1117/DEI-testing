@@ -38,7 +38,7 @@ export function Danmaku({ comments }: { comments: string[] }) {
           return (
             <div
               key={`${comment}-${index}`}
-              className="danmaku-line absolute whitespace-nowrap rounded-full border border-white/15 bg-black/[0.42] px-4 py-2 text-sm font-semibold text-white shadow-lg backdrop-blur-md"
+              className={`danmaku-line absolute whitespace-nowrap rounded-full border border-white/15 bg-black/[0.42] px-3 py-1.5 text-xs font-semibold text-white shadow-lg backdrop-blur-md md:px-4 md:py-2 md:text-sm ${index >= 8 ? "hidden md:block" : ""}`}
               style={{
                 top: `${top}vh`,
                 animationDuration: `${duration}s`,

@@ -597,6 +597,7 @@ function RadarChart({ work }: { work: Work }) {
 
 export default function ResultPage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
     const raw = window.localStorage.getItem("pc-quiz-profile");
@@ -766,13 +767,25 @@ export default function ResultPage() {
             <ReceptionSplitCard work={work} />
           </div>
 
-          <div className="grid gap-5 pb-5 lg:grid-cols-[1fr_1fr]">
-            <CausalityBreakdown work={work} />
-            <PoliticalIndexPanel index={work.politicalIndex} />
+          {/* Mobile Collapse Toggle Button */}
+          <div className="lg:hidden mb-6 flex justify-center">
+            <button
+              onClick={() => setShowDetails(!showDetails)}
+              className="w-full max-w-sm flex items-center justify-center gap-2.5 rounded-xl border border-teal-200/20 bg-teal-200/[0.08] hover:bg-teal-200/[0.15] px-6 py-3.5 text-sm font-bold text-teal-200 shadow-glow backdrop-blur-md transition-all active:scale-[0.98] duration-200"
+            >
+              <span>{showDetails ? "收合詳細數據與歷史案例 ▲" : "🔍 展開詳細數據與歷史案例 ▼"}</span>
+            </button>
           </div>
 
-          <div className="pb-5">
-            <CaseComparison work={work} />
+          <div className={showDetails ? "block" : "hidden lg:block"}>
+            <div className="grid gap-5 pb-5 lg:grid-cols-[1fr_1fr]">
+              <CausalityBreakdown work={work} />
+              <PoliticalIndexPanel index={work.politicalIndex} />
+            </div>
+
+            <div className="pb-5">
+              <CaseComparison work={work} />
+            </div>
           </div>
 
           <div className="grid gap-5 pb-10 lg:grid-cols-[1fr_1fr]">
