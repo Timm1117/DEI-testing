@@ -69,6 +69,35 @@ export function ChiptuneToggle() {
     };
   }, [enabled, ready, volume]);
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        if (timerRef.current !== null) {
+          window.clearInterval(timerRef.current);
+          timerRef.current = null;
+        }
+        const audioContext = audioContextRef.current;
+        const masterGain = masterGainRef.current;
+        if (masterGain && audioContext) {
+          masterGain.gain.cancelScheduledValues(audioContext.currentTime);
+          masterGain.gain.setTargetAtTime(0, audioContext.currentTime, 0.03);
+        }
+        if (audioContext && audioContext.state !== "suspended") {
+          void audioContext.suspend();
+        }
+      } else {
+        if (enabled && ready) {
+          void startMusic();
+        }
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, [enabled, ready, volume]);
+
   const applyMasterVolume = () => {
     const audioContext = audioContextRef.current;
     const masterGain = masterGainRef.current;
