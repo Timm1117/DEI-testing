@@ -1173,7 +1173,7 @@ export default function QuizPage() {
       return;
     }
 
-    setTimeLeft(15); // 15 seconds countdown
+    setTimeLeft(20); // 20 seconds countdown
 
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
@@ -1189,6 +1189,18 @@ export default function QuizPage() {
 
     return () => clearInterval(timer);
   }, [currentEvent]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveDetailAlert(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   const start = (type: WorkType) => {
     setSelectedType(type);
@@ -1549,7 +1561,7 @@ export default function QuizPage() {
               <div className="w-full bg-red-950/50 h-1.5 rounded-full overflow-hidden mb-5 border border-red-500/10">
                 <div 
                   className="bg-gradient-to-r from-red-500 via-rose-500 to-red-600 h-full transition-all duration-1000 ease-linear"
-                  style={{ width: `${(timeLeft / 15) * 100}%` }}
+                  style={{ width: `${(timeLeft / 20) * 100}%` }}
                 />
               </div>
             )}
@@ -1602,8 +1614,14 @@ export default function QuizPage() {
           const mediaTag = activeDetailAlert.senderOrPublication.split(" ")[0];
           const media = detail as { headline: string; paragraphs: string[] };
           return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-              <div className="relative max-w-3xl w-full rounded-lg border-2 border-stone-800 bg-[#FAF9F5] p-6 sm:p-8 text-stone-900 shadow-[10px_10px_0px_0px_rgba(28,25,23,1)] overflow-y-auto max-h-[90vh] font-serif animate-in zoom-in-95 duration-200">
+            <div 
+              onClick={() => setActiveDetailAlert(null)}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200 cursor-pointer"
+            >
+              <div 
+                onClick={(e) => e.stopPropagation()}
+                className="relative max-w-3xl w-full rounded-lg border-2 border-stone-800 bg-[#FAF9F5] p-6 sm:p-8 text-stone-900 shadow-[10px_10px_0px_0px_rgba(28,25,23,1)] overflow-y-auto max-h-[90vh] font-serif animate-in zoom-in-95 duration-200 cursor-default"
+              >
                 {/* Close button */}
                 <button
                   onClick={() => setActiveDetailAlert(null)}
@@ -1668,8 +1686,14 @@ export default function QuizPage() {
         if (activeDetailAlert.source === "Forum") {
           const forum = detail as { title: string; comments: { user: string; score: string; time: string; text: string }[] };
           return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-              <div className="relative max-w-2xl w-full rounded-xl border border-white/10 bg-[#0b1416]/95 p-6 sm:p-8 text-slate-100 shadow-[0_0_50px_rgba(255,69,0,0.15)] overflow-y-auto max-h-[85vh] font-sans animate-in zoom-in-95 duration-200">
+            <div 
+              onClick={() => setActiveDetailAlert(null)}
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200 cursor-pointer"
+            >
+              <div 
+                onClick={(e) => e.stopPropagation()}
+                className="relative max-w-2xl w-full rounded-xl border border-white/10 bg-[#0b1416]/95 p-6 sm:p-8 text-slate-100 shadow-[0_0_50px_rgba(255,69,0,0.15)] overflow-y-auto max-h-[85vh] font-sans animate-in zoom-in-95 duration-200 cursor-default"
+              >
                 {/* Close button */}
                 <button
                   onClick={() => setActiveDetailAlert(null)}
@@ -1726,8 +1750,14 @@ export default function QuizPage() {
         // Slack card detailed chat
         const slack = detail as { channel: string; messages: { user: string; avatar: string; time: string; text: string }[] };
         return (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-            <div className="relative max-w-2xl w-full rounded-xl border border-white/10 bg-[#1e1d24]/95 p-6 sm:p-8 text-slate-100 shadow-[0_0_50px_rgba(54,197,240,0.15)] overflow-y-auto max-h-[85vh] font-sans animate-in zoom-in-95 duration-200">
+          <div 
+            onClick={() => setActiveDetailAlert(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200 cursor-pointer"
+          >
+            <div 
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-2xl w-full rounded-xl border border-white/10 bg-[#1e1d24]/95 p-6 sm:p-8 text-slate-100 shadow-[0_0_50px_rgba(54,197,240,0.15)] overflow-y-auto max-h-[85vh] font-sans animate-in zoom-in-95 duration-200 cursor-default"
+            >
               {/* Close button */}
               <button
                 onClick={() => setActiveDetailAlert(null)}
