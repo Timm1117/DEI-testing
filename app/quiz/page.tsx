@@ -1595,10 +1595,63 @@ export default function QuizPage() {
                   type="button"
                   key={option.label}
                   onClick={() => answer(option.effects, undefined)}
-                  className="rounded-lg border border-red-500/25 bg-red-950/20 p-5 text-left transition hover:border-red-400/50 hover:bg-red-950/30 hover:shadow-glow focus:outline-none"
+                  className="group rounded-lg border border-red-500/25 bg-red-950/20 p-5 text-left transition hover:border-red-400/50 hover:bg-red-950/30 hover:shadow-glow focus:outline-none"
                 >
-                  <div className="text-base font-bold text-white mb-1">{option.label}</div>
+                  <div className="text-base font-bold text-white mb-1 group-hover:text-red-200 transition-colors">{option.label}</div>
                   <div className="text-xs text-slate-300 leading-6">{option.description}</div>
+                  
+                  {/* Projected crisis impact indicators */}
+                  <div className="mt-3.5 flex flex-wrap gap-1.5 border-t border-white/5 pt-3">
+                    <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold mr-1 flex items-center">📊 預估輿論衝擊：</span>
+                    {Object.entries(option.effects).map(([key, val]) => {
+                      const value = val as number;
+                      if (value === 0) return null;
+                      const isPositive = value > 0;
+                      const label = {
+                        representation: "DEI多元代表性",
+                        controversyRisk: "輿論爭議風險",
+                        audienceAcceptance: "大眾受眾接受度",
+                        studioRisk: "開發與資金風險",
+                        mediaFriendly: "媒體好感度",
+                        commercialEntertainment: "商業娛樂價值",
+                        canonFaithful: "原作忠實度",
+                        genderPowerShift: "性別翻轉程度",
+                        issueInsertion: "議題說教感",
+                      }[key] || key;
+
+                      // Thematic color-coding
+                      let colorClass = "text-slate-300 bg-slate-950/40 border-slate-500/20";
+                      if (key === "controversyRisk" || key === "studioRisk") {
+                        colorClass = isPositive 
+                          ? "text-red-400 bg-red-950/40 border-red-500/25" 
+                          : "text-emerald-400 bg-emerald-950/40 border-emerald-500/25";
+                      } else if (key === "audienceAcceptance" || key === "commercialEntertainment" || key === "canonFaithful") {
+                        colorClass = isPositive 
+                          ? "text-emerald-400 bg-emerald-950/40 border-emerald-500/25" 
+                          : "text-red-400 bg-red-950/40 border-red-500/25";
+                      } else if (key === "representation" || key === "mediaFriendly" || key === "genderPowerShift") {
+                        colorClass = isPositive
+                          ? "text-purple-300 bg-purple-950/40 border-purple-500/25"
+                          : "text-red-400 bg-red-950/40 border-red-500/25";
+                      } else if (key === "issueInsertion") {
+                        colorClass = isPositive
+                          ? "text-indigo-300 bg-indigo-950/40 border-indigo-500/25"
+                          : "text-emerald-400 bg-emerald-950/40 border-emerald-500/25";
+                      }
+
+                      const sign = isPositive ? "▲" : "▼";
+                      return (
+                        <span 
+                          key={key} 
+                          className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold border backdrop-blur-sm shadow-inner transition-colors duration-200 ${colorClass}`}
+                        >
+                          <span>{sign === "▲" ? "📈" : "📉"}</span>
+                          <span>{label}</span>
+                          <span className="font-mono">{isPositive ? `+` : ``}{value}%</span>
+                        </span>
+                      );
+                    })}
+                  </div>
                 </button>
               ))}
             </div>
