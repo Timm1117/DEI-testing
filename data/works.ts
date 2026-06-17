@@ -868,6 +868,7 @@ const filmSeeds: FilmSeed[] = [
     tags: { genreSpectacle: 68, genrePrestige: 45, representation: 78, genderPowerShift: 86, issueInsertion: 82, commercialEntertainment: 84, controversyRisk: 62, mediaFriendly: 92, audienceAcceptance: 74, studioRisk: 46 },
     politicalIndex: { representation: 82, canonFaithful: 58, adaptationFreedom: 86, issueInsertion: 88, controversyRisk: 66, mediaFriendly: 94, audienceSplit: 58 },
     ratings: { tmdb: "7.0/10", imdb: "6.8/10", metacritic: "80/100", rottenTomatoes: "88%" },
+    youtubeId: "p1L63vG63lY",
   },
   {
     id: "little-mermaid-2023",
@@ -879,6 +880,7 @@ const filmSeeds: FilmSeed[] = [
     tags: { adaptation: 94, canonFaithful: 48, representation: 82, genderPowerShift: 46, issueInsertion: 48, commercialEntertainment: 72, controversyRisk: 86, mediaFriendly: 76, audienceAcceptance: 52, studioRisk: 62 },
     politicalIndex: { representation: 86, canonFaithful: 50, adaptationFreedom: 62, issueInsertion: 46, controversyRisk: 88, mediaFriendly: 78, audienceSplit: 86 },
     ratings: { tmdb: "6.3/10", imdb: "7.2/10", metacritic: "59/100", rottenTomatoes: "67%" },
+    youtubeId: "kpkiF-08s9E",
   },
   {
     id: "joker",
@@ -890,6 +892,7 @@ const filmSeeds: FilmSeed[] = [
     tags: { genrePrestige: 90, adaptation: 72, canonFaithful: 40, representation: 28, issueInsertion: 74, commercialEntertainment: 64, controversyRisk: 88, mediaFriendly: 58, audienceAcceptance: 78, studioRisk: 84, storyDriven: 82 },
     politicalIndex: { representation: 26, canonFaithful: 42, adaptationFreedom: 88, issueInsertion: 78, controversyRisk: 90, mediaFriendly: 56, audienceSplit: 82 },
     ratings: { tmdb: "8.1/10", imdb: "8.4/10", metacritic: "59/100", rottenTomatoes: "68%" },
+    youtubeId: "zAGVQLHvwOY",
   },
   {
     id: "everything-everywhere",
@@ -901,6 +904,7 @@ const filmSeeds: FilmSeed[] = [
     tags: { genreSpectacle: 74, genrePrestige: 88, representation: 92, genderPowerShift: 78, issueInsertion: 70, commercialEntertainment: 70, controversyRisk: 30, mediaFriendly: 94, audienceAcceptance: 86, studioRisk: 72, storyDriven: 82 },
     politicalIndex: { representation: 94, canonFaithful: 80, adaptationFreedom: 70, issueInsertion: 72, controversyRisk: 28, mediaFriendly: 96, audienceSplit: 30 },
     ratings: { tmdb: "7.8/10", imdb: "7.8/10", metacritic: "81/100", rottenTomatoes: "93%" },
+    youtubeId: "wxN1T1uxQ2g",
   },
   {
     id: "top-gun-maverick",
@@ -912,6 +916,7 @@ const filmSeeds: FilmSeed[] = [
     tags: { genreSpectacle: 94, adaptation: 70, canonFaithful: 86, representation: 30, genderPowerShift: 26, issueInsertion: 12, commercialEntertainment: 98, controversyRisk: 18, mediaFriendly: 72, audienceAcceptance: 96, studioRisk: 30 },
     politicalIndex: { representation: 30, canonFaithful: 86, adaptationFreedom: 34, issueInsertion: 12, controversyRisk: 18, mediaFriendly: 72, audienceSplit: 16 },
     ratings: { tmdb: "8.2/10", imdb: "8.2/10", metacritic: "78/100", rottenTomatoes: "96%" },
+    youtubeId: "giXco2jaZ_4",
   },
   {
     id: "black-panther",
@@ -989,6 +994,7 @@ const filmSeeds: FilmSeed[] = [
     tags: { genreSpectacle: 70, adaptation: 82, canonFaithful: 58, representation: 86, genderPowerShift: 90, issueInsertion: 42, commercialEntertainment: 62, controversyRisk: 68, mediaFriendly: 62, audienceAcceptance: 44, studioRisk: 72 },
     politicalIndex: { representation: 86, canonFaithful: 58, adaptationFreedom: 64, issueInsertion: 42, controversyRisk: 68, mediaFriendly: 62, audienceSplit: 72 },
     ratings: { tmdb: "6.1/10", imdb: "5.5/10", metacritic: "50/100", rottenTomatoes: "62%" },
+    youtubeId: "i9P4J2V-ZKg",
   },
   {
     id: "mulan-2020",
@@ -1022,6 +1028,7 @@ const filmSeeds: FilmSeed[] = [
     tags: { genreSpectacle: 86, genrePrestige: 72, adaptation: 96, canonFaithful: 34, representation: 72, genderPowerShift: 78, issueInsertion: 54, commercialEntertainment: 78, controversyRisk: 92, mediaFriendly: 88, audienceAcceptance: 44, studioRisk: 86 },
     politicalIndex: { representation: 72, canonFaithful: 34, adaptationFreedom: 92, issueInsertion: 54, controversyRisk: 92, mediaFriendly: 88, audienceSplit: 96 },
     ratings: { tmdb: "6.8/10", imdb: "6.9/10", metacritic: "84/100", rottenTomatoes: "91%" },
+    youtubeId: "Q0wbybIKac4",
   },
   {
     id: "matrix-resurrections",
@@ -1044,6 +1051,7 @@ const filmSeeds: FilmSeed[] = [
     tags: { genrePrestige: 96, genreSpectacle: 72, representation: 34, genderPowerShift: 24, issueInsertion: 78, commercialEntertainment: 78, controversyRisk: 42, mediaFriendly: 96, audienceAcceptance: 88, studioRisk: 56, storyDriven: 88 },
     politicalIndex: { representation: 34, canonFaithful: 72, adaptationFreedom: 62, issueInsertion: 78, controversyRisk: 42, mediaFriendly: 96, audienceSplit: 28 },
     ratings: { tmdb: "8.1/10", imdb: "8.3/10", metacritic: "90/100", rottenTomatoes: "93%" },
+    youtubeId: "uYPbbksJxIg",
   },
   {
     id: "parasite",
@@ -1576,6 +1584,7 @@ const gameSeeds: GameSeed[] = [
     tags: { genrePrestige: 92, adaptation: 46, canonFaithful: 34, representation: 86, genderPowerShift: 88, issueInsertion: 78, commercialEntertainment: 72, controversyRisk: 94, mediaFriendly: 96, audienceAcceptance: 48, playerFreedom: 24, storyDriven: 98, studioRisk: 86 },
     politicalIndex: { representation: 90, canonFaithful: 42, adaptationFreedom: 82, issueInsertion: 80, controversyRisk: 96, mediaFriendly: 95, audienceSplit: 96 },
     ratings: { rawg: "4.3/5", metacritic: "93/100", steam: "Very Positive" },
+    youtubeId: "II5UsqP2JAk",
   },
   {
     id: "hogwarts-legacy",
@@ -1587,6 +1596,7 @@ const gameSeeds: GameSeed[] = [
     tags: { genreSpectacle: 82, adaptation: 96, canonFaithful: 84, representation: 48, issueInsertion: 24, commercialEntertainment: 92, controversyRisk: 92, mediaFriendly: 42, audienceAcceptance: 82, playerFreedom: 72, storyDriven: 54, studioRisk: 66 },
     politicalIndex: { representation: 48, canonFaithful: 86, adaptationFreedom: 48, issueInsertion: 22, controversyRisk: 92, mediaFriendly: 44, audienceSplit: 74 },
     ratings: { rawg: "4.0/5", metacritic: "84/100", steam: "Very Positive" },
+    youtubeId: "A_vn8J4818o",
   },
   {
     id: "cyberpunk-2077",
@@ -1609,6 +1619,7 @@ const gameSeeds: GameSeed[] = [
     tags: { genrePrestige: 88, adaptation: 78, canonFaithful: 82, representation: 82, genderPowerShift: 72, issueInsertion: 48, commercialEntertainment: 84, controversyRisk: 28, mediaFriendly: 90, audienceAcceptance: 94, monetizationPressure: 10, playerFreedom: 98, storyDriven: 88, studioRisk: 74 },
     politicalIndex: { representation: 84, canonFaithful: 82, adaptationFreedom: 78, issueInsertion: 48, controversyRisk: 30, mediaFriendly: 90, audienceSplit: 26 },
     ratings: { rawg: "4.5/5", metacritic: "96/100", steam: "Overwhelmingly Positive" },
+    youtubeId: "J69kZ96uTmc",
   },
   {
     id: "starfield",
@@ -1631,6 +1642,7 @@ const gameSeeds: GameSeed[] = [
     tags: { genreSpectacle: 84, genrePrestige: 86, adaptation: 24, canonFaithful: 70, representation: 22, genderPowerShift: 30, issueInsertion: 10, commercialEntertainment: 88, controversyRisk: 18, mediaFriendly: 92, audienceAcceptance: 94, monetizationPressure: 8, playerFreedom: 96, storyDriven: 54, studioRisk: 40 },
     politicalIndex: { representation: 22, canonFaithful: 70, adaptationFreedom: 64, issueInsertion: 10, controversyRisk: 18, mediaFriendly: 92, audienceSplit: 18 },
     ratings: { rawg: "4.6/5", metacritic: "96/100", steam: "Very Positive" },
+    youtubeId: "ExkM9eaL0C0",
   },
   {
     id: "helldivers-2",
@@ -1785,6 +1797,7 @@ const gameSeeds: GameSeed[] = [
     tags: { genreSpectacle: 96, genrePrestige: 70, adaptation: 86, canonFaithful: 82, representation: 24, issueInsertion: 12, commercialEntertainment: 92, controversyRisk: 14, mediaFriendly: 76, audienceAcceptance: 90, playerFreedom: 42, storyDriven: 72, studioRisk: 58 },
     politicalIndex: { representation: 24, canonFaithful: 82, adaptationFreedom: 54, issueInsertion: 12, controversyRisk: 14, mediaFriendly: 76, audienceSplit: 16 },
     ratings: { rawg: "4.3/5", metacritic: "81/100", steam: "Overwhelmingly Positive" },
+    youtubeId: "LnxvR87-V7o",
   },
   {
     id: "palworld",
@@ -2281,6 +2294,7 @@ const gameSeeds: GameSeed[] = [
     tags: { genrePrestige: 58, representation: 96, genderPowerShift: 84, issueInsertion: 94, commercialEntertainment: 38, controversyRisk: 92, mediaFriendly: 38, audienceAcceptance: 22, playerFreedom: 42, storyDriven: 86, studioRisk: 82 },
     politicalIndex: { representation: 96, canonFaithful: 58, adaptationFreedom: 84, issueInsertion: 94, controversyRisk: 92, mediaFriendly: 38, audienceSplit: 94 },
     ratings: { rawg: "2.6/5", metacritic: "68/100", steam: "Mixed" },
+    youtubeId: "1j7F84gG-vQ",
   },
   {
     id: "goodbye-volcano-high",
@@ -2446,6 +2460,7 @@ const gameSeeds: GameSeed[] = [
     tags: { genreSpectacle: 92, adaptation: 94, canonFaithful: 48, representation: 88, genderPowerShift: 72, issueInsertion: 58, commercialEntertainment: 86, controversyRisk: 86, mediaFriendly: 72, audienceAcceptance: 58, playerFreedom: 88, storyDriven: 72, studioRisk: 78 },
     politicalIndex: { representation: 88, canonFaithful: 48, adaptationFreedom: 84, issueInsertion: 58, controversyRisk: 86, mediaFriendly: 72, audienceSplit: 88 },
     ratings: { rawg: "3.7/5", metacritic: "81/100", steam: "Mostly Positive" },
+    youtubeId: "v8C59gG62e8",
   },
   {
     id: "unknown-9-awakening",
