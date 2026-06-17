@@ -927,7 +927,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "高代表性與主流超級英雄娛樂結合，讓文化意義、媒體好感與票房能同時成立。",
     tags: { genreSpectacle: 86, adaptation: 82, canonFaithful: 72, representation: 96, genderPowerShift: 78, issueInsertion: 68, commercialEntertainment: 90, controversyRisk: 34, mediaFriendly: 96, audienceAcceptance: 88, studioRisk: 50 },
     politicalIndex: { representation: 96, canonFaithful: 72, adaptationFreedom: 58, issueInsertion: 68, controversyRisk: 34, mediaFriendly: 96, audienceSplit: 28 },
-    ratings: { tmdb: "7.4/10", imdb: "7.3/10", metacritic: "88/100", rottenTomatoes: "96%" },
+    ratings: { tmdb: "7.4/10", imdb: "7.3/10", metacritic: "88/100", rottenTomatoes: "96%" },  youtubeId: "xjDjIWPwcPU",
   },
   {
     id: "ghostbusters-2016",
@@ -938,7 +938,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "經典 IP 以性別翻轉重啟，代表性討論蓋過作品本身，成為觀眾分裂案例。",
     tags: { genreSpectacle: 62, adaptation: 92, canonFaithful: 30, representation: 76, genderPowerShift: 92, issueInsertion: 56, commercialEntertainment: 58, controversyRisk: 96, mediaFriendly: 66, audienceAcceptance: 34, studioRisk: 84 },
     politicalIndex: { representation: 78, canonFaithful: 28, adaptationFreedom: 90, issueInsertion: 56, controversyRisk: 96, mediaFriendly: 66, audienceSplit: 94 },
-    ratings: { tmdb: "5.4/10", imdb: "6.8/10", metacritic: "60/100", rottenTomatoes: "74%" },
+    ratings: { tmdb: "5.4/10", imdb: "6.8/10", metacritic: "60/100", rottenTomatoes: "74%" },  youtubeId: "w3ugHP-yZXw",
   },
   {
     id: "dune-2021",
@@ -949,7 +949,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "經典科幻文學改編，以史詩規格和權力寓言建立高媒體友善度。",
     tags: { genreSpectacle: 94, genrePrestige: 84, adaptation: 92, canonFaithful: 82, representation: 48, issueInsertion: 44, commercialEntertainment: 82, controversyRisk: 22, mediaFriendly: 90, audienceAcceptance: 84, studioRisk: 52 },
     politicalIndex: { representation: 48, canonFaithful: 82, adaptationFreedom: 46, issueInsertion: 44, controversyRisk: 22, mediaFriendly: 90, audienceSplit: 24 },
-    ratings: { tmdb: "7.8/10", imdb: "8.0/10", metacritic: "74/100", rottenTomatoes: "83%" },
+    ratings: { tmdb: "7.8/10", imdb: "8.0/10", metacritic: "74/100", rottenTomatoes: "83%" },  youtubeId: "n9xhJrPXop4",
   },
   {
     id: "dune-part-two",
@@ -960,7 +960,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "大規模科幻續集兼具作者感與商業爽感，議題壓力低但文本解讀空間高。",
     tags: { genreSpectacle: 98, genrePrestige: 90, adaptation: 94, canonFaithful: 84, representation: 54, issueInsertion: 56, commercialEntertainment: 88, controversyRisk: 24, mediaFriendly: 94, audienceAcceptance: 90, studioRisk: 58 },
     politicalIndex: { representation: 54, canonFaithful: 84, adaptationFreedom: 44, issueInsertion: 56, controversyRisk: 24, mediaFriendly: 94, audienceSplit: 22 },
-    ratings: { tmdb: "8.2/10", imdb: "8.5/10", metacritic: "79/100", rottenTomatoes: "92%" },
+    ratings: { tmdb: "8.2/10", imdb: "8.5/10", metacritic: "79/100", rottenTomatoes: "92%" },  youtubeId: "Way9Dexny3w",
   },
   {
     id: "wonder-woman",
@@ -971,7 +971,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "女性英雄敘事進入主流超級英雄框架，代表性與類型娛樂取得平衡。",
     tags: { genreSpectacle: 84, adaptation: 80, canonFaithful: 74, representation: 86, genderPowerShift: 94, issueInsertion: 52, commercialEntertainment: 88, controversyRisk: 28, mediaFriendly: 92, audienceAcceptance: 86, studioRisk: 42 },
     politicalIndex: { representation: 86, canonFaithful: 74, adaptationFreedom: 56, issueInsertion: 52, controversyRisk: 28, mediaFriendly: 92, audienceSplit: 24 },
-    ratings: { tmdb: "7.2/10", imdb: "7.3/10", metacritic: "76/100", rottenTomatoes: "93%" },
+    ratings: { tmdb: "7.2/10", imdb: "7.3/10", metacritic: "76/100", rottenTomatoes: "93%" },  youtubeId: "1Q8fG0TtVAY",
   },
   {
     id: "captain-marvel",
@@ -982,7 +982,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "女性英雄商業大片與宣傳語言交會，媒體友善但觀眾討論較分裂。",
     tags: { genreSpectacle: 78, adaptation: 82, canonFaithful: 66, representation: 76, genderPowerShift: 88, issueInsertion: 46, commercialEntertainment: 78, controversyRisk: 66, mediaFriendly: 80, audienceAcceptance: 62, studioRisk: 54 },
     politicalIndex: { representation: 78, canonFaithful: 66, adaptationFreedom: 58, issueInsertion: 46, controversyRisk: 66, mediaFriendly: 80, audienceSplit: 70 },
-    ratings: { tmdb: "6.8/10", imdb: "6.8/10", metacritic: "64/100", rottenTomatoes: "79%" },
+    ratings: { tmdb: "6.8/10", imdb: "6.8/10", metacritic: "64/100", rottenTomatoes: "79%" },  youtubeId: "Z1BCujX3pw8",
   },
   {
     id: "the-marvels",
@@ -1005,7 +1005,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "經典動畫真人化改編，文化代表性、原作改動與政治爭議共同牽動評價。",
     tags: { genreSpectacle: 72, adaptation: 94, canonFaithful: 42, representation: 82, genderPowerShift: 72, issueInsertion: 36, commercialEntertainment: 58, controversyRisk: 86, mediaFriendly: 48, audienceAcceptance: 38, studioRisk: 82 },
     politicalIndex: { representation: 84, canonFaithful: 42, adaptationFreedom: 78, issueInsertion: 36, controversyRisk: 86, mediaFriendly: 48, audienceSplit: 82 },
-    ratings: { tmdb: "6.9/10", imdb: "5.8/10", metacritic: "66/100", rottenTomatoes: "72%" },
+    ratings: { tmdb: "6.9/10", imdb: "5.8/10", metacritic: "66/100", rottenTomatoes: "72%" },  youtubeId: "KK8FHdFluOQ",
   },
   {
     id: "lightyear",
@@ -1016,7 +1016,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "玩具總動員 IP 外傳在定位、代表性橋段與粉絲期待之間失衡。",
     tags: { genreSpectacle: 68, adaptation: 82, canonFaithful: 38, representation: 70, genderPowerShift: 58, issueInsertion: 32, commercialEntertainment: 56, controversyRisk: 70, mediaFriendly: 58, audienceAcceptance: 42, studioRisk: 66 },
     politicalIndex: { representation: 72, canonFaithful: 38, adaptationFreedom: 76, issueInsertion: 32, controversyRisk: 70, mediaFriendly: 58, audienceSplit: 70 },
-    ratings: { tmdb: "7.0/10", imdb: "6.1/10", metacritic: "60/100", rottenTomatoes: "74%" },
+    ratings: { tmdb: "7.0/10", imdb: "6.1/10", metacritic: "60/100", rottenTomatoes: "74%" },  youtubeId: "BwZs3H_UN3k",
   },
   {
     id: "star-wars-last-jedi",
@@ -1039,7 +1039,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "經典科幻 IP 後設回歸，作者性強但商業娛樂性與觀眾接受度有限。",
     tags: { genrePrestige: 68, adaptation: 92, canonFaithful: 48, representation: 70, genderPowerShift: 64, issueInsertion: 70, commercialEntertainment: 44, controversyRisk: 72, mediaFriendly: 62, audienceAcceptance: 34, studioRisk: 78 },
     politicalIndex: { representation: 70, canonFaithful: 48, adaptationFreedom: 88, issueInsertion: 72, controversyRisk: 72, mediaFriendly: 62, audienceSplit: 78 },
-    ratings: { tmdb: "6.4/10", imdb: "5.7/10", metacritic: "63/100", rottenTomatoes: "63%" },
+    ratings: { tmdb: "6.4/10", imdb: "5.7/10", metacritic: "63/100", rottenTomatoes: "63%" },  youtubeId: "9ix7TUGVYIo",
   },
   {
     id: "oppenheimer",
@@ -1062,7 +1062,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "階級寓言與黑色類型片高度融合，議題性強但觀眾接受度極高。",
     tags: { genrePrestige: 98, genreSpectacle: 42, representation: 66, issueInsertion: 92, commercialEntertainment: 76, controversyRisk: 28, mediaFriendly: 98, audienceAcceptance: 94, studioRisk: 52, storyDriven: 92 },
     politicalIndex: { representation: 66, canonFaithful: 74, adaptationFreedom: 68, issueInsertion: 92, controversyRisk: 28, mediaFriendly: 98, audienceSplit: 18 },
-    ratings: { tmdb: "8.5/10", imdb: "8.5/10", metacritic: "97/100", rottenTomatoes: "99%" },
+    ratings: { tmdb: "8.5/10", imdb: "8.5/10", metacritic: "97/100", rottenTomatoes: "99%" },  youtubeId: "isOGD_7hNIY",
   },
   {
     id: "get-out",
@@ -1073,7 +1073,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "種族寓言與恐怖類型片結合，議題置入深但娛樂性與作者性支撐口碑。",
     tags: { genrePrestige: 90, representation: 78, issueInsertion: 94, commercialEntertainment: 78, controversyRisk: 38, mediaFriendly: 96, audienceAcceptance: 88, studioRisk: 58, storyDriven: 86 },
     politicalIndex: { representation: 78, canonFaithful: 76, adaptationFreedom: 72, issueInsertion: 94, controversyRisk: 38, mediaFriendly: 96, audienceSplit: 24 },
-    ratings: { tmdb: "7.6/10", imdb: "7.8/10", metacritic: "85/100", rottenTomatoes: "98%" },
+    ratings: { tmdb: "7.6/10", imdb: "7.8/10", metacritic: "85/100", rottenTomatoes: "98%" },  youtubeId: "DzfpyUB60YY",
   },
   {
     id: "blackkklansman",
@@ -1084,7 +1084,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "明確政治寓言與歷史事件改編，媒體友善度高且議題立場鮮明。",
     tags: { genrePrestige: 90, adaptation: 72, canonFaithful: 66, representation: 82, issueInsertion: 96, commercialEntertainment: 64, controversyRisk: 48, mediaFriendly: 94, audienceAcceptance: 78, studioRisk: 58, storyDriven: 82 },
     politicalIndex: { representation: 82, canonFaithful: 66, adaptationFreedom: 70, issueInsertion: 96, controversyRisk: 48, mediaFriendly: 94, audienceSplit: 36 },
-    ratings: { tmdb: "7.5/10", imdb: "7.5/10", metacritic: "83/100", rottenTomatoes: "96%" },
+    ratings: { tmdb: "7.5/10", imdb: "7.5/10", metacritic: "83/100", rottenTomatoes: "96%" },  youtubeId: "pFc6I0rgmgY",
   },
   {
     id: "crazy-rich-asians",
@@ -1095,7 +1095,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "亞裔代表性與浪漫喜劇公式結合，文化意義與大眾娛樂性互相支撐。",
     tags: { genreSpectacle: 54, representation: 90, genderPowerShift: 62, issueInsertion: 44, commercialEntertainment: 86, controversyRisk: 24, mediaFriendly: 88, audienceAcceptance: 84, studioRisk: 36, storyDriven: 64 },
     politicalIndex: { representation: 90, canonFaithful: 72, adaptationFreedom: 58, issueInsertion: 44, controversyRisk: 24, mediaFriendly: 88, audienceSplit: 20 },
-    ratings: { tmdb: "7.1/10", imdb: "6.9/10", metacritic: "74/100", rottenTomatoes: "91%" },
+    ratings: { tmdb: "7.1/10", imdb: "6.9/10", metacritic: "74/100", rottenTomatoes: "91%" },  youtubeId: "ZQ-YX-5bAs0",
   },
   {
     id: "the-woman-king",
@@ -1106,7 +1106,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "女性戰士歷史動作片，代表性與史實爭議並存但動作娛樂性明確。",
     tags: { genreSpectacle: 76, genrePrestige: 70, representation: 88, genderPowerShift: 94, issueInsertion: 58, commercialEntertainment: 76, controversyRisk: 62, mediaFriendly: 82, audienceAcceptance: 72, studioRisk: 54 },
     politicalIndex: { representation: 88, canonFaithful: 54, adaptationFreedom: 66, issueInsertion: 58, controversyRisk: 62, mediaFriendly: 82, audienceSplit: 48 },
-    ratings: { tmdb: "7.7/10", imdb: "6.9/10", metacritic: "77/100", rottenTomatoes: "94%" },
+    ratings: { tmdb: "7.7/10", imdb: "6.9/10", metacritic: "77/100", rottenTomatoes: "94%" },  youtubeId: "3RDaPV_rJ1Y",
   },
   {
     id: "nomadland",
@@ -1117,7 +1117,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "社會邊緣與勞動困境被包裝成詩意作者電影，獎季友善但娛樂性低。",
     tags: { genrePrestige: 98, representation: 52, issueInsertion: 72, commercialEntertainment: 28, controversyRisk: 18, mediaFriendly: 96, audienceAcceptance: 66, studioRisk: 44, storyDriven: 74 },
     politicalIndex: { representation: 52, canonFaithful: 72, adaptationFreedom: 70, issueInsertion: 72, controversyRisk: 18, mediaFriendly: 96, audienceSplit: 38 },
-    ratings: { tmdb: "7.2/10", imdb: "7.3/10", metacritic: "93/100", rottenTomatoes: "93%" },
+    ratings: { tmdb: "7.2/10", imdb: "7.3/10", metacritic: "93/100", rottenTomatoes: "93%" },  youtubeId: "6sxCFZ8_d84",
   },
   {
     id: "avatar-way-of-water",
@@ -1128,7 +1128,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "視覺奇觀與環境寓言結合，低文化戰風險但高商業娛樂性。",
     tags: { genreSpectacle: 98, representation: 54, issueInsertion: 58, commercialEntertainment: 92, controversyRisk: 18, mediaFriendly: 76, audienceAcceptance: 86, studioRisk: 60, storyDriven: 58 },
     politicalIndex: { representation: 54, canonFaithful: 78, adaptationFreedom: 62, issueInsertion: 58, controversyRisk: 18, mediaFriendly: 76, audienceSplit: 22 },
-    ratings: { tmdb: "7.6/10", imdb: "7.5/10", metacritic: "67/100", rottenTomatoes: "76%" },
+    ratings: { tmdb: "7.6/10", imdb: "7.5/10", metacritic: "67/100", rottenTomatoes: "76%" },  youtubeId: "d9MyW72ELq0",
   },
   {
     id: "mad-max-fury-road",
@@ -1139,7 +1139,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "末日動作奇觀與女性反抗敘事融合，商業娛樂與作者風格同時成立。",
     tags: { genreSpectacle: 98, genrePrestige: 86, adaptation: 74, canonFaithful: 76, representation: 74, genderPowerShift: 90, issueInsertion: 52, commercialEntertainment: 90, controversyRisk: 28, mediaFriendly: 96, audienceAcceptance: 88, studioRisk: 62 },
     politicalIndex: { representation: 74, canonFaithful: 76, adaptationFreedom: 70, issueInsertion: 52, controversyRisk: 28, mediaFriendly: 96, audienceSplit: 20 },
-    ratings: { tmdb: "7.6/10", imdb: "8.1/10", metacritic: "90/100", rottenTomatoes: "97%" },
+    ratings: { tmdb: "7.6/10", imdb: "8.1/10", metacritic: "90/100", rottenTomatoes: "97%" },  youtubeId: "hEJnMQG9ev8",
   },
   {
     id: "bros",
@@ -1150,7 +1150,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "同志浪漫喜劇以代表性作為核心賣點，媒體好感與票房落差明顯。",
     tags: { genrePrestige: 58, representation: 96, genderPowerShift: 70, issueInsertion: 72, commercialEntertainment: 56, controversyRisk: 54, mediaFriendly: 84, audienceAcceptance: 42, studioRisk: 64 },
     politicalIndex: { representation: 96, canonFaithful: 70, adaptationFreedom: 70, issueInsertion: 72, controversyRisk: 54, mediaFriendly: 84, audienceSplit: 68 },
-    ratings: { tmdb: "6.8/10", imdb: "6.4/10", metacritic: "72/100", rottenTomatoes: "88%" },
+    ratings: { tmdb: "6.8/10", imdb: "6.4/10", metacritic: "72/100", rottenTomatoes: "88%" },  youtubeId: "BQIeBB9XMe8",
   },
   {
     id: "promising-young-woman",
@@ -1161,7 +1161,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "復仇驚悚與性別議題高度綁定，媒體友善但觀眾分裂度中高。",
     tags: { genrePrestige: 88, representation: 76, genderPowerShift: 92, issueInsertion: 90, commercialEntertainment: 58, controversyRisk: 64, mediaFriendly: 90, audienceAcceptance: 72, studioRisk: 58, storyDriven: 84 },
     politicalIndex: { representation: 76, canonFaithful: 72, adaptationFreedom: 76, issueInsertion: 90, controversyRisk: 64, mediaFriendly: 90, audienceSplit: 58 },
-    ratings: { tmdb: "7.4/10", imdb: "7.5/10", metacritic: "73/100", rottenTomatoes: "90%" },
+    ratings: { tmdb: "7.4/10", imdb: "7.5/10", metacritic: "73/100", rottenTomatoes: "90%" },  youtubeId: "7i5kiFDunk8",
   },
   {
     id: "turning-red",
@@ -1172,7 +1172,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "青春成長、亞裔家庭與女性身體經驗結合，代表性自然融入但受眾討論分歧。",
     tags: { genreSpectacle: 56, representation: 88, genderPowerShift: 80, issueInsertion: 58, commercialEntertainment: 78, controversyRisk: 46, mediaFriendly: 86, audienceAcceptance: 76, studioRisk: 34, storyDriven: 72 },
     politicalIndex: { representation: 88, canonFaithful: 76, adaptationFreedom: 68, issueInsertion: 58, controversyRisk: 46, mediaFriendly: 86, audienceSplit: 42 },
-    ratings: { tmdb: "7.4/10", imdb: "7.0/10", metacritic: "83/100", rottenTomatoes: "95%" },
+    ratings: { tmdb: "7.4/10", imdb: "7.0/10", metacritic: "83/100", rottenTomatoes: "95%" },  youtubeId: "XdKzUbAiswE",
   },
   {
     id: "encanto",
@@ -1183,7 +1183,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "拉丁文化、家庭創傷與迪士尼音樂類型融合，代表性與大眾娛樂性相互加分。",
     tags: { genreSpectacle: 72, representation: 90, genderPowerShift: 66, issueInsertion: 54, commercialEntertainment: 88, controversyRisk: 20, mediaFriendly: 88, audienceAcceptance: 88, studioRisk: 30, storyDriven: 70 },
     politicalIndex: { representation: 90, canonFaithful: 76, adaptationFreedom: 68, issueInsertion: 54, controversyRisk: 20, mediaFriendly: 88, audienceSplit: 20 },
-    ratings: { tmdb: "7.6/10", imdb: "7.2/10", metacritic: "75/100", rottenTomatoes: "91%" },
+    ratings: { tmdb: "7.6/10", imdb: "7.2/10", metacritic: "75/100", rottenTomatoes: "91%" },  youtubeId: "CaimKeDcudo",
   },
   {
     id: "poor-things",
@@ -1194,7 +1194,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "女性主體、荒誕美學與作者風格高度結合，媒體熱愛但觀眾接受門檻較高。",
     tags: { genrePrestige: 96, representation: 74, genderPowerShift: 92, issueInsertion: 72, commercialEntertainment: 54, controversyRisk: 50, mediaFriendly: 96, audienceAcceptance: 72, studioRisk: 66, storyDriven: 84 },
     politicalIndex: { representation: 74, canonFaithful: 68, adaptationFreedom: 86, issueInsertion: 72, controversyRisk: 50, mediaFriendly: 96, audienceSplit: 46 },
-    ratings: { tmdb: "7.7/10", imdb: "7.8/10", metacritic: "87/100", rottenTomatoes: "92%" },
+    ratings: { tmdb: "7.7/10", imdb: "7.8/10", metacritic: "87/100", rottenTomatoes: "92%" },  youtubeId: "RlbR5N6veqw",
   },
   {
     id: "sound-of-freedom",
@@ -1205,7 +1205,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "社會議題與政治動員高度綁定，媒體與觀眾評價落差極大。",
     tags: { genreSpectacle: 48, genrePrestige: 32, issueInsertion: 82, commercialEntertainment: 62, controversyRisk: 88, mediaFriendly: 34, audienceAcceptance: 78, studioRisk: 70, storyDriven: 68 },
     politicalIndex: { representation: 42, canonFaithful: 66, adaptationFreedom: 58, issueInsertion: 82, controversyRisk: 88, mediaFriendly: 34, audienceSplit: 90 },
-    ratings: { tmdb: "8.0/10", imdb: "7.6/10", metacritic: "36/100", rottenTomatoes: "57%" },
+    ratings: { tmdb: "8.0/10", imdb: "7.6/10", metacritic: "36/100", rottenTomatoes: "57%" },  youtubeId: "Rt0kp4VW1cI",
   },
   {
     id: "spider-verse",
@@ -1216,7 +1216,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "多元宇宙、族群代表與動畫實驗高度融合，媒體與觀眾同步支持。",
     tags: { genreSpectacle: 94, genrePrestige: 88, adaptation: 86, canonFaithful: 78, representation: 88, genderPowerShift: 72, issueInsertion: 54, commercialEntertainment: 92, controversyRisk: 18, mediaFriendly: 96, audienceAcceptance: 94, studioRisk: 48 },
     politicalIndex: { representation: 88, canonFaithful: 78, adaptationFreedom: 82, issueInsertion: 54, controversyRisk: 18, mediaFriendly: 96, audienceSplit: 16 },
-    ratings: { tmdb: "8.4/10", imdb: "8.6/10", metacritic: "86/100", rottenTomatoes: "95%" },
+    ratings: { tmdb: "8.4/10", imdb: "8.6/10", metacritic: "86/100", rottenTomatoes: "95%" },  youtubeId: "cqGjhVJWtEg",
   },
   {
     id: "anora",
@@ -1227,7 +1227,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "性工作、階級差距與婚姻幻夢交錯，獎季聲量高但題材帶有成人爭議。",
     tags: { genrePrestige: 96, representation: 62, genderPowerShift: 74, issueInsertion: 70, commercialEntertainment: 62, controversyRisk: 44, mediaFriendly: 94, audienceAcceptance: 76, studioRisk: 58, storyDriven: 84 },
     politicalIndex: { representation: 62, canonFaithful: 72, adaptationFreedom: 80, issueInsertion: 70, controversyRisk: 44, mediaFriendly: 94, audienceSplit: 38 },
-    ratings: { tmdb: "7.2/10", imdb: "7.6/10", metacritic: "91/100", rottenTomatoes: "93%" },
+    ratings: { tmdb: "7.2/10", imdb: "7.6/10", metacritic: "91/100", rottenTomatoes: "93%" },  youtubeId: "GuPkfvxmtdw",
   },
   {
     id: "the-whale",
@@ -1238,7 +1238,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "身體、羞恥、家庭創傷與救贖交織，表演受到肯定但呈現方式引發討論。",
     tags: { genrePrestige: 82, representation: 48, issueInsertion: 76, commercialEntertainment: 34, controversyRisk: 66, mediaFriendly: 68, audienceAcceptance: 68, studioRisk: 56, storyDriven: 90 },
     politicalIndex: { representation: 48, canonFaithful: 66, adaptationFreedom: 64, issueInsertion: 76, controversyRisk: 66, mediaFriendly: 68, audienceSplit: 58 },
-    ratings: { tmdb: "7.8/10", imdb: "7.6/10", metacritic: "60/100", rottenTomatoes: "64%" },
+    ratings: { tmdb: "7.8/10", imdb: "7.6/10", metacritic: "60/100", rottenTomatoes: "64%" },  youtubeId: "nWiQodhMvz4",
   },
   {
     id: "the-northman",
@@ -1249,7 +1249,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "北歐復仇史詩以暴力、神話與男性權力結構為核心，作者風格鮮明。",
     tags: { genreSpectacle: 76, genrePrestige: 86, representation: 24, issueInsertion: 28, commercialEntertainment: 58, controversyRisk: 18, mediaFriendly: 84, audienceAcceptance: 68, studioRisk: 62, storyDriven: 78 },
     politicalIndex: { representation: 24, canonFaithful: 72, adaptationFreedom: 76, issueInsertion: 28, controversyRisk: 18, mediaFriendly: 84, audienceSplit: 28 },
-    ratings: { tmdb: "7.1/10", imdb: "7.0/10", metacritic: "82/100", rottenTomatoes: "90%" },
+    ratings: { tmdb: "7.1/10", imdb: "7.0/10", metacritic: "82/100", rottenTomatoes: "90%" },  youtubeId: "oMSdFM12hOw",
   },
   {
     id: "furiosa",
@@ -1260,7 +1260,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "女性角色前傳以末世動作奇觀和權力復仇為核心，口碑高但商業表現承壓。",
     tags: { genreSpectacle: 92, genrePrestige: 76, adaptation: 78, canonFaithful: 74, representation: 72, genderPowerShift: 90, issueInsertion: 42, commercialEntertainment: 74, controversyRisk: 36, mediaFriendly: 82, audienceAcceptance: 70, studioRisk: 62 },
     politicalIndex: { representation: 72, canonFaithful: 74, adaptationFreedom: 68, issueInsertion: 42, controversyRisk: 36, mediaFriendly: 82, audienceSplit: 34 },
-    ratings: { tmdb: "7.5/10", imdb: "7.5/10", metacritic: "79/100", rottenTomatoes: "90%" },
+    ratings: { tmdb: "7.5/10", imdb: "7.5/10", metacritic: "79/100", rottenTomatoes: "90%" },  youtubeId: "XJMuhwVlca4",
   },
   {
     id: "dont-look-up",
@@ -1271,7 +1271,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "氣候寓言、媒體荒謬與政治諷刺全開，話題性極強但評論分裂。",
     tags: { genrePrestige: 62, issueInsertion: 94, commercialEntertainment: 66, controversyRisk: 62, mediaFriendly: 54, audienceAcceptance: 72, studioRisk: 46, storyDriven: 64 },
     politicalIndex: { representation: 46, canonFaithful: 70, adaptationFreedom: 72, issueInsertion: 94, controversyRisk: 62, mediaFriendly: 54, audienceSplit: 60 },
-    ratings: { tmdb: "7.1/10", imdb: "7.2/10", metacritic: "49/100", rottenTomatoes: "55%" },
+    ratings: { tmdb: "7.1/10", imdb: "7.2/10", metacritic: "49/100", rottenTomatoes: "55%" },  youtubeId: "RbIxYm3mKzI",
   },
   {
     id: "civil-war",
@@ -1282,7 +1282,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "政治暴力與新聞攝影視角結合，用近未來內戰想像放大當代焦慮。",
     tags: { genreSpectacle: 76, genrePrestige: 80, representation: 58, issueInsertion: 86, commercialEntertainment: 66, controversyRisk: 70, mediaFriendly: 82, audienceAcceptance: 68, studioRisk: 64, storyDriven: 76 },
     politicalIndex: { representation: 58, canonFaithful: 70, adaptationFreedom: 76, issueInsertion: 86, controversyRisk: 70, mediaFriendly: 82, audienceSplit: 56 },
-    ratings: { tmdb: "6.9/10", imdb: "7.0/10", metacritic: "75/100", rottenTomatoes: "81%" },
+    ratings: { tmdb: "6.9/10", imdb: "7.0/10", metacritic: "75/100", rottenTomatoes: "81%" },  youtubeId: "aDyQxtg0V2w",
   },
   {
     id: "birds-of-prey",
@@ -1293,7 +1293,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "女性反英雄群像與漫畫改編結合，風格鮮明但商業接受度中等。",
     tags: { genreSpectacle: 74, adaptation: 82, canonFaithful: 58, representation: 78, genderPowerShift: 94, issueInsertion: 52, commercialEntertainment: 70, controversyRisk: 46, mediaFriendly: 76, audienceAcceptance: 62, studioRisk: 60 },
     politicalIndex: { representation: 78, canonFaithful: 58, adaptationFreedom: 78, issueInsertion: 52, controversyRisk: 46, mediaFriendly: 76, audienceSplit: 42 },
-    ratings: { tmdb: "6.9/10", imdb: "6.1/10", metacritic: "60/100", rottenTomatoes: "78%" },
+    ratings: { tmdb: "6.9/10", imdb: "6.1/10", metacritic: "60/100", rottenTomatoes: "78%" },  youtubeId: "kGM4uYZzfu0",
   },
   {
     id: "killers-of-flower-moon",
@@ -1328,7 +1328,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "青春期焦慮與情緒擬人化結合，以親民娛樂包裝心理健康議題。",
     tags: { genreSpectacle: 70, genrePrestige: 70, representation: 56, genderPowerShift: 64, issueInsertion: 52, commercialEntertainment: 94, controversyRisk: 12, mediaFriendly: 84, audienceAcceptance: 94, studioRisk: 26, storyDriven: 72 },
     politicalIndex: { representation: 56, canonFaithful: 82, adaptationFreedom: 48, issueInsertion: 52, controversyRisk: 12, mediaFriendly: 84, audienceSplit: 12 },
-    ratings: { tmdb: "7.6/10", imdb: "7.6/10", metacritic: "73/100", rottenTomatoes: "91%" },
+    ratings: { tmdb: "7.6/10", imdb: "7.6/10", metacritic: "73/100", rottenTomatoes: "91%" },  youtubeId: "LEjhY15eCx0",
   },
   {
     id: "the-batman",
@@ -1339,7 +1339,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "黑色偵探風格重啟超級英雄 IP，以腐敗城市與陰鬱調性重新包裝經典角色。",
     tags: { genreSpectacle: 86, genrePrestige: 76, adaptation: 94, canonFaithful: 84, representation: 42, issueInsertion: 52, commercialEntertainment: 86, controversyRisk: 22, mediaFriendly: 88, audienceAcceptance: 86, studioRisk: 52, storyDriven: 80 },
     politicalIndex: { representation: 42, canonFaithful: 84, adaptationFreedom: 58, issueInsertion: 52, controversyRisk: 22, mediaFriendly: 88, audienceSplit: 24 },
-    ratings: { tmdb: "7.7/10", imdb: "7.8/10", metacritic: "72/100", rottenTomatoes: "85%" },
+    ratings: { tmdb: "7.7/10", imdb: "7.8/10", metacritic: "72/100", rottenTomatoes: "85%" },  youtubeId: "mqqft2x_Aa4",
   },
   {
     id: "shang-chi",
@@ -1350,7 +1350,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "亞裔超級英雄與家庭武俠敘事進入漫威主流，代表性與商業娛樂性並行。",
     tags: { genreSpectacle: 88, adaptation: 82, canonFaithful: 70, representation: 92, genderPowerShift: 54, issueInsertion: 44, commercialEntertainment: 90, controversyRisk: 26, mediaFriendly: 90, audienceAcceptance: 86, studioRisk: 48 },
     politicalIndex: { representation: 92, canonFaithful: 70, adaptationFreedom: 64, issueInsertion: 44, controversyRisk: 26, mediaFriendly: 90, audienceSplit: 24 },
-    ratings: { tmdb: "7.5/10", imdb: "7.4/10", metacritic: "71/100", rottenTomatoes: "91%" },
+    ratings: { tmdb: "7.5/10", imdb: "7.4/10", metacritic: "71/100", rottenTomatoes: "91%" },  youtubeId: "8YjFbMbfXaQ",
   },
   {
     id: "eternals",
@@ -1361,7 +1361,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "漫威試圖用多元群像與神話史詩擴張宇宙，但節奏與角色負載引發分裂。",
     tags: { genreSpectacle: 84, genrePrestige: 52, adaptation: 84, canonFaithful: 54, representation: 94, genderPowerShift: 74, issueInsertion: 58, commercialEntertainment: 64, controversyRisk: 72, mediaFriendly: 58, audienceAcceptance: 48, studioRisk: 82 },
     politicalIndex: { representation: 94, canonFaithful: 54, adaptationFreedom: 78, issueInsertion: 58, controversyRisk: 72, mediaFriendly: 58, audienceSplit: 76 },
-    ratings: { tmdb: "6.8/10", imdb: "6.3/10", metacritic: "52/100", rottenTomatoes: "47%" },
+    ratings: { tmdb: "6.8/10", imdb: "6.3/10", metacritic: "52/100", rottenTomatoes: "47%" },  youtubeId: "x_me3xsvDgk",
   },
   {
     id: "moonlight",
@@ -1372,7 +1372,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "黑人男性、酷兒身份與成長創傷以細膩作者風格呈現，獎季影響力極高。",
     tags: { genrePrestige: 98, representation: 96, genderPowerShift: 60, issueInsertion: 92, commercialEntertainment: 28, controversyRisk: 24, mediaFriendly: 98, audienceAcceptance: 82, studioRisk: 44, storyDriven: 94 },
     politicalIndex: { representation: 96, canonFaithful: 74, adaptationFreedom: 72, issueInsertion: 92, controversyRisk: 24, mediaFriendly: 98, audienceSplit: 20 },
-    ratings: { tmdb: "7.4/10", imdb: "7.4/10", metacritic: "99/100", rottenTomatoes: "98%" },
+    ratings: { tmdb: "7.4/10", imdb: "7.4/10", metacritic: "99/100", rottenTomatoes: "98%" },  youtubeId: "9NJj12tJzqc",
   },
   {
     id: "green-book",
@@ -1383,7 +1383,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "種族和解公路片以親民敘事取得大眾支持，但也被批評過度簡化歷史壓力。",
     tags: { genrePrestige: 78, representation: 70, issueInsertion: 76, commercialEntertainment: 78, controversyRisk: 58, mediaFriendly: 72, audienceAcceptance: 88, studioRisk: 46, storyDriven: 78 },
     politicalIndex: { representation: 70, canonFaithful: 66, adaptationFreedom: 62, issueInsertion: 76, controversyRisk: 58, mediaFriendly: 72, audienceSplit: 54 },
-    ratings: { tmdb: "8.2/10", imdb: "8.2/10", metacritic: "69/100", rottenTomatoes: "77%" },
+    ratings: { tmdb: "8.2/10", imdb: "8.2/10", metacritic: "69/100", rottenTomatoes: "77%" },  youtubeId: "QkZxoko_HC0",
   },
   {
     id: "coda",
@@ -1394,7 +1394,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "聽障家庭、成長與音樂夢想結合，以溫暖主流敘事降低代表性題材門檻。",
     tags: { genrePrestige: 88, representation: 92, issueInsertion: 64, commercialEntertainment: 74, controversyRisk: 12, mediaFriendly: 94, audienceAcceptance: 90, studioRisk: 34, storyDriven: 86 },
     politicalIndex: { representation: 92, canonFaithful: 76, adaptationFreedom: 60, issueInsertion: 64, controversyRisk: 12, mediaFriendly: 94, audienceSplit: 10 },
-    ratings: { tmdb: "7.9/10", imdb: "8.0/10", metacritic: "74/100", rottenTomatoes: "94%" },
+    ratings: { tmdb: "7.9/10", imdb: "8.0/10", metacritic: "74/100", rottenTomatoes: "94%" },  youtubeId: "0pmfrE1YL4I",
   },
   {
     id: "shape-of-water",
@@ -1405,7 +1405,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "奇幻愛情、冷戰寓言與邊緣者同盟結合，作者風格與獎季友善度都很高。",
     tags: { genrePrestige: 96, genreSpectacle: 58, representation: 78, genderPowerShift: 74, issueInsertion: 72, commercialEntertainment: 56, controversyRisk: 36, mediaFriendly: 96, audienceAcceptance: 78, studioRisk: 54, storyDriven: 86 },
     politicalIndex: { representation: 78, canonFaithful: 70, adaptationFreedom: 82, issueInsertion: 72, controversyRisk: 36, mediaFriendly: 96, audienceSplit: 32 },
-    ratings: { tmdb: "7.2/10", imdb: "7.3/10", metacritic: "87/100", rottenTomatoes: "92%" },
+    ratings: { tmdb: "7.2/10", imdb: "7.3/10", metacritic: "87/100", rottenTomatoes: "92%" },  youtubeId: "XFYWazblaUA",
   },
   {
     id: "knives-out",
@@ -1416,7 +1416,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "古典推理包裝階級、移民與家族權力諷刺，娛樂性強且議題不壓戲。",
     tags: { genreSpectacle: 54, genrePrestige: 78, representation: 66, issueInsertion: 70, commercialEntertainment: 88, controversyRisk: 24, mediaFriendly: 92, audienceAcceptance: 90, studioRisk: 34, storyDriven: 82 },
     politicalIndex: { representation: 66, canonFaithful: 72, adaptationFreedom: 78, issueInsertion: 70, controversyRisk: 24, mediaFriendly: 92, audienceSplit: 18 },
-    ratings: { tmdb: "7.8/10", imdb: "7.9/10", metacritic: "82/100", rottenTomatoes: "97%" },
+    ratings: { tmdb: "7.8/10", imdb: "7.9/10", metacritic: "82/100", rottenTomatoes: "97%" },  youtubeId: "qGqiHJTsRkQ",
   },
   {
     id: "john-wick-4",
@@ -1427,7 +1427,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "動作編排與類型美學拉滿，議題壓力極低，觀眾主要用爽感與完成度評價。",
     tags: { genreSpectacle: 96, adaptation: 82, canonFaithful: 84, representation: 24, issueInsertion: 12, commercialEntertainment: 94, controversyRisk: 10, mediaFriendly: 78, audienceAcceptance: 92, studioRisk: 30, storyDriven: 42 },
     politicalIndex: { representation: 24, canonFaithful: 84, adaptationFreedom: 48, issueInsertion: 12, controversyRisk: 10, mediaFriendly: 78, audienceSplit: 10 },
-    ratings: { tmdb: "7.7/10", imdb: "7.7/10", metacritic: "78/100", rottenTomatoes: "94%" },
+    ratings: { tmdb: "7.7/10", imdb: "7.7/10", metacritic: "78/100", rottenTomatoes: "94%" },  youtubeId: "qEVUtrk8_B4",
   },
   {
     id: "mission-impossible-dead-reckoning",
@@ -1438,7 +1438,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "明星驅動的實拍動作大片，以奇觀、追逐和系列信任感降低文化爭議干擾。",
     tags: { genreSpectacle: 96, adaptation: 86, canonFaithful: 82, representation: 30, genderPowerShift: 34, issueInsertion: 18, commercialEntertainment: 92, controversyRisk: 12, mediaFriendly: 84, audienceAcceptance: 88, studioRisk: 42, storyDriven: 52 },
     politicalIndex: { representation: 30, canonFaithful: 82, adaptationFreedom: 50, issueInsertion: 18, controversyRisk: 12, mediaFriendly: 84, audienceSplit: 12 },
-    ratings: { tmdb: "7.5/10", imdb: "7.6/10", metacritic: "81/100", rottenTomatoes: "96%" },
+    ratings: { tmdb: "7.5/10", imdb: "7.6/10", metacritic: "81/100", rottenTomatoes: "96%" },  youtubeId: "avz06PDqDbM",
   },
   {
     id: "super-mario-bros-movie",
@@ -1449,7 +1449,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "經典遊戲 IP 以粉絲服務和家庭娛樂取勝，評論普通但大眾接受度極高。",
     tags: { genreSpectacle: 78, adaptation: 96, canonFaithful: 88, representation: 34, issueInsertion: 8, commercialEntertainment: 98, controversyRisk: 8, mediaFriendly: 62, audienceAcceptance: 96, studioRisk: 24, storyDriven: 36 },
     politicalIndex: { representation: 34, canonFaithful: 88, adaptationFreedom: 36, issueInsertion: 8, controversyRisk: 8, mediaFriendly: 62, audienceSplit: 12 },
-    ratings: { tmdb: "7.6/10", imdb: "7.0/10", metacritic: "46/100", rottenTomatoes: "59%" },
+    ratings: { tmdb: "7.6/10", imdb: "7.0/10", metacritic: "46/100", rottenTomatoes: "59%" },  youtubeId: "TnGl01FkMMo",
   },
   {
     id: "godzilla-minus-one",
@@ -1460,7 +1460,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "怪獸奇觀與戰後創傷結合，議題服務角色而不壓過娛樂性，口碑與觀眾回收都強。",
     tags: { genreSpectacle: 92, genrePrestige: 82, adaptation: 84, canonFaithful: 82, representation: 58, issueInsertion: 52, commercialEntertainment: 88, controversyRisk: 8, mediaFriendly: 92, audienceAcceptance: 94, studioRisk: 34, storyDriven: 78 },
     politicalIndex: { representation: 58, canonFaithful: 82, adaptationFreedom: 52, issueInsertion: 52, controversyRisk: 8, mediaFriendly: 92, audienceSplit: 8 },
-    ratings: { tmdb: "7.6/10", imdb: "7.7/10", metacritic: "81/100", rottenTomatoes: "98%" },
+    ratings: { tmdb: "7.6/10", imdb: "7.7/10", metacritic: "81/100", rottenTomatoes: "98%" },  youtubeId: "nAYKaslCXPc",
   },
   {
     id: "dungeons-dragons-honor-among-thieves",
@@ -1483,7 +1483,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "賽車、工業競爭與男性友誼形成傳統商業口碑片，文化壓力低且觀眾接受度高。",
     tags: { genreSpectacle: 82, genrePrestige: 76, representation: 22, issueInsertion: 16, commercialEntertainment: 86, controversyRisk: 6, mediaFriendly: 84, audienceAcceptance: 92, studioRisk: 28, storyDriven: 72 },
     politicalIndex: { representation: 22, canonFaithful: 78, adaptationFreedom: 42, issueInsertion: 16, controversyRisk: 6, mediaFriendly: 84, audienceSplit: 8 },
-    ratings: { tmdb: "8.0/10", imdb: "8.1/10", metacritic: "81/100", rottenTomatoes: "92%" },
+    ratings: { tmdb: "8.0/10", imdb: "8.1/10", metacritic: "81/100", rottenTomatoes: "92%" },  youtubeId: "zyYgDtY2AMY",
   },
   {
     id: "gran-turismo",
@@ -1494,7 +1494,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "遊戲品牌、賽車運動與勵志傳記結合，是低議題、強商業、安全娛樂的樣本。",
     tags: { genreSpectacle: 78, adaptation: 82, canonFaithful: 72, representation: 28, issueInsertion: 14, commercialEntertainment: 82, controversyRisk: 8, mediaFriendly: 72, audienceAcceptance: 82, studioRisk: 30, storyDriven: 62 },
     politicalIndex: { representation: 28, canonFaithful: 72, adaptationFreedom: 48, issueInsertion: 14, controversyRisk: 8, mediaFriendly: 72, audienceSplit: 12 },
-    ratings: { tmdb: "7.8/10", imdb: "7.1/10", metacritic: "48/100", rottenTomatoes: "65%" },
+    ratings: { tmdb: "7.8/10", imdb: "7.1/10", metacritic: "48/100", rottenTomatoes: "65%" },  youtubeId: "GVPzGBvPrzw",
   },
   {
     id: "sonic-the-hedgehog",
@@ -1505,7 +1505,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "遊戲 IP 家庭娛樂片，經歷角色造型修正後回收觀眾信任，是低風險商業改編樣本。",
     tags: { genreSpectacle: 68, adaptation: 90, canonFaithful: 76, representation: 30, issueInsertion: 8, commercialEntertainment: 86, controversyRisk: 18, mediaFriendly: 70, audienceAcceptance: 84, studioRisk: 42, storyDriven: 36 },
     politicalIndex: { representation: 30, canonFaithful: 76, adaptationFreedom: 54, issueInsertion: 8, controversyRisk: 18, mediaFriendly: 70, audienceSplit: 20 },
-    ratings: { tmdb: "7.3/10", imdb: "6.5/10", metacritic: "47/100", rottenTomatoes: "64%" },
+    ratings: { tmdb: "7.3/10", imdb: "6.5/10", metacritic: "47/100", rottenTomatoes: "64%" },  youtubeId: "szby7ZHLnkA",
   },
   {
     id: "nimona",
@@ -1516,7 +1516,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "酷兒寓言、怪物身份與反體制奇幻冒險結合，代表性明確但完成度讓口碑偏正面。",
     tags: { genreSpectacle: 70, genrePrestige: 78, adaptation: 76, canonFaithful: 62, representation: 94, genderPowerShift: 82, issueInsertion: 78, commercialEntertainment: 78, controversyRisk: 34, mediaFriendly: 92, audienceAcceptance: 86, studioRisk: 50, storyDriven: 84 },
     politicalIndex: { representation: 94, canonFaithful: 62, adaptationFreedom: 76, issueInsertion: 80, controversyRisk: 34, mediaFriendly: 92, audienceSplit: 28 },
-    ratings: { tmdb: "7.9/10", imdb: "7.5/10", metacritic: "75/100", rottenTomatoes: "93%" },
+    ratings: { tmdb: "7.9/10", imdb: "7.5/10", metacritic: "75/100", rottenTomatoes: "93%" },  youtubeId: "f_fuHRyQbOc",
   },
   {
     id: "american-fiction",
@@ -1527,7 +1527,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "以出版業、黑人身份商品化與菁英文化諷刺為核心，議題尖銳但靠喜劇降低距離。",
     tags: { genrePrestige: 90, representation: 86, issueInsertion: 86, commercialEntertainment: 72, controversyRisk: 36, mediaFriendly: 92, audienceAcceptance: 84, studioRisk: 42, storyDriven: 88 },
     politicalIndex: { representation: 86, canonFaithful: 70, adaptationFreedom: 72, issueInsertion: 86, controversyRisk: 36, mediaFriendly: 92, audienceSplit: 30 },
-    ratings: { tmdb: "7.3/10", imdb: "7.5/10", metacritic: "81/100", rottenTomatoes: "93%" },
+    ratings: { tmdb: "7.3/10", imdb: "7.5/10", metacritic: "81/100", rottenTomatoes: "93%" },  youtubeId: "i0MbLCpYJPA",
   },
   {
     id: "rustin",
@@ -1538,7 +1538,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "以民權運動組織者與同志身份為核心的傳記片，代表性與歷史補白是主要價值。",
     tags: { genrePrestige: 84, representation: 92, genderPowerShift: 48, issueInsertion: 90, commercialEntertainment: 52, controversyRisk: 28, mediaFriendly: 88, audienceAcceptance: 76, studioRisk: 40, storyDriven: 82 },
     politicalIndex: { representation: 92, canonFaithful: 82, adaptationFreedom: 58, issueInsertion: 90, controversyRisk: 28, mediaFriendly: 88, audienceSplit: 24 },
-    ratings: { tmdb: "6.7/10", imdb: "6.6/10", metacritic: "68/100", rottenTomatoes: "84%" },
+    ratings: { tmdb: "6.7/10", imdb: "6.6/10", metacritic: "68/100", rottenTomatoes: "84%" },  youtubeId: "EuZ-UONInl4",
   },
   {
     id: "strange-world",
@@ -1549,7 +1549,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "家庭動畫把環境寓言與酷兒青少年角色放進主流冒險框架，商業反應偏弱。",
     tags: { genreSpectacle: 70, adaptation: 18, canonFaithful: 56, representation: 88, genderPowerShift: 66, issueInsertion: 64, commercialEntertainment: 58, controversyRisk: 64, mediaFriendly: 62, audienceAcceptance: 46, studioRisk: 74, storyDriven: 64 },
     politicalIndex: { representation: 88, canonFaithful: 56, adaptationFreedom: 82, issueInsertion: 64, controversyRisk: 64, mediaFriendly: 62, audienceSplit: 66 },
-    ratings: { tmdb: "6.3/10", imdb: "5.7/10", metacritic: "65/100", rottenTomatoes: "72%" },
+    ratings: { tmdb: "6.3/10", imdb: "5.7/10", metacritic: "65/100", rottenTomatoes: "72%" },  youtubeId: "bKh2G73gCCs",
   },
   {
     id: "joy-ride",
@@ -1560,7 +1560,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "亞裔女性群像、身份尋根與成人喜劇混合，代表性高但以粗口娛樂降低說教感。",
     tags: { genreSpectacle: 46, genrePrestige: 62, representation: 92, genderPowerShift: 84, issueInsertion: 58, commercialEntertainment: 82, controversyRisk: 24, mediaFriendly: 86, audienceAcceptance: 78, studioRisk: 38, storyDriven: 66 },
     politicalIndex: { representation: 92, canonFaithful: 68, adaptationFreedom: 78, issueInsertion: 58, controversyRisk: 24, mediaFriendly: 86, audienceSplit: 22 },
-    ratings: { tmdb: "6.5/10", imdb: "6.4/10", metacritic: "75/100", rottenTomatoes: "90%" },
+    ratings: { tmdb: "6.5/10", imdb: "6.4/10", metacritic: "75/100", rottenTomatoes: "90%" },  youtubeId: "jyI-AM5VXDo",
   },
   {
     id: "bottoms",
@@ -1571,7 +1571,7 @@ const filmSeeds: FilmSeed[] = [
     synopsis: "酷兒校園喜劇用荒謬暴力和反類型笑點處理性別權力，受眾明確且口碑集中。",
     tags: { genrePrestige: 70, representation: 90, genderPowerShift: 88, issueInsertion: 62, commercialEntertainment: 76, controversyRisk: 32, mediaFriendly: 84, audienceAcceptance: 78, studioRisk: 42, storyDriven: 62 },
     politicalIndex: { representation: 90, canonFaithful: 62, adaptationFreedom: 82, issueInsertion: 62, controversyRisk: 32, mediaFriendly: 84, audienceSplit: 28 },
-    ratings: { tmdb: "6.7/10", imdb: "6.7/10", metacritic: "77/100", rottenTomatoes: "90%" },
+    ratings: { tmdb: "6.7/10", imdb: "6.7/10", metacritic: "77/100", rottenTomatoes: "90%" },  youtubeId: "vH5NAahf76s",
   },
 ];
 
@@ -1609,7 +1609,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "高自由度科幻 RPG，身份、身體、階級壓迫與企業權力議題強烈；首發技術爭議另屬開發風險。",
     tags: { genreSpectacle: 90, genrePrestige: 58, adaptation: 76, canonFaithful: 70, representation: 58, genderPowerShift: 58, issueInsertion: 78, commercialEntertainment: 84, controversyRisk: 38, mediaFriendly: 62, audienceAcceptance: 66, monetizationPressure: 32, playerFreedom: 86, storyDriven: 78, studioRisk: 90 },
     politicalIndex: { representation: 58, canonFaithful: 70, adaptationFreedom: 76, issueInsertion: 78, controversyRisk: 38, mediaFriendly: 62, audienceSplit: 42 },
-    ratings: { rawg: "4.1/5", metacritic: "86/100", steam: "Very Positive" },
+    ratings: { rawg: "4.1/5", metacritic: "86/100", steam: "Very Positive" },  youtubeId: "UnA7tepsc7s",
   },
   {
     id: "baldurs-gate-3",
@@ -1632,7 +1632,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "大型科幻 RPG 具備角色自訂與探索自由，但設計保守使媒體與玩家評價落差。",
     tags: { genreSpectacle: 76, genrePrestige: 52, representation: 62, genderPowerShift: 48, issueInsertion: 38, commercialEntertainment: 74, controversyRisk: 54, mediaFriendly: 64, audienceAcceptance: 56, monetizationPressure: 18, playerFreedom: 76, storyDriven: 54, studioRisk: 46 },
     politicalIndex: { representation: 62, canonFaithful: 64, adaptationFreedom: 70, issueInsertion: 38, controversyRisk: 54, mediaFriendly: 64, audienceSplit: 62 },
-    ratings: { rawg: "3.5/5", metacritic: "83/100", steam: "Mixed" },
+    ratings: { rawg: "3.5/5", metacritic: "83/100", steam: "Mixed" },  youtubeId: "pYqyVpCV-3c",
   },
   {
     id: "elden-ring",
@@ -1655,7 +1655,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "合作射擊以諷刺式民主敘事包裝娛樂循環，社群事件能快速放大口碑波動。",
     tags: { genreSpectacle: 88, genrePrestige: 34, representation: 34, genderPowerShift: 30, issueInsertion: 38, commercialEntertainment: 94, controversyRisk: 28, mediaFriendly: 78, audienceAcceptance: 82, monetizationPressure: 42, playerFreedom: 76, storyDriven: 24, studioRisk: 54 },
     politicalIndex: { representation: 34, canonFaithful: 60, adaptationFreedom: 68, issueInsertion: 38, controversyRisk: 28, mediaFriendly: 78, audienceSplit: 34 },
-    ratings: { rawg: "4.1/5", metacritic: "82/100", steam: "Mostly Positive" },
+    ratings: { rawg: "4.1/5", metacritic: "82/100", steam: "Mostly Positive" },  youtubeId: "UC5EpJR0GBQ",
   },
   {
     id: "disco-elysium",
@@ -1666,7 +1666,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "強政治文本與角色扮演深度結合，議題濃度高但靠寫作與自由度取得高度評價。",
     tags: { genrePrestige: 96, representation: 58, genderPowerShift: 46, issueInsertion: 96, commercialEntertainment: 42, controversyRisk: 42, mediaFriendly: 94, audienceAcceptance: 82, monetizationPressure: 6, playerFreedom: 88, storyDriven: 96, studioRisk: 70 },
     politicalIndex: { representation: 58, canonFaithful: 68, adaptationFreedom: 74, issueInsertion: 96, controversyRisk: 42, mediaFriendly: 94, audienceSplit: 36 },
-    ratings: { rawg: "4.4/5", metacritic: "91/100", steam: "Very Positive" },
+    ratings: { rawg: "4.4/5", metacritic: "91/100", steam: "Very Positive" },  youtubeId: "nk_K5DM0UTk",
   },
   {
     id: "god-of-war",
@@ -1677,7 +1677,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "父子敘事、神話重構與高完成度動作冒險結合，文化壓力低但情感口碑高。",
     tags: { genreSpectacle: 86, genrePrestige: 86, adaptation: 70, canonFaithful: 72, representation: 28, issueInsertion: 34, commercialEntertainment: 90, controversyRisk: 18, mediaFriendly: 92, audienceAcceptance: 94, playerFreedom: 52, storyDriven: 88, studioRisk: 38 },
     politicalIndex: { representation: 28, canonFaithful: 72, adaptationFreedom: 68, issueInsertion: 34, controversyRisk: 18, mediaFriendly: 92, audienceSplit: 16 },
-    ratings: { rawg: "4.6/5", metacritic: "94/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.6/5", metacritic: "94/100", steam: "Overwhelmingly Positive" },  youtubeId: "iUdRJjP16XI",
   },
   {
     id: "spider-man-remastered",
@@ -1688,7 +1688,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "超級英雄開放城市與大眾娛樂體驗結合，低爭議高接受度。",
     tags: { genreSpectacle: 88, adaptation: 84, canonFaithful: 86, representation: 54, issueInsertion: 26, commercialEntertainment: 92, controversyRisk: 14, mediaFriendly: 82, audienceAcceptance: 92, playerFreedom: 74, storyDriven: 72, studioRisk: 26 },
     politicalIndex: { representation: 54, canonFaithful: 86, adaptationFreedom: 50, issueInsertion: 26, controversyRisk: 14, mediaFriendly: 82, audienceSplit: 14 },
-    ratings: { rawg: "4.4/5", metacritic: "87/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.4/5", metacritic: "87/100", steam: "Overwhelmingly Positive" },  youtubeId: "mrT5q5xXb7Y",
   },
   {
     id: "horizon-zero-dawn",
@@ -1699,7 +1699,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "女性主角科幻開放世界，代表性自然融入探索與戰鬥循環。",
     tags: { genreSpectacle: 84, genrePrestige: 66, representation: 78, genderPowerShift: 86, issueInsertion: 38, commercialEntertainment: 86, controversyRisk: 22, mediaFriendly: 82, audienceAcceptance: 84, playerFreedom: 82, storyDriven: 72, studioRisk: 44 },
     politicalIndex: { representation: 78, canonFaithful: 72, adaptationFreedom: 70, issueInsertion: 38, controversyRisk: 22, mediaFriendly: 82, audienceSplit: 20 },
-    ratings: { rawg: "4.3/5", metacritic: "84/100", steam: "Very Positive" },
+    ratings: { rawg: "4.3/5", metacritic: "84/100", steam: "Very Positive" },  youtubeId: "u4-FCsiF5x4",
   },
   {
     id: "red-dead-redemption-2",
@@ -1710,7 +1710,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "西部史詩與角色悲劇兼具高自由度和強敘事，口碑集中在世界建構。",
     tags: { genreSpectacle: 86, genrePrestige: 92, representation: 34, issueInsertion: 46, commercialEntertainment: 90, controversyRisk: 18, mediaFriendly: 94, audienceAcceptance: 94, playerFreedom: 92, storyDriven: 94, studioRisk: 48 },
     politicalIndex: { representation: 34, canonFaithful: 78, adaptationFreedom: 76, issueInsertion: 46, controversyRisk: 18, mediaFriendly: 94, audienceSplit: 14 },
-    ratings: { rawg: "4.6/5", metacritic: "93/100", steam: "Very Positive" },
+    ratings: { rawg: "4.6/5", metacritic: "93/100", steam: "Very Positive" },  youtubeId: "eaW0tYpxyp0",
   },
   {
     id: "witcher-3",
@@ -1721,7 +1721,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "小說改編奇幻 RPG，以任務寫作、道德選擇與開放世界建立長尾口碑。",
     tags: { genrePrestige: 88, genreSpectacle: 82, adaptation: 90, canonFaithful: 78, representation: 42, issueInsertion: 46, commercialEntertainment: 88, controversyRisk: 16, mediaFriendly: 92, audienceAcceptance: 96, playerFreedom: 90, storyDriven: 90, studioRisk: 38 },
     politicalIndex: { representation: 42, canonFaithful: 78, adaptationFreedom: 70, issueInsertion: 46, controversyRisk: 16, mediaFriendly: 92, audienceSplit: 12 },
-    ratings: { rawg: "4.7/5", metacritic: "93/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.7/5", metacritic: "93/100", steam: "Overwhelmingly Positive" },  youtubeId: "XHrskkHf958",
   },
   {
     id: "gta-v",
@@ -1732,7 +1732,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "高自由度犯罪沙盒以諷刺和娛樂性取勝，爭議存在但商業接受度極高。",
     tags: { genreSpectacle: 92, commercialEntertainment: 96, controversyRisk: 66, mediaFriendly: 70, audienceAcceptance: 94, playerFreedom: 96, storyDriven: 66, monetizationPressure: 58, studioRisk: 48 },
     politicalIndex: { representation: 34, canonFaithful: 78, adaptationFreedom: 88, issueInsertion: 42, controversyRisk: 66, mediaFriendly: 70, audienceSplit: 38 },
-    ratings: { rawg: "4.5/5", metacritic: "96/100", steam: "Very Positive" },
+    ratings: { rawg: "4.5/5", metacritic: "96/100", steam: "Very Positive" },  youtubeId: "hvoD7ehZPcM",
   },
   {
     id: "no-mans-sky",
@@ -1743,7 +1743,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "首發承諾落差後靠長期更新逆轉評價，是開發風險樣本，不是 DEI 爭議樣本。",
     tags: { genreSpectacle: 78, commercialEntertainment: 76, controversyRisk: 8, mediaFriendly: 62, audienceAcceptance: 74, playerFreedom: 92, monetizationPressure: 18, storyDriven: 28, studioRisk: 90 },
     politicalIndex: { representation: 24, canonFaithful: 58, adaptationFreedom: 86, issueInsertion: 10, controversyRisk: 8, mediaFriendly: 62, audienceSplit: 18 },
-    ratings: { rawg: "3.8/5", metacritic: "61/100", steam: "Mostly Positive" },
+    ratings: { rawg: "3.8/5", metacritic: "61/100", steam: "Mostly Positive" },  youtubeId: "SsX2hK6yBPU",
   },
   {
     id: "persona-5-royal",
@@ -1754,7 +1754,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "日式 RPG 以青春反抗、角色關係與高度風格化美術取得全球口碑。",
     tags: { genrePrestige: 86, representation: 54, issueInsertion: 58, commercialEntertainment: 84, controversyRisk: 20, mediaFriendly: 90, audienceAcceptance: 92, playerFreedom: 62, storyDriven: 94, studioRisk: 34 },
     politicalIndex: { representation: 54, canonFaithful: 88, adaptationFreedom: 54, issueInsertion: 58, controversyRisk: 20, mediaFriendly: 90, audienceSplit: 18 },
-    ratings: { rawg: "4.4/5", metacritic: "95/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.4/5", metacritic: "95/100", steam: "Overwhelmingly Positive" },  youtubeId: "SKpSpvFCZRw",
   },
   {
     id: "nier-automata",
@@ -1765,7 +1765,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "哲學科幻、身份議題與動作 RPG 結合，議題濃度高但靠作者性成為優點。",
     tags: { genrePrestige: 88, representation: 54, genderPowerShift: 62, issueInsertion: 82, commercialEntertainment: 78, controversyRisk: 24, mediaFriendly: 90, audienceAcceptance: 88, playerFreedom: 54, storyDriven: 92, studioRisk: 42 },
     politicalIndex: { representation: 54, canonFaithful: 76, adaptationFreedom: 82, issueInsertion: 82, controversyRisk: 24, mediaFriendly: 90, audienceSplit: 22 },
-    ratings: { rawg: "4.4/5", metacritic: "84/100", steam: "Very Positive" },
+    ratings: { rawg: "4.4/5", metacritic: "84/100", steam: "Very Positive" },  youtubeId: "wJxNhJ8fjFk",
   },
   {
     id: "resident-evil-4",
@@ -1776,7 +1776,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "經典恐怖動作重製，忠實度與現代化設計取得平衡，爭議壓力低。",
     tags: { genreSpectacle: 82, adaptation: 92, canonFaithful: 88, representation: 32, issueInsertion: 18, commercialEntertainment: 92, controversyRisk: 12, mediaFriendly: 92, audienceAcceptance: 94, playerFreedom: 46, storyDriven: 66, studioRisk: 30 },
     politicalIndex: { representation: 32, canonFaithful: 88, adaptationFreedom: 42, issueInsertion: 18, controversyRisk: 12, mediaFriendly: 92, audienceSplit: 10 },
-    ratings: { rawg: "4.5/5", metacritic: "93/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.5/5", metacritic: "93/100", steam: "Overwhelmingly Positive" },  youtubeId: "Id2EaldBaWw",
   },
   {
     id: "silent-hill-2",
@@ -1787,7 +1787,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "心理恐怖經典重製，原作忠實度和現代化改動成為粉絲檢查重點。",
     tags: { genrePrestige: 76, adaptation: 94, canonFaithful: 78, representation: 32, issueInsertion: 54, commercialEntertainment: 72, controversyRisk: 48, mediaFriendly: 78, audienceAcceptance: 80, playerFreedom: 36, storyDriven: 88, studioRisk: 62 },
     politicalIndex: { representation: 32, canonFaithful: 78, adaptationFreedom: 56, issueInsertion: 54, controversyRisk: 48, mediaFriendly: 78, audienceSplit: 46 },
-    ratings: { rawg: "4.2/5", metacritic: "86/100", steam: "Very Positive" },
+    ratings: { rawg: "4.2/5", metacritic: "86/100", steam: "Very Positive" },  youtubeId: "7f5qac5f3mE",
   },
   {
     id: "black-myth-wukong",
@@ -1810,7 +1810,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "生存收集與惡搞式商業娛樂爆紅，主要爭議在相似性與長線內容，DEI 壓力很低。",
     tags: { genreSpectacle: 72, commercialEntertainment: 92, controversyRisk: 18, mediaFriendly: 70, audienceAcceptance: 86, playerFreedom: 88, monetizationPressure: 18, storyDriven: 16, studioRisk: 54 },
     politicalIndex: { representation: 28, canonFaithful: 50, adaptationFreedom: 86, issueInsertion: 12, controversyRisk: 18, mediaFriendly: 70, audienceSplit: 24 },
-    ratings: { rawg: "4.0/5", metacritic: "72/100", steam: "Very Positive" },
+    ratings: { rawg: "4.0/5", metacritic: "72/100", steam: "Very Positive" },  youtubeId: "D9w97KSEAOo",
   },
   {
     id: "stalker-2",
@@ -1821,7 +1821,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "東歐末日射擊與開放世界沉浸體驗，文化脈絡存在，但評價壓力主要來自技術與開發狀態。",
     tags: { genreSpectacle: 82, genrePrestige: 66, adaptation: 74, canonFaithful: 76, representation: 30, issueInsertion: 34, commercialEntertainment: 76, controversyRisk: 18, mediaFriendly: 74, audienceAcceptance: 70, playerFreedom: 84, storyDriven: 58, studioRisk: 78 },
     politicalIndex: { representation: 30, canonFaithful: 76, adaptationFreedom: 62, issueInsertion: 34, controversyRisk: 18, mediaFriendly: 74, audienceSplit: 28 },
-    ratings: { rawg: "3.8/5", metacritic: "73/100", steam: "Mostly Positive" },
+    ratings: { rawg: "3.8/5", metacritic: "73/100", steam: "Mostly Positive" },  youtubeId: "1dHmayETd4c",
   },
   {
     id: "mass-effect-legendary",
@@ -1832,7 +1832,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "科幻 RPG 三部曲重製，以選擇、關係與跨物種代表性維持長尾口碑。",
     tags: { genrePrestige: 84, adaptation: 72, canonFaithful: 88, representation: 74, genderPowerShift: 70, issueInsertion: 58, commercialEntertainment: 82, controversyRisk: 18, mediaFriendly: 88, audienceAcceptance: 92, playerFreedom: 86, storyDriven: 94, studioRisk: 32 },
     politicalIndex: { representation: 74, canonFaithful: 88, adaptationFreedom: 54, issueInsertion: 58, controversyRisk: 18, mediaFriendly: 88, audienceSplit: 14 },
-    ratings: { rawg: "4.5/5", metacritic: "87/100", steam: "Very Positive" },
+    ratings: { rawg: "4.5/5", metacritic: "87/100", steam: "Very Positive" },  youtubeId: "n8i53TtQ6IQ",
   },
   {
     id: "life-is-strange-true-colors",
@@ -1843,7 +1843,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "情感能力、酷兒角色與小鎮敘事結合，代表性高且偏劇情導向。",
     tags: { genrePrestige: 66, representation: 86, genderPowerShift: 72, issueInsertion: 70, commercialEntertainment: 54, controversyRisk: 24, mediaFriendly: 78, audienceAcceptance: 78, playerFreedom: 48, storyDriven: 92, studioRisk: 36 },
     politicalIndex: { representation: 86, canonFaithful: 74, adaptationFreedom: 66, issueInsertion: 70, controversyRisk: 24, mediaFriendly: 78, audienceSplit: 24 },
-    ratings: { rawg: "4.0/5", metacritic: "81/100", steam: "Very Positive" },
+    ratings: { rawg: "4.0/5", metacritic: "81/100", steam: "Very Positive" },  youtubeId: "b6CkzwVAr0M",
   },
   {
     id: "tell-me-why",
@@ -1854,7 +1854,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "跨性別角色與家庭創傷作為核心敘事，媒體友善度高但商業娛樂性較低。",
     tags: { genrePrestige: 68, representation: 96, genderPowerShift: 82, issueInsertion: 82, commercialEntertainment: 36, controversyRisk: 36, mediaFriendly: 84, audienceAcceptance: 70, playerFreedom: 34, storyDriven: 94, studioRisk: 42 },
     politicalIndex: { representation: 96, canonFaithful: 74, adaptationFreedom: 70, issueInsertion: 82, controversyRisk: 36, mediaFriendly: 84, audienceSplit: 34 },
-    ratings: { rawg: "3.8/5", metacritic: "78/100", steam: "Very Positive" },
+    ratings: { rawg: "3.8/5", metacritic: "78/100", steam: "Very Positive" },  youtubeId: "DRN2VgTB-J8",
   },
   {
     id: "celeste",
@@ -1865,7 +1865,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "高難度平台跳躍與心理健康隱喻結合，小型作品以完成度建立高口碑。",
     tags: { genrePrestige: 92, representation: 58, issueInsertion: 70, commercialEntertainment: 78, controversyRisk: 10, mediaFriendly: 92, audienceAcceptance: 90, playerFreedom: 42, storyDriven: 70, studioRisk: 20 },
     politicalIndex: { representation: 58, canonFaithful: 78, adaptationFreedom: 72, issueInsertion: 70, controversyRisk: 10, mediaFriendly: 92, audienceSplit: 12 },
-    ratings: { rawg: "4.4/5", metacritic: "92/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.4/5", metacritic: "92/100", steam: "Overwhelmingly Positive" },  youtubeId: "70d9irlxiB4",
   },
   {
     id: "hades",
@@ -1876,7 +1876,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "希臘神話重構與 roguelike 循環結合，多元角色關係自然融入系統。",
     tags: { genrePrestige: 94, genreSpectacle: 72, representation: 72, genderPowerShift: 66, issueInsertion: 42, commercialEntertainment: 90, controversyRisk: 8, mediaFriendly: 96, audienceAcceptance: 96, playerFreedom: 62, storyDriven: 82, studioRisk: 22 },
     politicalIndex: { representation: 72, canonFaithful: 70, adaptationFreedom: 84, issueInsertion: 42, controversyRisk: 8, mediaFriendly: 96, audienceSplit: 8 },
-    ratings: { rawg: "4.5/5", metacritic: "93/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.5/5", metacritic: "93/100", steam: "Overwhelmingly Positive" },  youtubeId: "91t0ha9x0AE",
   },
   {
     id: "suicide-squad",
@@ -1887,7 +1887,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "超級英雄 IP 轉向服務型射擊，商業模式與角色處理引發強烈反彈。",
     tags: { genreSpectacle: 74, adaptation: 92, canonFaithful: 28, representation: 58, issueInsertion: 24, commercialEntertainment: 50, controversyRisk: 36, mediaFriendly: 28, audienceAcceptance: 20, monetizationPressure: 88, playerFreedom: 48, storyDriven: 52, studioRisk: 94 },
     politicalIndex: { representation: 58, canonFaithful: 28, adaptationFreedom: 88, issueInsertion: 24, controversyRisk: 36, mediaFriendly: 28, audienceSplit: 54 },
-    ratings: { rawg: "2.6/5", metacritic: "60/100", steam: "Mixed" },
+    ratings: { rawg: "2.6/5", metacritic: "60/100", steam: "Mixed" },  youtubeId: "2EVFYstVuVk",
   },
   {
     id: "forspoken",
@@ -1898,7 +1898,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "異世界女性主角動作 RPG，行銷語言與台詞風格被社群放大檢查。",
     tags: { genreSpectacle: 72, representation: 78, genderPowerShift: 82, issueInsertion: 36, commercialEntertainment: 52, controversyRisk: 76, mediaFriendly: 44, audienceAcceptance: 26, playerFreedom: 58, storyDriven: 58, studioRisk: 86 },
     politicalIndex: { representation: 78, canonFaithful: 60, adaptationFreedom: 82, issueInsertion: 36, controversyRisk: 76, mediaFriendly: 44, audienceSplit: 78 },
-    ratings: { rawg: "2.9/5", metacritic: "63/100", steam: "Mixed" },
+    ratings: { rawg: "2.9/5", metacritic: "63/100", steam: "Mixed" },  youtubeId: "AdZUrXCqUck",
   },
   {
     id: "overwatch-2",
@@ -1909,7 +1909,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "高度多元角色陣容與服務型營運壓力並存，評價核心轉向商業模式。",
     tags: { genreSpectacle: 82, representation: 92, genderPowerShift: 74, issueInsertion: 34, commercialEntertainment: 82, controversyRisk: 44, mediaFriendly: 64, audienceAcceptance: 38, monetizationPressure: 96, playerFreedom: 64, storyDriven: 18, studioRisk: 86 },
     politicalIndex: { representation: 92, canonFaithful: 58, adaptationFreedom: 66, issueInsertion: 34, controversyRisk: 44, mediaFriendly: 64, audienceSplit: 62 },
-    ratings: { rawg: "3.2/5", metacritic: "79/100", steam: "Mostly Negative" },
+    ratings: { rawg: "3.2/5", metacritic: "79/100", steam: "Mostly Negative" },  youtubeId: "GKXS_YA9s7E",
   },
   {
     id: "dragon-age-veilguard",
@@ -1920,7 +1920,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "BioWare 奇幻 RPG 續作強調多元角色與現代敘事，粉絲期待與文化討論並存。",
     tags: { genrePrestige: 66, adaptation: 86, canonFaithful: 48, representation: 92, genderPowerShift: 82, issueInsertion: 72, commercialEntertainment: 64, controversyRisk: 86, mediaFriendly: 58, audienceAcceptance: 42, playerFreedom: 58, storyDriven: 86, studioRisk: 88 },
     politicalIndex: { representation: 92, canonFaithful: 48, adaptationFreedom: 82, issueInsertion: 72, controversyRisk: 86, mediaFriendly: 58, audienceSplit: 88 },
-    ratings: { rawg: "3.2/5", metacritic: "82/100", steam: "Mixed" },
+    ratings: { rawg: "3.2/5", metacritic: "82/100", steam: "Mixed" },  youtubeId: "4F3N4Lxw4_Y",
   },
   {
     id: "horizon-forbidden-west",
@@ -1931,7 +1931,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "女性主角科幻續作以視覺奇觀和開放世界探索維持主流接受度。",
     tags: { genreSpectacle: 90, representation: 82, genderPowerShift: 86, issueInsertion: 42, commercialEntertainment: 86, controversyRisk: 24, mediaFriendly: 84, audienceAcceptance: 82, playerFreedom: 86, storyDriven: 74, studioRisk: 50 },
     politicalIndex: { representation: 82, canonFaithful: 78, adaptationFreedom: 68, issueInsertion: 42, controversyRisk: 24, mediaFriendly: 84, audienceSplit: 22 },
-    ratings: { rawg: "4.2/5", metacritic: "89/100", steam: "Very Positive" },
+    ratings: { rawg: "4.2/5", metacritic: "89/100", steam: "Very Positive" },  youtubeId: "rvDu47W8qT0",
   },
   {
     id: "portal-2",
@@ -1942,7 +1942,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "高完成度解謎與黑色幽默敘事結合，幾乎沒有文化戰摩擦，是純粹設計口碑型樣本。",
     tags: { genrePrestige: 92, commercialEntertainment: 88, controversyRisk: 4, mediaFriendly: 96, audienceAcceptance: 98, playerFreedom: 48, storyDriven: 72, studioRisk: 12 },
     politicalIndex: { representation: 26, canonFaithful: 78, adaptationFreedom: 62, issueInsertion: 18, controversyRisk: 4, mediaFriendly: 96, audienceSplit: 4 },
-    ratings: { rawg: "4.6/5", metacritic: "95/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.6/5", metacritic: "95/100", steam: "Overwhelmingly Positive" },  youtubeId: "A88YiZdXugA",
   },
   {
     id: "counter-strike-2",
@@ -1953,7 +1953,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "競技射擊以系統手感、社群生態與更新節奏為核心，幾乎不靠敘事或議題驅動。",
     tags: { genreSpectacle: 72, commercialEntertainment: 90, controversyRisk: 12, mediaFriendly: 68, audienceAcceptance: 78, monetizationPressure: 54, playerFreedom: 72, storyDriven: 2, studioRisk: 44 },
     politicalIndex: { representation: 18, canonFaithful: 76, adaptationFreedom: 58, issueInsertion: 6, controversyRisk: 12, mediaFriendly: 68, audienceSplit: 18 },
-    ratings: { rawg: "3.7/5", metacritic: "82/100", steam: "Very Positive" },
+    ratings: { rawg: "3.7/5", metacritic: "82/100", steam: "Very Positive" },  youtubeId: "c80dVYcL69E",
   },
   {
     id: "dota-2",
@@ -1964,7 +1964,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "長壽競技遊戲以深度系統與電競社群維持生命，文化議題壓力低但入門門檻高。",
     tags: { genreSpectacle: 78, commercialEntertainment: 88, controversyRisk: 16, mediaFriendly: 74, audienceAcceptance: 76, monetizationPressure: 42, playerFreedom: 82, storyDriven: 8, studioRisk: 32 },
     politicalIndex: { representation: 34, canonFaithful: 78, adaptationFreedom: 70, issueInsertion: 12, controversyRisk: 16, mediaFriendly: 74, audienceSplit: 20 },
-    ratings: { rawg: "3.9/5", metacritic: "90/100", steam: "Very Positive" },
+    ratings: { rawg: "3.9/5", metacritic: "90/100", steam: "Very Positive" },  youtubeId: "-cSFPIwMEq4",
   },
   {
     id: "fallout-4",
@@ -1975,7 +1975,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "後末日開放世界與陣營選擇並行，玩家自由度高但劇情評價長期分歧。",
     tags: { genreSpectacle: 78, adaptation: 82, canonFaithful: 62, representation: 38, issueInsertion: 46, commercialEntertainment: 82, controversyRisk: 38, mediaFriendly: 76, audienceAcceptance: 78, playerFreedom: 92, storyDriven: 58, studioRisk: 42 },
     politicalIndex: { representation: 38, canonFaithful: 62, adaptationFreedom: 82, issueInsertion: 46, controversyRisk: 38, mediaFriendly: 76, audienceSplit: 42 },
-    ratings: { rawg: "4.0/5", metacritic: "84/100", steam: "Very Positive" },
+    ratings: { rawg: "4.0/5", metacritic: "84/100", steam: "Very Positive" },  youtubeId: "XW7Of3g2JME",
   },
   {
     id: "skyrim",
@@ -1986,7 +1986,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "高自由度奇幻 RPG 以探索、模組與玩家自我投射延長生命週期。",
     tags: { genreSpectacle: 82, genrePrestige: 76, adaptation: 70, canonFaithful: 78, representation: 32, issueInsertion: 24, commercialEntertainment: 88, controversyRisk: 14, mediaFriendly: 88, audienceAcceptance: 94, playerFreedom: 98, storyDriven: 62, studioRisk: 28 },
     politicalIndex: { representation: 32, canonFaithful: 78, adaptationFreedom: 86, issueInsertion: 24, controversyRisk: 14, mediaFriendly: 88, audienceSplit: 12 },
-    ratings: { rawg: "4.4/5", metacritic: "84/100", steam: "Very Positive" },
+    ratings: { rawg: "4.4/5", metacritic: "84/100", steam: "Very Positive" },  youtubeId: "JSRtYpNRoN0",
   },
   {
     id: "stardew-valley",
@@ -1997,7 +1997,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "農場生活、社群關係與自由節奏形成低壓力高接受度樣本，文化爭議極低。",
     tags: { genrePrestige: 78, representation: 62, issueInsertion: 22, commercialEntertainment: 90, controversyRisk: 4, mediaFriendly: 92, audienceAcceptance: 98, playerFreedom: 96, storyDriven: 42, monetizationPressure: 2, studioRisk: 12 },
     politicalIndex: { representation: 62, canonFaithful: 80, adaptationFreedom: 78, issueInsertion: 22, controversyRisk: 4, mediaFriendly: 92, audienceSplit: 6 },
-    ratings: { rawg: "4.5/5", metacritic: "89/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.5/5", metacritic: "89/100", steam: "Overwhelmingly Positive" },  youtubeId: "ot7uXNQskhs",
   },
   {
     id: "gotham-knights",
@@ -2008,7 +2008,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "蝙蝠俠 IP 衍生作品以群像英雄接棒，但玩法、性能與角色設計評價偏分裂。",
     tags: { genreSpectacle: 70, adaptation: 90, canonFaithful: 56, representation: 62, genderPowerShift: 64, issueInsertion: 28, commercialEntertainment: 58, controversyRisk: 34, mediaFriendly: 48, audienceAcceptance: 34, playerFreedom: 58, storyDriven: 54, studioRisk: 76 },
     politicalIndex: { representation: 62, canonFaithful: 56, adaptationFreedom: 70, issueInsertion: 28, controversyRisk: 34, mediaFriendly: 48, audienceSplit: 44 },
-    ratings: { rawg: "3.0/5", metacritic: "67/100", steam: "Mixed" },
+    ratings: { rawg: "3.0/5", metacritic: "67/100", steam: "Mixed" },  youtubeId: "UTr1Icyluag",
   },
   {
     id: "saints-row",
@@ -2019,7 +2019,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "系列重啟試圖年輕化與改寫幫派幻想，但幽默、角色與開放世界設計受到批評。",
     tags: { genreSpectacle: 62, adaptation: 82, canonFaithful: 24, representation: 66, issueInsertion: 22, commercialEntertainment: 42, controversyRisk: 54, mediaFriendly: 30, audienceAcceptance: 24, playerFreedom: 72, storyDriven: 36, studioRisk: 88 },
     politicalIndex: { representation: 66, canonFaithful: 24, adaptationFreedom: 86, issueInsertion: 22, controversyRisk: 54, mediaFriendly: 30, audienceSplit: 62 },
-    ratings: { rawg: "2.7/5", metacritic: "61/100", steam: "Mixed" },
+    ratings: { rawg: "2.7/5", metacritic: "61/100", steam: "Mixed" },  youtubeId: "YgjzDJA1o1E",
   },
   {
     id: "apex-legends",
@@ -2030,7 +2030,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "英雄射擊與大逃殺結合，角色代表性高，評價更多受營運、平衡與商業模式影響。",
     tags: { genreSpectacle: 84, representation: 90, genderPowerShift: 70, commercialEntertainment: 88, controversyRisk: 24, mediaFriendly: 78, audienceAcceptance: 76, monetizationPressure: 72, playerFreedom: 58, storyDriven: 18, studioRisk: 54 },
     politicalIndex: { representation: 90, canonFaithful: 70, adaptationFreedom: 72, issueInsertion: 24, controversyRisk: 24, mediaFriendly: 78, audienceSplit: 28 },
-    ratings: { rawg: "3.8/5", metacritic: "88/100", steam: "Mixed" },
+    ratings: { rawg: "3.8/5", metacritic: "88/100", steam: "Mixed" },  youtubeId: "innmNewjkuk",
   },
   {
     id: "ff7-remake",
@@ -2041,7 +2041,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "經典 RPG 重製以高規格演出與劇情重構挑戰原作記憶，老粉接受度與改編自由並存。",
     tags: { genreSpectacle: 90, genrePrestige: 76, adaptation: 96, canonFaithful: 64, representation: 54, issueInsertion: 42, commercialEntertainment: 86, controversyRisk: 44, mediaFriendly: 84, audienceAcceptance: 82, playerFreedom: 42, storyDriven: 90, studioRisk: 62 },
     politicalIndex: { representation: 54, canonFaithful: 64, adaptationFreedom: 82, issueInsertion: 42, controversyRisk: 44, mediaFriendly: 84, audienceSplit: 46 },
-    ratings: { rawg: "4.3/5", metacritic: "87/100", steam: "Very Positive" },
+    ratings: { rawg: "4.3/5", metacritic: "87/100", steam: "Very Positive" },  youtubeId: "Ge73iBqc7o8",
   },
   {
     id: "death-stranding",
@@ -2052,7 +2052,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "作者型開放世界以孤立、連結與末世物流為核心，玩法獨特也讓評價高度分歧。",
     tags: { genrePrestige: 90, genreSpectacle: 74, representation: 46, issueInsertion: 78, commercialEntertainment: 48, controversyRisk: 52, mediaFriendly: 88, audienceAcceptance: 72, playerFreedom: 82, storyDriven: 92, studioRisk: 74 },
     politicalIndex: { representation: 46, canonFaithful: 76, adaptationFreedom: 84, issueInsertion: 78, controversyRisk: 52, mediaFriendly: 88, audienceSplit: 58 },
-    ratings: { rawg: "4.2/5", metacritic: "85/100", steam: "Very Positive" },
+    ratings: { rawg: "4.2/5", metacritic: "85/100", steam: "Very Positive" },  youtubeId: "QlLEmu8c-Vk",
   },
   {
     id: "control",
@@ -2063,7 +2063,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "超自然機構、女性主角與新怪談美學結合，媒體評價高且文化爭議低。",
     tags: { genrePrestige: 86, genreSpectacle: 80, representation: 72, genderPowerShift: 78, issueInsertion: 48, commercialEntertainment: 72, controversyRisk: 16, mediaFriendly: 90, audienceAcceptance: 82, playerFreedom: 44, storyDriven: 82, studioRisk: 42 },
     politicalIndex: { representation: 72, canonFaithful: 74, adaptationFreedom: 76, issueInsertion: 48, controversyRisk: 16, mediaFriendly: 90, audienceSplit: 18 },
-    ratings: { rawg: "4.1/5", metacritic: "85/100", steam: "Very Positive" },
+    ratings: { rawg: "4.1/5", metacritic: "85/100", steam: "Very Positive" },  youtubeId: "w6bE11FrSFM",
   },
   {
     id: "detroit-become-human",
@@ -2074,7 +2074,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "互動電影式敘事以仿生人權利隱喻壓迫與自由，議題清楚且玩家選擇密集。",
     tags: { genrePrestige: 72, representation: 64, issueInsertion: 86, commercialEntertainment: 70, controversyRisk: 38, mediaFriendly: 78, audienceAcceptance: 84, playerFreedom: 82, storyDriven: 96, studioRisk: 48 },
     politicalIndex: { representation: 64, canonFaithful: 76, adaptationFreedom: 78, issueInsertion: 86, controversyRisk: 38, mediaFriendly: 78, audienceSplit: 34 },
-    ratings: { rawg: "4.2/5", metacritic: "78/100", steam: "Very Positive" },
+    ratings: { rawg: "4.2/5", metacritic: "78/100", steam: "Very Positive" },  youtubeId: "8a-EObAhYrg",
   },
   {
     id: "stray",
@@ -2085,7 +2085,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "貓咪探索與賽博城市氛圍結合，低政治壓力、強辨識度與高社群傳播性。",
     tags: { genreSpectacle: 58, genrePrestige: 74, representation: 34, issueInsertion: 28, commercialEntertainment: 82, controversyRisk: 6, mediaFriendly: 94, audienceAcceptance: 92, playerFreedom: 38, storyDriven: 62, studioRisk: 22 },
     politicalIndex: { representation: 34, canonFaithful: 78, adaptationFreedom: 68, issueInsertion: 28, controversyRisk: 6, mediaFriendly: 94, audienceSplit: 8 },
-    ratings: { rawg: "4.2/5", metacritic: "82/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.2/5", metacritic: "82/100", steam: "Overwhelmingly Positive" },  youtubeId: "kJawWyRUOBM",
   },
   {
     id: "hi-fi-rush",
@@ -2096,7 +2096,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "節奏動作、卡通風格與反企業幽默結合，娛樂性高且口碑穩定。",
     tags: { genreSpectacle: 82, genrePrestige: 78, representation: 58, issueInsertion: 36, commercialEntertainment: 92, controversyRisk: 8, mediaFriendly: 94, audienceAcceptance: 94, playerFreedom: 42, storyDriven: 58, studioRisk: 26 },
     politicalIndex: { representation: 58, canonFaithful: 74, adaptationFreedom: 78, issueInsertion: 36, controversyRisk: 8, mediaFriendly: 94, audienceSplit: 8 },
-    ratings: { rawg: "4.3/5", metacritic: "89/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.3/5", metacritic: "89/100", steam: "Overwhelmingly Positive" },  youtubeId: "O2i1Vq3Odbg",
   },
   {
     id: "armored-core-vi",
@@ -2107,7 +2107,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "硬派機甲動作重啟經典系列，以難度、機體組裝與老派設計獲得高評價。",
     tags: { genreSpectacle: 88, genrePrestige: 80, adaptation: 84, canonFaithful: 82, representation: 24, issueInsertion: 24, commercialEntertainment: 82, controversyRisk: 18, mediaFriendly: 86, audienceAcceptance: 88, playerFreedom: 74, storyDriven: 54, studioRisk: 38 },
     politicalIndex: { representation: 24, canonFaithful: 82, adaptationFreedom: 58, issueInsertion: 24, controversyRisk: 18, mediaFriendly: 86, audienceSplit: 18 },
-    ratings: { rawg: "4.3/5", metacritic: "87/100", steam: "Very Positive" },
+    ratings: { rawg: "4.3/5", metacritic: "87/100", steam: "Very Positive" },  youtubeId: "kKO1s-CUZvY",
   },
   {
     id: "lies-of-p",
@@ -2118,7 +2118,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "童話改編魂系動作以黑暗美術和高難度戰鬥吸引玩家，原作改造幅度大但接受度高。",
     tags: { genreSpectacle: 78, genrePrestige: 82, adaptation: 80, canonFaithful: 38, representation: 34, issueInsertion: 42, commercialEntertainment: 78, controversyRisk: 18, mediaFriendly: 88, audienceAcceptance: 86, playerFreedom: 46, storyDriven: 78, studioRisk: 34 },
     politicalIndex: { representation: 34, canonFaithful: 38, adaptationFreedom: 86, issueInsertion: 42, controversyRisk: 18, mediaFriendly: 88, audienceSplit: 18 },
-    ratings: { rawg: "4.1/5", metacritic: "80/100", steam: "Very Positive" },
+    ratings: { rawg: "4.1/5", metacritic: "80/100", steam: "Very Positive" },  youtubeId: "kXZoKdr-xeo",
   },
   {
     id: "dave-the-diver",
@@ -2129,7 +2129,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "潛水探索、餐廳經營與輕鬆劇情混合，低爭議高完成度形成口碑黑馬。",
     tags: { genreSpectacle: 58, genrePrestige: 76, representation: 42, issueInsertion: 18, commercialEntertainment: 90, controversyRisk: 6, mediaFriendly: 92, audienceAcceptance: 96, playerFreedom: 76, storyDriven: 44, studioRisk: 18 },
     politicalIndex: { representation: 42, canonFaithful: 78, adaptationFreedom: 76, issueInsertion: 18, controversyRisk: 6, mediaFriendly: 92, audienceSplit: 6 },
-    ratings: { rawg: "4.3/5", metacritic: "90/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.3/5", metacritic: "90/100", steam: "Overwhelmingly Positive" },  youtubeId: "p85VHMpE0to",
   },
   {
     id: "monster-hunter-world",
@@ -2140,7 +2140,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "共鬥狩獵、裝備循環與大型生態奇觀形成高黏著度，文化議題壓力低，評價主要看玩法深度。",
     tags: { genreSpectacle: 88, genrePrestige: 72, representation: 36, issueInsertion: 10, commercialEntertainment: 92, controversyRisk: 10, mediaFriendly: 86, audienceAcceptance: 92, monetizationPressure: 12, playerFreedom: 78, storyDriven: 30, studioRisk: 28 },
     politicalIndex: { representation: 36, canonFaithful: 80, adaptationFreedom: 64, issueInsertion: 10, controversyRisk: 10, mediaFriendly: 86, audienceSplit: 12 },
-    ratings: { rawg: "4.3/5", metacritic: "88/100", steam: "Very Positive" },
+    ratings: { rawg: "4.3/5", metacritic: "88/100", steam: "Very Positive" },  youtubeId: "OotQrKEqe94",
   },
   {
     id: "doom-eternal",
@@ -2151,7 +2151,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "高速射擊、重金屬美學與硬派戰鬥節奏拉滿，幾乎不靠社會議題推動評價。",
     tags: { genreSpectacle: 94, genrePrestige: 74, adaptation: 82, canonFaithful: 86, representation: 18, issueInsertion: 6, commercialEntertainment: 88, controversyRisk: 16, mediaFriendly: 84, audienceAcceptance: 90, monetizationPressure: 10, playerFreedom: 44, storyDriven: 34, studioRisk: 32 },
     politicalIndex: { representation: 18, canonFaithful: 86, adaptationFreedom: 46, issueInsertion: 6, controversyRisk: 16, mediaFriendly: 84, audienceSplit: 14 },
-    ratings: { rawg: "4.4/5", metacritic: "88/100", steam: "Very Positive" },
+    ratings: { rawg: "4.4/5", metacritic: "88/100", steam: "Very Positive" },  youtubeId: "_UuktemkCFI",
   },
   {
     id: "sekiro",
@@ -2162,7 +2162,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "高難度動作、精準格擋與日本戰國奇幻結合，是低議題、高技術門檻的硬派樣本。",
     tags: { genreSpectacle: 78, genrePrestige: 88, adaptation: 28, canonFaithful: 76, representation: 20, issueInsertion: 8, commercialEntertainment: 84, controversyRisk: 8, mediaFriendly: 92, audienceAcceptance: 92, monetizationPressure: 6, playerFreedom: 42, storyDriven: 72, studioRisk: 46 },
     politicalIndex: { representation: 20, canonFaithful: 76, adaptationFreedom: 62, issueInsertion: 8, controversyRisk: 8, mediaFriendly: 92, audienceSplit: 10 },
-    ratings: { rawg: "4.4/5", metacritic: "90/100", steam: "Very Positive" },
+    ratings: { rawg: "4.4/5", metacritic: "90/100", steam: "Very Positive" },  youtubeId: "rXMX4YJ7Lks",
   },
   {
     id: "ghost-of-tsushima",
@@ -2173,7 +2173,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "武士電影感、開放世界探索與歷史幻想結合，爭議低，主打沉浸與商業完成度。",
     tags: { genreSpectacle: 88, genrePrestige: 78, adaptation: 34, canonFaithful: 74, representation: 24, issueInsertion: 12, commercialEntertainment: 90, controversyRisk: 10, mediaFriendly: 90, audienceAcceptance: 94, monetizationPressure: 8, playerFreedom: 86, storyDriven: 76, studioRisk: 30 },
     politicalIndex: { representation: 24, canonFaithful: 74, adaptationFreedom: 76, issueInsertion: 12, controversyRisk: 10, mediaFriendly: 90, audienceSplit: 10 },
-    ratings: { rawg: "4.5/5", metacritic: "87/100", steam: "Very Positive" },
+    ratings: { rawg: "4.5/5", metacritic: "87/100", steam: "Very Positive" },  youtubeId: "A5gVt028Hww",
   },
   {
     id: "the-outer-worlds",
@@ -2184,7 +2184,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "黑色幽默科幻 RPG 用企業諷刺與玩家選擇推動劇情，議題明顯但包在類型娛樂裡。",
     tags: { genrePrestige: 74, representation: 58, issueInsertion: 82, commercialEntertainment: 74, controversyRisk: 30, mediaFriendly: 82, audienceAcceptance: 82, monetizationPressure: 6, playerFreedom: 88, storyDriven: 86, studioRisk: 42 },
     politicalIndex: { representation: 58, canonFaithful: 72, adaptationFreedom: 82, issueInsertion: 82, controversyRisk: 30, mediaFriendly: 82, audienceSplit: 28 },
-    ratings: { rawg: "4.0/5", metacritic: "82/100", steam: "Very Positive" },
+    ratings: { rawg: "4.0/5", metacritic: "82/100", steam: "Very Positive" },  youtubeId: "zNmjNA6dtEA",
   },
   {
     id: "warframe",
@@ -2195,7 +2195,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "長線營運、刷裝循環與社群共創支撐壽命，評價更多受更新節奏和商業模式影響。",
     tags: { genreSpectacle: 82, representation: 54, issueInsertion: 26, commercialEntertainment: 84, controversyRisk: 18, mediaFriendly: 76, audienceAcceptance: 86, monetizationPressure: 68, playerFreedom: 86, storyDriven: 48, studioRisk: 44 },
     politicalIndex: { representation: 54, canonFaithful: 72, adaptationFreedom: 76, issueInsertion: 26, controversyRisk: 18, mediaFriendly: 76, audienceSplit: 22 },
-    ratings: { rawg: "3.8/5", metacritic: "69/100", steam: "Very Positive" },
+    ratings: { rawg: "3.8/5", metacritic: "69/100", steam: "Very Positive" },  youtubeId: "MsbL8lFHrZI",
   },
   {
     id: "destiny-2",
@@ -2218,7 +2218,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "維京生存、基地建造與合作探索形成低成本高擴散樣本，玩家自由度高且文化壓力很低。",
     tags: { genreSpectacle: 64, genrePrestige: 70, representation: 24, issueInsertion: 8, commercialEntertainment: 88, controversyRisk: 6, mediaFriendly: 86, audienceAcceptance: 94, monetizationPressure: 4, playerFreedom: 96, storyDriven: 18, studioRisk: 20 },
     politicalIndex: { representation: 24, canonFaithful: 72, adaptationFreedom: 86, issueInsertion: 8, controversyRisk: 6, mediaFriendly: 86, audienceSplit: 8 },
-    ratings: { rawg: "4.2/5", metacritic: "86/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.2/5", metacritic: "86/100", steam: "Overwhelmingly Positive" },  youtubeId: "liQLtCLq3tc",
   },
   {
     id: "nioh-2",
@@ -2229,7 +2229,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "日本戰國、妖怪傳說與高難度動作 RPG 結合，文化辨識度高但評價核心仍是戰鬥深度。",
     tags: { genreSpectacle: 82, genrePrestige: 76, adaptation: 42, canonFaithful: 76, representation: 20, issueInsertion: 8, commercialEntertainment: 82, controversyRisk: 8, mediaFriendly: 84, audienceAcceptance: 86, monetizationPressure: 8, playerFreedom: 46, storyDriven: 62, studioRisk: 34 },
     politicalIndex: { representation: 20, canonFaithful: 76, adaptationFreedom: 66, issueInsertion: 8, controversyRisk: 8, mediaFriendly: 84, audienceSplit: 10 },
-    ratings: { rawg: "4.1/5", metacritic: "86/100", steam: "Very Positive" },
+    ratings: { rawg: "4.1/5", metacritic: "86/100", steam: "Very Positive" },  youtubeId: "0_MSW_ZTtag",
   },
   {
     id: "wo-long-fallen-dynasty",
@@ -2240,7 +2240,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "三國奇幻、武俠動作與魂系節奏混合，非西方文化辨識強，但爭議多集中在技術與設計落差。",
     tags: { genreSpectacle: 84, genrePrestige: 66, adaptation: 58, canonFaithful: 74, representation: 24, issueInsertion: 10, commercialEntertainment: 78, controversyRisk: 18, mediaFriendly: 74, audienceAcceptance: 72, monetizationPressure: 10, playerFreedom: 50, storyDriven: 62, studioRisk: 54 },
     politicalIndex: { representation: 24, canonFaithful: 74, adaptationFreedom: 64, issueInsertion: 10, controversyRisk: 18, mediaFriendly: 74, audienceSplit: 30 },
-    ratings: { rawg: "3.6/5", metacritic: "81/100", steam: "Mixed" },
+    ratings: { rawg: "3.6/5", metacritic: "81/100", steam: "Mixed" },  youtubeId: "SWRcZN4jMW8",
   },
   {
     id: "naraka-bladepoint",
@@ -2251,7 +2251,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "武俠近戰大逃殺以東方美術、身法和競技營運形成辨識度，評價受平衡與商業模式牽動。",
     tags: { genreSpectacle: 88, representation: 28, issueInsertion: 8, commercialEntertainment: 86, controversyRisk: 16, mediaFriendly: 74, audienceAcceptance: 78, monetizationPressure: 72, playerFreedom: 70, storyDriven: 18, studioRisk: 46 },
     politicalIndex: { representation: 28, canonFaithful: 70, adaptationFreedom: 74, issueInsertion: 8, controversyRisk: 16, mediaFriendly: 74, audienceSplit: 22 },
-    ratings: { rawg: "3.7/5", metacritic: "71/100", steam: "Mostly Positive" },
+    ratings: { rawg: "3.7/5", metacritic: "71/100", steam: "Mostly Positive" },  youtubeId: "kp4WrQp6pUg",
   },
   {
     id: "like-a-dragon-ishin",
@@ -2262,7 +2262,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "幕末歷史、系列明星臉與動作 RPG 重製結合，文化特色強，評價主要看粉絲服務和系統節奏。",
     tags: { genreSpectacle: 74, genrePrestige: 68, adaptation: 84, canonFaithful: 76, representation: 24, issueInsertion: 18, commercialEntertainment: 82, controversyRisk: 12, mediaFriendly: 82, audienceAcceptance: 84, monetizationPressure: 8, playerFreedom: 54, storyDriven: 82, studioRisk: 36 },
     politicalIndex: { representation: 24, canonFaithful: 76, adaptationFreedom: 58, issueInsertion: 18, controversyRisk: 12, mediaFriendly: 82, audienceSplit: 14 },
-    ratings: { rawg: "3.9/5", metacritic: "81/100", steam: "Very Positive" },
+    ratings: { rawg: "3.9/5", metacritic: "81/100", steam: "Very Positive" },  youtubeId: "iWCjnYx7Ytc",
   },
   {
     id: "sifu",
@@ -2273,7 +2273,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "功夫電影語彙、復仇敘事與高壓動作系統結合，文化風格明顯但爭議低，重點是手感和難度。",
     tags: { genreSpectacle: 78, genrePrestige: 74, representation: 28, issueInsertion: 8, commercialEntertainment: 80, controversyRisk: 8, mediaFriendly: 86, audienceAcceptance: 84, monetizationPressure: 6, playerFreedom: 36, storyDriven: 54, studioRisk: 32 },
     politicalIndex: { representation: 28, canonFaithful: 72, adaptationFreedom: 68, issueInsertion: 8, controversyRisk: 8, mediaFriendly: 86, audienceSplit: 12 },
-    ratings: { rawg: "4.1/5", metacritic: "81/100", steam: "Very Positive" },
+    ratings: { rawg: "4.1/5", metacritic: "81/100", steam: "Very Positive" },  youtubeId: "1FQ1YO3Ks2U",
   },
   {
     id: "trek-to-yomi",
@@ -2284,7 +2284,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "黑白武士電影美學與線性動作冒險結合，文化風格強，完成度評價則比題材更關鍵。",
     tags: { genreSpectacle: 64, genrePrestige: 78, representation: 22, issueInsertion: 8, commercialEntertainment: 58, controversyRisk: 8, mediaFriendly: 80, audienceAcceptance: 66, monetizationPressure: 4, playerFreedom: 26, storyDriven: 72, studioRisk: 38 },
     politicalIndex: { representation: 22, canonFaithful: 72, adaptationFreedom: 70, issueInsertion: 8, controversyRisk: 8, mediaFriendly: 80, audienceSplit: 14 },
-    ratings: { rawg: "3.4/5", metacritic: "71/100", steam: "Very Positive" },
+    ratings: { rawg: "3.4/5", metacritic: "71/100", steam: "Very Positive" },  youtubeId: "qlnfKb7nPSU",
   },
   {
     id: "dustborn",
@@ -2307,7 +2307,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "非二元角色、青春焦慮與末日寓言結合，宣傳階段曾引發文化戰式討論。",
     tags: { genrePrestige: 64, representation: 94, genderPowerShift: 76, issueInsertion: 76, commercialEntertainment: 42, controversyRisk: 72, mediaFriendly: 70, audienceAcceptance: 60, playerFreedom: 34, storyDriven: 92, studioRisk: 68 },
     politicalIndex: { representation: 94, canonFaithful: 66, adaptationFreedom: 78, issueInsertion: 76, controversyRisk: 72, mediaFriendly: 70, audienceSplit: 74 },
-    ratings: { rawg: "3.3/5", metacritic: "72/100", steam: "Very Positive" },
+    ratings: { rawg: "3.3/5", metacritic: "72/100", steam: "Very Positive" },  youtubeId: "yoBtNyPkR3Y",
   },
   {
     id: "life-is-strange-2",
@@ -2318,7 +2318,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "拉丁裔兄弟逃亡敘事結合警暴、移民、家庭與青春創傷，議題濃度比系列前作更直接。",
     tags: { genrePrestige: 72, representation: 88, genderPowerShift: 54, issueInsertion: 90, commercialEntertainment: 50, controversyRisk: 46, mediaFriendly: 82, audienceAcceptance: 76, playerFreedom: 44, storyDriven: 96, studioRisk: 46 },
     politicalIndex: { representation: 88, canonFaithful: 74, adaptationFreedom: 72, issueInsertion: 90, controversyRisk: 46, mediaFriendly: 82, audienceSplit: 42 },
-    ratings: { rawg: "4.0/5", metacritic: "78/100", steam: "Very Positive" },
+    ratings: { rawg: "4.0/5", metacritic: "78/100", steam: "Very Positive" },  youtubeId: "1xYpXzqmk8Y",
   },
   {
     id: "gone-home",
@@ -2329,7 +2329,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "以家庭空屋探索承載酷兒青春與家庭秘密，是小品敘事遊戲進入主流討論的早期樣本。",
     tags: { genrePrestige: 82, representation: 84, genderPowerShift: 58, issueInsertion: 76, commercialEntertainment: 34, controversyRisk: 36, mediaFriendly: 92, audienceAcceptance: 74, playerFreedom: 62, storyDriven: 86, studioRisk: 24 },
     politicalIndex: { representation: 84, canonFaithful: 70, adaptationFreedom: 76, issueInsertion: 76, controversyRisk: 36, mediaFriendly: 92, audienceSplit: 34 },
-    ratings: { rawg: "3.7/5", metacritic: "86/100", steam: "Very Positive" },
+    ratings: { rawg: "3.7/5", metacritic: "86/100", steam: "Very Positive" },  youtubeId: "aAjOHun4dso",
   },
   {
     id: "tacoma",
@@ -2340,7 +2340,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "太空站調查把勞動壓迫、企業治理、多元角色關係與沉浸敘事綁在一起。",
     tags: { genrePrestige: 78, representation: 82, genderPowerShift: 64, issueInsertion: 84, commercialEntertainment: 42, controversyRisk: 24, mediaFriendly: 86, audienceAcceptance: 76, playerFreedom: 58, storyDriven: 88, studioRisk: 30 },
     politicalIndex: { representation: 82, canonFaithful: 70, adaptationFreedom: 78, issueInsertion: 84, controversyRisk: 24, mediaFriendly: 86, audienceSplit: 22 },
-    ratings: { rawg: "3.5/5", metacritic: "76/100", steam: "Very Positive" },
+    ratings: { rawg: "3.5/5", metacritic: "76/100", steam: "Very Positive" },  youtubeId: "fMGIEYv8AJI",
   },
   {
     id: "dream-daddy",
@@ -2351,7 +2351,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "同志父親戀愛模擬把酷兒家庭和輕喜劇結合，代表性明確但語氣親民。",
     tags: { genrePrestige: 46, representation: 96, genderPowerShift: 62, issueInsertion: 52, commercialEntertainment: 72, controversyRisk: 20, mediaFriendly: 78, audienceAcceptance: 82, playerFreedom: 56, storyDriven: 70, studioRisk: 20 },
     politicalIndex: { representation: 96, canonFaithful: 70, adaptationFreedom: 78, issueInsertion: 52, controversyRisk: 20, mediaFriendly: 78, audienceSplit: 18 },
-    ratings: { rawg: "3.8/5", metacritic: "72/100", steam: "Very Positive" },
+    ratings: { rawg: "3.8/5", metacritic: "72/100", steam: "Very Positive" },  youtubeId: "7jlQbAKsLJc",
   },
   {
     id: "thirsty-suitors",
@@ -2362,7 +2362,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "南亞家庭、酷兒情感、前任關係和滑板戰鬥混搭，代表性高且風格辨識強。",
     tags: { genreSpectacle: 62, genrePrestige: 70, representation: 94, genderPowerShift: 86, issueInsertion: 72, commercialEntertainment: 70, controversyRisk: 22, mediaFriendly: 86, audienceAcceptance: 78, playerFreedom: 52, storyDriven: 84, studioRisk: 34 },
     politicalIndex: { representation: 94, canonFaithful: 68, adaptationFreedom: 82, issueInsertion: 72, controversyRisk: 22, mediaFriendly: 86, audienceSplit: 22 },
-    ratings: { rawg: "3.7/5", metacritic: "81/100", steam: "Very Positive" },
+    ratings: { rawg: "3.7/5", metacritic: "81/100", steam: "Very Positive" },  youtubeId: "PH2WP4G-WhY",
   },
   {
     id: "venba",
@@ -2373,7 +2373,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "南印度移民家庭以料理、語言和代間記憶講述文化保存，低爭議但 DEI 指向非常清楚。",
     tags: { genrePrestige: 82, representation: 94, genderPowerShift: 54, issueInsertion: 80, commercialEntertainment: 52, controversyRisk: 10, mediaFriendly: 92, audienceAcceptance: 86, playerFreedom: 24, storyDriven: 84, studioRisk: 18 },
     politicalIndex: { representation: 94, canonFaithful: 74, adaptationFreedom: 70, issueInsertion: 80, controversyRisk: 10, mediaFriendly: 92, audienceSplit: 10 },
-    ratings: { rawg: "3.9/5", metacritic: "81/100", steam: "Very Positive" },
+    ratings: { rawg: "3.9/5", metacritic: "81/100", steam: "Very Positive" },  youtubeId: "veW2qLKXjb4",
   },
   {
     id: "i-was-a-teenage-exocolonist",
@@ -2384,7 +2384,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "青春、殖民、性別身份、戀愛與政治選擇交織，讓玩家自由度承載高密度價值分歧。",
     tags: { genrePrestige: 84, representation: 92, genderPowerShift: 76, issueInsertion: 86, commercialEntertainment: 62, controversyRisk: 18, mediaFriendly: 90, audienceAcceptance: 88, playerFreedom: 88, storyDriven: 92, studioRisk: 28 },
     politicalIndex: { representation: 92, canonFaithful: 72, adaptationFreedom: 86, issueInsertion: 86, controversyRisk: 18, mediaFriendly: 90, audienceSplit: 18 },
-    ratings: { rawg: "4.3/5", metacritic: "89/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.3/5", metacritic: "89/100", steam: "Overwhelmingly Positive" },  youtubeId: "BSo4Stpe6mo",
   },
   {
     id: "boyfriend-dungeon",
@@ -2395,7 +2395,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "約會模擬和地下城動作混合，性別與戀愛對象高度開放，但安全提示和劇情處理曾引發討論。",
     tags: { genreSpectacle: 52, genrePrestige: 54, representation: 90, genderPowerShift: 72, issueInsertion: 56, commercialEntertainment: 68, controversyRisk: 44, mediaFriendly: 70, audienceAcceptance: 64, playerFreedom: 72, storyDriven: 70, studioRisk: 42 },
     politicalIndex: { representation: 90, canonFaithful: 68, adaptationFreedom: 80, issueInsertion: 56, controversyRisk: 44, mediaFriendly: 70, audienceSplit: 48 },
-    ratings: { rawg: "3.5/5", metacritic: "70/100", steam: "Very Positive" },
+    ratings: { rawg: "3.5/5", metacritic: "70/100", steam: "Very Positive" },  youtubeId: "uu9BXqm3eKI",
   },
   {
     id: "cosmic-wheel-sisterhood",
@@ -2406,7 +2406,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "女巫社群、身份、責任與政治選擇構成長篇互動敘事，代表性高且玩家選擇具重量。",
     tags: { genrePrestige: 86, representation: 94, genderPowerShift: 90, issueInsertion: 84, commercialEntertainment: 58, controversyRisk: 16, mediaFriendly: 92, audienceAcceptance: 88, playerFreedom: 74, storyDriven: 94, studioRisk: 26 },
     politicalIndex: { representation: 94, canonFaithful: 72, adaptationFreedom: 84, issueInsertion: 84, controversyRisk: 16, mediaFriendly: 92, audienceSplit: 16 },
-    ratings: { rawg: "4.2/5", metacritic: "85/100", steam: "Very Positive" },
+    ratings: { rawg: "4.2/5", metacritic: "85/100", steam: "Very Positive" },  youtubeId: "dzpazj5EBg8",
   },
   {
     id: "we-are-ofk",
@@ -2417,7 +2417,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "互動音樂劇集聚焦酷兒創作者、職場焦慮與洛杉磯創意圈，敘事與身份標籤高度綁定。",
     tags: { genrePrestige: 58, representation: 92, genderPowerShift: 76, issueInsertion: 66, commercialEntertainment: 48, controversyRisk: 28, mediaFriendly: 74, audienceAcceptance: 62, playerFreedom: 24, storyDriven: 88, studioRisk: 44 },
     politicalIndex: { representation: 92, canonFaithful: 68, adaptationFreedom: 76, issueInsertion: 66, controversyRisk: 28, mediaFriendly: 74, audienceSplit: 34 },
-    ratings: { rawg: "3.4/5", metacritic: "72/100", steam: "Very Positive" },
+    ratings: { rawg: "3.4/5", metacritic: "72/100", steam: "Very Positive" },  youtubeId: "XcQOUc3D5i4",
   },
   {
     id: "resist-1000x",
@@ -2428,7 +2428,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "亞裔離散、疾病政治、世代創傷與權力神話交織的高概念敘事遊戲，議題密度極高。",
     tags: { genrePrestige: 94, representation: 94, genderPowerShift: 82, issueInsertion: 96, commercialEntertainment: 48, controversyRisk: 24, mediaFriendly: 94, audienceAcceptance: 86, playerFreedom: 42, storyDriven: 98, studioRisk: 36 },
     politicalIndex: { representation: 94, canonFaithful: 72, adaptationFreedom: 84, issueInsertion: 96, controversyRisk: 24, mediaFriendly: 94, audienceSplit: 22 },
-    ratings: { rawg: "4.3/5", metacritic: "90/100", steam: "Overwhelmingly Positive" },
+    ratings: { rawg: "4.3/5", metacritic: "90/100", steam: "Overwhelmingly Positive" },  youtubeId: "ISmiWUpiDs4",
   },
   {
     id: "read-only-memories-2064",
@@ -2439,7 +2439,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "賽博龐克推理以性別、酷兒社群、人工智慧與都市階級為核心，是早期明確 DEI 遊戲樣本。",
     tags: { genrePrestige: 76, representation: 92, genderPowerShift: 70, issueInsertion: 82, commercialEntertainment: 50, controversyRisk: 26, mediaFriendly: 84, audienceAcceptance: 72, playerFreedom: 54, storyDriven: 88, studioRisk: 24 },
     politicalIndex: { representation: 92, canonFaithful: 68, adaptationFreedom: 78, issueInsertion: 82, controversyRisk: 26, mediaFriendly: 84, audienceSplit: 26 },
-    ratings: { rawg: "3.7/5", metacritic: "77/100", steam: "Mostly Positive" },
+    ratings: { rawg: "3.7/5", metacritic: "77/100", steam: "Mostly Positive" },  youtubeId: "_VqgMZ4pS60",
   },
   {
     id: "red-strings-club",
@@ -2450,7 +2450,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "酒保對話、企業情緒控制、身體改造與性別身份選擇交織，議題尖銳且作者性強。",
     tags: { genrePrestige: 84, representation: 84, genderPowerShift: 72, issueInsertion: 90, commercialEntertainment: 44, controversyRisk: 38, mediaFriendly: 88, audienceAcceptance: 78, playerFreedom: 58, storyDriven: 90, studioRisk: 28 },
     politicalIndex: { representation: 84, canonFaithful: 68, adaptationFreedom: 80, issueInsertion: 90, controversyRisk: 38, mediaFriendly: 88, audienceSplit: 34 },
-    ratings: { rawg: "4.1/5", metacritic: "80/100", steam: "Very Positive" },
+    ratings: { rawg: "4.1/5", metacritic: "80/100", steam: "Very Positive" },  youtubeId: "IKwKVukDsXQ",
   },
   {
     id: "assassins-creed-shadows",
@@ -2473,7 +2473,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "南亞女性主角與跨媒體世界觀結合，代表性明確，但玩法完成度和宣傳期待造成評價落差。",
     tags: { genreSpectacle: 70, genrePrestige: 48, adaptation: 74, canonFaithful: 54, representation: 86, genderPowerShift: 76, issueInsertion: 54, commercialEntertainment: 48, controversyRisk: 52, mediaFriendly: 44, audienceAcceptance: 34, playerFreedom: 36, storyDriven: 74, studioRisk: 86 },
     politicalIndex: { representation: 86, canonFaithful: 54, adaptationFreedom: 78, issueInsertion: 54, controversyRisk: 52, mediaFriendly: 44, audienceSplit: 66 },
-    ratings: { rawg: "2.8/5", metacritic: "59/100", steam: "Mixed" },
+    ratings: { rawg: "2.8/5", metacritic: "59/100", steam: "Mixed" },  youtubeId: "jpO-jUWtm6E",
   },
   {
     id: "flintlock-siege-of-dawn",
@@ -2484,7 +2484,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "黑人女性主角、反神權戰爭與魂系動作混合，文化代表性存在，但討論常被類型完成度拉走。",
     tags: { genreSpectacle: 78, genrePrestige: 58, representation: 82, genderPowerShift: 82, issueInsertion: 46, commercialEntertainment: 66, controversyRisk: 34, mediaFriendly: 66, audienceAcceptance: 62, playerFreedom: 52, storyDriven: 62, studioRisk: 58 },
     politicalIndex: { representation: 82, canonFaithful: 64, adaptationFreedom: 76, issueInsertion: 46, controversyRisk: 34, mediaFriendly: 66, audienceSplit: 42 },
-    ratings: { rawg: "3.5/5", metacritic: "71/100", steam: "Mostly Positive" },
+    ratings: { rawg: "3.5/5", metacritic: "71/100", steam: "Mostly Positive" },  youtubeId: "-pUveIzynQI",
   },
   {
     id: "tales-of-kenzera-zau",
@@ -2495,7 +2495,7 @@ const gameSeeds: GameSeed[] = [
     synopsis: "非洲神話、哀悼父親與文化記憶構成動作平台敘事，代表性強但爭議主要來自市場與類型期待。",
     tags: { genreSpectacle: 72, genrePrestige: 74, representation: 90, genderPowerShift: 42, issueInsertion: 78, commercialEntertainment: 64, controversyRisk: 28, mediaFriendly: 84, audienceAcceptance: 76, playerFreedom: 46, storyDriven: 82, studioRisk: 54 },
     politicalIndex: { representation: 90, canonFaithful: 70, adaptationFreedom: 78, issueInsertion: 78, controversyRisk: 28, mediaFriendly: 84, audienceSplit: 30 },
-    ratings: { rawg: "3.7/5", metacritic: "76/100", steam: "Mostly Positive" },
+    ratings: { rawg: "3.7/5", metacritic: "76/100", steam: "Mostly Positive" },  youtubeId: "5lEbG0Bx83U",
   },
 ];
 
