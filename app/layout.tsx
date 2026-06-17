@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { ChiptuneToggle } from "@/components/ChiptuneToggle";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,8 +15,8 @@ export default function RootLayout({
     <html lang="zh-Hant">
       <body>
         {children}
-        <ChiptuneToggle />
       </body>
     </html>
   );
 }
+

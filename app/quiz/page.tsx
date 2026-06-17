@@ -23,6 +23,7 @@ type SuddenEvent = {
     label: string;
     description: string;
     effects: Partial<Record<TagKey, number>>;
+    theme: "purple" | "amber" | "blue" | "slate";
   }[];
 };
 
@@ -67,17 +68,20 @@ const suddenEvents: Record<number, SuddenEvent> = {
       {
         label: "硬氣回應：堅守多元包容的創作自由",
         description: "「這是多元社會的創作自由，不接受傳統審美，不喜歡請別買。」",
-        effects: { representation: 12, controversyRisk: 22, audienceAcceptance: -12 }
+        effects: { representation: 12, controversyRisk: 22, audienceAcceptance: -12 },
+        theme: "purple"
       },
       {
         label: "退讓道歉：發布公關聲明安撫核心粉絲",
         description: "「這只是早期概念草稿，我們非常尊重原作設定，會重新微調設計。」",
-        effects: { representation: -15, controversyRisk: -15, audienceAcceptance: 10, studioRisk: 15 }
+        effects: { representation: -15, controversyRisk: -15, audienceAcceptance: 10, studioRisk: 15 },
+        theme: "amber"
       },
       {
         label: "冷處理：關閉推文評論區並保持沉默",
         description: "冷處理是最常見的公關手段，雖然無法平息怒火，但至少不會給對立方增添口水彈藥。",
-        effects: { controversyRisk: 5, studioRisk: 5 }
+        effects: { controversyRisk: 5, studioRisk: 5 },
+        theme: "slate"
       }
     ]
   },
@@ -89,12 +93,14 @@ const suddenEvents: Record<number, SuddenEvent> = {
       {
         label: "全面妥協：向資金妥協，全盤接受改動",
         description: "「劇本改一下就行，資金安全與後續的媒體評分最重要。」",
-        effects: { representation: 25, controversyRisk: 20, audienceAcceptance: -15, studioRisk: -10 }
+        effects: { representation: 25, controversyRisk: 20, audienceAcceptance: -15, studioRisk: -10 },
+        theme: "purple"
       },
       {
         label: "堅持反對：拒絕外行指導內行，保留原劇本",
         description: "「我們做的是作品，不是政令宣導手冊。拒絕向投資方的文化勒索低頭！」",
-        effects: { representation: -25, controversyRisk: -10, audienceAcceptance: 15, studioRisk: 15 }
+        effects: { representation: -25, controversyRisk: -10, audienceAcceptance: 15, studioRisk: 15 },
+        theme: "blue"
       }
     ]
   },
@@ -106,12 +112,14 @@ const suddenEvents: Record<number, SuddenEvent> = {
       {
         label: "進步正確表態：附和媒體，宣傳多元包容",
         description: "「是的，我們正在打破陳舊框架，為更包容的現代觀眾服務。」",
-        effects: { mediaFriendly: 20, controversyRisk: 15, audienceAcceptance: -12 }
+        effects: { mediaFriendly: 20, controversyRisk: 15, audienceAcceptance: -12 },
+        theme: "purple"
       },
       {
         label: "玩家立場表態：維護玩家，強調產品本體",
         description: "「我們專注於為陪伴我們多年的核心玩家服務，而非為任何政治立場服務。」",
-        effects: { mediaFriendly: -18, controversyRisk: -10, audienceAcceptance: 15 }
+        effects: { mediaFriendly: -18, controversyRisk: -10, audienceAcceptance: 15 },
+        theme: "blue"
       }
     ]
   }
@@ -1111,6 +1119,51 @@ const shuffle = <T,>(array: T[]): T[] => {
   return next;
 };
 
+const optionThemes: Record<
+  "purple" | "amber" | "blue" | "slate",
+  {
+    btnClass: string;
+    borderClass: string;
+    stripClass: string;
+    titleClass: string;
+    titleHoverClass: string;
+    badge: string;
+  }
+> = {
+  purple: {
+    btnClass: "bg-purple-950/20 hover:bg-purple-950/30 hover:shadow-[0_0_20px_rgba(168,85,247,0.25)]",
+    borderClass: "border-purple-500/40 hover:border-purple-400/70",
+    stripClass: "bg-purple-500",
+    titleClass: "text-purple-300",
+    titleHoverClass: "group-hover:text-purple-200",
+    badge: "💜 進步/多元"
+  },
+  amber: {
+    btnClass: "bg-amber-950/20 hover:bg-amber-950/30 hover:shadow-[0_0_20px_rgba(245,158,11,0.25)]",
+    borderClass: "border-amber-500/40 hover:border-amber-400/70",
+    stripClass: "bg-amber-500",
+    titleClass: "text-amber-300",
+    titleHoverClass: "group-hover:text-amber-200",
+    badge: "💛 審慎/妥協"
+  },
+  blue: {
+    btnClass: "bg-blue-950/20 hover:bg-blue-950/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.25)]",
+    borderClass: "border-blue-500/40 hover:border-blue-400/70",
+    stripClass: "bg-blue-500",
+    titleClass: "text-blue-300",
+    titleHoverClass: "group-hover:text-blue-200",
+    badge: "💙 堅持/玩家"
+  },
+  slate: {
+    btnClass: "bg-slate-900/35 hover:bg-slate-900/60 hover:shadow-[0_0_20px_rgba(148,163,184,0.15)]",
+    borderClass: "border-slate-500/40 hover:border-slate-400/70",
+    stripClass: "bg-slate-500",
+    titleClass: "text-slate-300",
+    titleHoverClass: "group-hover:text-slate-200",
+    badge: "🩶 中立/沉默"
+  }
+};
+
 export default function QuizPage() {
   const router = useRouter();
   const [selectedType, setSelectedType] = useState<WorkType | null>(null);
@@ -1590,70 +1643,85 @@ export default function QuizPage() {
             </div>
 
             <div className="grid gap-3">
-              {currentEvent.options.map((option) => (
-                <button
-                  type="button"
-                  key={option.label}
-                  onClick={() => answer(option.effects, undefined)}
-                  className="group rounded-lg border border-red-500/25 bg-red-950/20 p-5 text-left transition hover:border-red-400/50 hover:bg-red-950/30 hover:shadow-glow focus:outline-none"
-                >
-                  <div className="text-base font-bold text-white mb-1 group-hover:text-red-200 transition-colors">{option.label}</div>
-                  <div className="text-xs text-slate-300 leading-6">{option.description}</div>
-                  
-                  {/* Projected crisis impact indicators */}
-                  <div className="mt-3.5 flex flex-wrap gap-1.5 border-t border-white/5 pt-3">
-                    <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold mr-1 flex items-center">📊 預估輿論衝擊：</span>
-                    {Object.entries(option.effects).map(([key, val]) => {
-                      const value = val as number;
-                      if (value === 0) return null;
-                      const isPositive = value > 0;
-                      const label = {
-                        representation: "DEI多元代表性",
-                        controversyRisk: "輿論爭議風險",
-                        audienceAcceptance: "大眾受眾接受度",
-                        studioRisk: "開發與資金風險",
-                        mediaFriendly: "媒體好感度",
-                        commercialEntertainment: "商業娛樂價值",
-                        canonFaithful: "原作忠實度",
-                        genderPowerShift: "性別翻轉程度",
-                        issueInsertion: "議題說教感",
-                      }[key] || key;
-
-                      // Thematic color-coding
-                      let colorClass = "text-slate-300 bg-slate-950/40 border-slate-500/20";
-                      if (key === "controversyRisk" || key === "studioRisk") {
-                        colorClass = isPositive 
-                          ? "text-red-400 bg-red-950/40 border-red-500/25" 
-                          : "text-emerald-400 bg-emerald-950/40 border-emerald-500/25";
-                      } else if (key === "audienceAcceptance" || key === "commercialEntertainment" || key === "canonFaithful") {
-                        colorClass = isPositive 
-                          ? "text-emerald-400 bg-emerald-950/40 border-emerald-500/25" 
-                          : "text-red-400 bg-red-950/40 border-red-500/25";
-                      } else if (key === "representation" || key === "mediaFriendly" || key === "genderPowerShift") {
-                        colorClass = isPositive
-                          ? "text-purple-300 bg-purple-950/40 border-purple-500/25"
-                          : "text-red-400 bg-red-950/40 border-red-500/25";
-                      } else if (key === "issueInsertion") {
-                        colorClass = isPositive
-                          ? "text-indigo-300 bg-indigo-950/40 border-indigo-500/25"
-                          : "text-emerald-400 bg-emerald-950/40 border-emerald-500/25";
-                      }
-
-                      const sign = isPositive ? "▲" : "▼";
-                      return (
-                        <span 
-                          key={key} 
-                          className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold border backdrop-blur-sm shadow-inner transition-colors duration-200 ${colorClass}`}
-                        >
-                          <span>{sign === "▲" ? "📈" : "📉"}</span>
-                          <span>{label}</span>
-                          <span className="font-mono">{isPositive ? `+` : ``}{value}%</span>
+              {currentEvent.options.map((option) => {
+                const style = optionThemes[option.theme] || optionThemes.slate;
+                return (
+                  <button
+                    type="button"
+                    key={option.label}
+                    onClick={() => answer(option.effects, undefined)}
+                    className={`group relative rounded-lg border-2 p-5 text-left transition duration-200 focus:outline-none overflow-hidden ${style.btnClass} ${style.borderClass}`}
+                  >
+                    {/* Left accent bar */}
+                    <div className={`absolute left-0 top-0 bottom-0 w-1.5 ${style.stripClass}`} />
+                    
+                    <div className="pl-3">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-black/40 border border-white/5 text-slate-300">
+                          {style.badge}
                         </span>
-                      );
-                    })}
-                  </div>
-                </button>
-              ))}
+                      </div>
+                      <div className={`text-base font-bold mb-1 transition-colors ${style.titleClass} ${style.titleHoverClass}`}>
+                        {option.label}
+                      </div>
+                      <div className="text-xs text-slate-300 leading-6">{option.description}</div>
+                      
+                      {/* Projected crisis impact indicators */}
+                      <div className="mt-3.5 flex flex-wrap gap-1.5 border-t border-white/5 pt-3">
+                        <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold mr-1 flex items-center">📊 預估輿論衝擊：</span>
+                        {Object.entries(option.effects).map(([key, val]) => {
+                          const value = val as number;
+                          if (value === 0) return null;
+                          const isPositive = value > 0;
+                          const label = {
+                            representation: "DEI多元代表性",
+                            controversyRisk: "輿論爭議風險",
+                            audienceAcceptance: "大眾受眾接受度",
+                            studioRisk: "開發與資金風險",
+                            mediaFriendly: "媒體好感度",
+                            commercialEntertainment: "商業娛樂價值",
+                            canonFaithful: "原作忠實度",
+                            genderPowerShift: "性別翻轉程度",
+                            issueInsertion: "議題說教感",
+                          }[key] || key;
+
+                          // Thematic color-coding
+                          let colorClass = "text-slate-300 bg-slate-950/40 border-slate-500/20";
+                          if (key === "controversyRisk" || key === "studioRisk") {
+                            colorClass = isPositive 
+                              ? "text-red-400 bg-red-950/40 border-red-500/25" 
+                              : "text-emerald-400 bg-emerald-950/40 border-emerald-500/25";
+                          } else if (key === "audienceAcceptance" || key === "commercialEntertainment" || key === "canonFaithful") {
+                            colorClass = isPositive 
+                              ? "text-emerald-400 bg-emerald-950/40 border-emerald-500/25" 
+                              : "text-red-400 bg-red-950/40 border-red-500/25";
+                          } else if (key === "representation" || key === "mediaFriendly" || key === "genderPowerShift") {
+                            colorClass = isPositive
+                              ? "text-purple-300 bg-purple-950/40 border-purple-500/25"
+                              : "text-red-400 bg-red-950/40 border-red-500/25";
+                          } else if (key === "issueInsertion") {
+                            colorClass = isPositive
+                              ? "text-indigo-300 bg-indigo-950/40 border-indigo-500/25"
+                              : "text-emerald-400 bg-emerald-950/40 border-emerald-500/25";
+                          }
+
+                          const sign = isPositive ? "▲" : "▼";
+                          return (
+                            <span 
+                              key={key} 
+                              className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold border backdrop-blur-sm shadow-inner transition-colors duration-200 ${colorClass}`}
+                            >
+                              <span>{sign === "▲" ? "📈" : "📉"}</span>
+                              <span>{label}</span>
+                              <span className="font-mono">{isPositive ? `+` : ``}{value}%</span>
+                            </span>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
         </div>
