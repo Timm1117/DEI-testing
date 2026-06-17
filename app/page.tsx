@@ -32,21 +32,19 @@ export default function HomePage() {
               <span>Interactive Production Tycoon Project</span>
             </div>
 
-            {/* Main Title & Subtitle */}
+            {/* Main Title */}
             <h1 className="text-4xl font-black leading-tight text-white sm:text-6xl tracking-tight">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-200 via-white to-purple-300">
                 輿論風暴：製作人的求生指南
               </span>
-              <span className="block mt-3.5 text-lg sm:text-2xl font-extrabold text-amber-300/95 tracking-wide drop-shadow-md">
-                DEI 對於遊戲與影視產業的影響 —— 理想與現實的拉扯
-              </span>
             </h1>
 
-            {/* Description */}
-            <p className="mt-8 max-w-2xl text-sm sm:text-base leading-8 text-slate-300/90 font-medium">
-              你將扮演專案製作人，面對一系列關乎預算、選角、說教意味及 ESG 文化評級的製作決策。
-              本模擬測驗將即時預測市場對你的評價（媒體分 vs 玩家口碑），並在最後透過特徵向量比對，
-              為你推薦最相似的真實影視或遊戲作品，揭示作品成敗背後的核心成因。
+            {/* Subtitle & Description */}
+            <p className="mt-6 max-w-2xl text-base sm:text-lg leading-8 text-amber-200/95 font-semibold drop-shadow-sm">
+              伴隨著無數工作室的倒閉與市場惡評，DEI 彷彿已成為娛樂產業的敏感詞彙。然而，究竟是什麼推力，讓創作者們頂著輿論風暴依然推陳出新？
+            </p>
+            <p className="mt-4 max-w-2xl text-sm sm:text-base leading-8 text-slate-300/90 font-medium">
+              這一次，換你扮演決策者——親身體驗創作與輿論拉扯的重重難關，看看你最終會做出名留青史的傑作，還是引發公關災難？
             </p>
 
             {/* Call To Action Buttons */}
