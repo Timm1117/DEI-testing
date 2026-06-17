@@ -1472,6 +1472,7 @@ const filmSeeds: FilmSeed[] = [
     tags: { genreSpectacle: 82, adaptation: 88, canonFaithful: 76, representation: 62, genderPowerShift: 54, issueInsertion: 18, commercialEntertainment: 88, controversyRisk: 10, mediaFriendly: 88, audienceAcceptance: 86, studioRisk: 36, storyDriven: 56 },
     politicalIndex: { representation: 62, canonFaithful: 76, adaptationFreedom: 58, issueInsertion: 18, controversyRisk: 10, mediaFriendly: 88, audienceSplit: 10 },
     ratings: { tmdb: "7.3/10", imdb: "7.2/10", metacritic: "72/100", rottenTomatoes: "91%" },
+    youtubeId: "IiMinixSXII",
   },
   {
     id: "ford-v-ferrari",
