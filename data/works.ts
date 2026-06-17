@@ -2192,6 +2192,7 @@ const gameSeeds: GameSeed[] = [
     tags: { genreSpectacle: 86, genrePrestige: 58, adaptation: 70, canonFaithful: 74, representation: 64, issueInsertion: 30, commercialEntertainment: 84, controversyRisk: 24, mediaFriendly: 64, audienceAcceptance: 66, monetizationPressure: 86, playerFreedom: 68, storyDriven: 58, studioRisk: 72 },
     politicalIndex: { representation: 64, canonFaithful: 74, adaptationFreedom: 68, issueInsertion: 30, controversyRisk: 24, mediaFriendly: 64, audienceSplit: 38 },
     ratings: { rawg: "3.7/5", metacritic: "83/100", steam: "Mixed" },
+    youtubeId: "ZJLAJVmggt0",
   },
   {
     id: "valheim",
