@@ -1317,6 +1317,7 @@ const filmSeeds: FilmSeed[] = [
     tags: { genreSpectacle: 88, genrePrestige: 74, adaptation: 92, canonFaithful: 84, representation: 72, genderPowerShift: 86, issueInsertion: 58, commercialEntertainment: 90, controversyRisk: 28, mediaFriendly: 88, audienceAcceptance: 88, studioRisk: 58 },
     politicalIndex: { representation: 72, canonFaithful: 84, adaptationFreedom: 54, issueInsertion: 58, controversyRisk: 28, mediaFriendly: 88, audienceSplit: 22 },
     ratings: { tmdb: "7.6/10", imdb: "7.7/10", metacritic: "73/100", rottenTomatoes: "88%" },
+    youtubeId: "6COmYeLsz4c",
   },
   {
     id: "inside-out-2",
