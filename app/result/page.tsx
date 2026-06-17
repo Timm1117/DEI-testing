@@ -94,8 +94,8 @@ const ResultArtwork = ({ work }: { work: Work }) => {
     : `${work.title} Official Trailer`;
     
   const embedUrl = work.youtubeId
-    ? `https://www.youtube.com/embed/${work.youtubeId}?autoplay=0&modestbranding=1&rel=0`
-    : `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(searchQuery)}&autoplay=0&modestbranding=1&rel=0`;
+    ? `https://www.youtube.com/embed/${work.youtubeId}?autoplay=1&modestbranding=1&rel=0`
+    : `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(searchQuery)}&autoplay=1&modestbranding=1&rel=0`;
 
   return (
     <div className="relative aspect-video w-full overflow-hidden bg-black">
