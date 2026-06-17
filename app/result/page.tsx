@@ -616,12 +616,12 @@ export default function ResultPage() {
           <p className="mt-3 text-sm leading-6 text-slate-300">
             先完成製作決策，系統才會推薦相似作品。
           </p>
-          <Link
-            href="/quiz"
+          <a
+            href="../quiz/"
             className="mt-6 inline-flex items-center justify-center rounded-lg bg-teal-300 px-5 py-3 font-semibold text-slate-950 transition hover:bg-teal-200"
           >
             前往測驗
-          </Link>
+          </a>
         </section>
       </main>
     );
@@ -867,14 +867,14 @@ export default function ResultPage() {
           </div>
 
           <div className="pb-12 flex flex-col items-center">
-            <Link
-              href="/quiz"
+            <a
+              href="../quiz/"
               onClick={() => window.localStorage.removeItem("pc-quiz-profile")}
               className="inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 font-semibold text-slate-950 transition hover:bg-slate-200"
             >
               <RotateCcw size={18} />
               重新測驗
-            </Link>
+            </a>
 
             {/* Copyright & Fair Use Disclaimer */}
             <footer className="mt-12 w-full border-t border-white/5 pt-6 text-center text-[10px] leading-5 text-slate-500 max-w-3xl">
