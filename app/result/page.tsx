@@ -89,20 +89,35 @@ const buildSimilarityCopy = (similarity: number) => {
 };
 
 const ResultArtwork = ({ work }: { work: Work }) => {
-  const embedUrl = work.youtubeId
-    ? `https://www.youtube.com/embed/${work.youtubeId}?autoplay=0&modestbranding=1&rel=0`
-    : `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(work.title + " Official Trailer")}&autoplay=0&modestbranding=1&rel=0`;
+  const watchUrl = work.youtubeId
+    ? `https://www.youtube.com/watch?v=${work.youtubeId}`
+    : `https://www.youtube.com/results?search_query=${encodeURIComponent(work.title + " Official Trailer")}`;
 
   return (
-    <div className="relative aspect-video w-full overflow-hidden bg-black">
-      <iframe
-        src={embedUrl}
-        title={`${work.title} Official Trailer`}
-        className="absolute inset-0 h-full w-full border-0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
-    </div>
+    <a
+      href={watchUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group relative flex aspect-video w-full flex-col items-center justify-center bg-[radial-gradient(circle_at_top_left,rgba(239,68,68,0.15),transparent_45%),linear-gradient(135deg,#0b0d19,#04050b_85%)] p-6 transition-all duration-300 hover:brightness-110 active:scale-[0.99]"
+    >
+      {/* Grid Pattern overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:1.5rem_1.5rem] opacity-60" />
+      
+      {/* Glowing YouTube Play Icon */}
+      <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-red-600/10 border border-red-500/30 text-red-500 shadow-[0_0_30px_rgba(239,68,68,0.25)] transition-all duration-300 group-hover:scale-110 group-hover:bg-red-600/20 group-hover:text-red-400 group-hover:shadow-[0_0_40px_rgba(239,68,68,0.4)]">
+        <svg viewBox="0 0 24 24" fill="currentColor" className="h-8 w-8 ml-1">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      </div>
+      
+      {/* Description text */}
+      <span className="relative z-10 mt-4 text-xs font-semibold uppercase tracking-[0.22em] text-red-200/75 group-hover:text-red-200 transition-colors">
+        ▶ 點擊前往 YouTube 播放官方預告片
+      </span>
+      <span className="relative z-10 mt-1.5 text-[10px] text-slate-500">
+        將開啟新分頁播放官方公開推廣影片
+      </span>
+    </a>
   );
 };
 
@@ -696,7 +711,7 @@ export default function ResultPage() {
                 <div className="border-t border-white/10 px-5 py-4">
                   <div className="flex items-center justify-between gap-4">
                     <div>
-                      <p className="text-xs uppercase tracking-[0.2em] text-slate-400">官方預告片播放</p>
+                      <p className="text-xs uppercase tracking-[0.2em] text-slate-400">官方預告片</p>
                       <p className="mt-1 text-xl font-semibold text-white">{work.title}</p>
                       {work.originalTitle ? (
                         <p className="mt-1 text-sm text-slate-400">{work.originalTitle}</p>
@@ -711,9 +726,9 @@ export default function ResultPage() {
                       }
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="shrink-0 flex items-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-1.5 text-xs font-bold text-red-200 transition hover:bg-red-500/20 active:scale-95 shadow-inner"
+                      className="shrink-0 flex items-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-xs font-bold text-red-200 transition hover:bg-red-500/20 active:scale-95 shadow-inner"
                     >
-                      <span>📺 跨平台播放</span>
+                      <span>📺 立即播放</span>
                     </a>
                   </div>
                 </div>
