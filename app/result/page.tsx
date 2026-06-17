@@ -710,11 +710,28 @@ export default function ResultPage() {
               <div className="overflow-hidden rounded-lg border border-white/15 bg-black/35 shadow-glow backdrop-blur-xl saturate-150">
                 <ResultArtwork work={work} />
                 <div className="border-t border-white/10 px-5 py-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">官方預告片播放</p>
-                  <p className="mt-1 text-xl font-semibold text-white">{work.title}</p>
-                  {work.originalTitle ? (
-                    <p className="mt-1 text-sm text-slate-400">{work.originalTitle}</p>
-                  ) : null}
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.2em] text-slate-400">官方預告片播放</p>
+                      <p className="mt-1 text-xl font-semibold text-white">{work.title}</p>
+                      {work.originalTitle ? (
+                        <p className="mt-1 text-sm text-slate-400">{work.originalTitle}</p>
+                      ) : null}
+                    </div>
+                    {/* Fallback button to open on YouTube */}
+                    <a
+                      href={
+                        work.youtubeId
+                          ? `https://www.youtube.com/watch?v=${work.youtubeId}`
+                          : `https://www.youtube.com/results?search_query=${encodeURIComponent(work.title + " Official Trailer")}`
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shrink-0 flex items-center gap-1.5 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-1.5 text-xs font-bold text-red-200 transition hover:bg-red-500/20 active:scale-95 shadow-inner"
+                    >
+                      <span>📺 跨平台播放</span>
+                    </a>
+                  </div>
                 </div>
               </div>
 
