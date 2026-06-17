@@ -89,30 +89,20 @@ const buildSimilarityCopy = (similarity: number) => {
 };
 
 const ResultArtwork = ({ work }: { work: Work }) => {
-  const [hasImageError, setHasImageError] = useState(false);
-
-  useEffect(() => {
-    setHasImageError(false);
-  }, [work.coverImage]);
-
-  if (hasImageError) {
-    return (
-      <div className="flex aspect-video w-full flex-col justify-end bg-[radial-gradient(circle_at_top_left,rgba(94,234,212,0.22),transparent_34%),linear-gradient(135deg,#111827,#020617_72%)] p-6">
-        <p className="text-xs uppercase tracking-[0.24em] text-teal-100/70">Artwork unavailable</p>
-        <p className="mt-3 text-3xl font-black leading-tight text-white">{work.title}</p>
-        {work.originalTitle ? <p className="mt-2 text-sm text-slate-300">{work.originalTitle}</p> : null}
-        <p className="mt-4 text-sm font-semibold text-teal-100">{work.year}</p>
-      </div>
-    );
-  }
+  const embedUrl = work.youtubeId
+    ? `https://www.youtube.com/embed/${work.youtubeId}?autoplay=0&modestbranding=1&rel=0`
+    : `https://www.youtube.com/embed?listType=search&list=${encodeURIComponent(work.title + " Official Trailer")}&autoplay=0&modestbranding=1&rel=0`;
 
   return (
-    <img
-      src={work.coverImage}
-      alt={`${work.title} artwork`}
-      className="aspect-video w-full bg-black object-contain"
-      onError={() => setHasImageError(true)}
-    />
+    <div className="relative aspect-video w-full overflow-hidden bg-black">
+      <iframe
+        src={embedUrl}
+        title={`${work.title} Official Trailer`}
+        className="absolute inset-0 h-full w-full border-0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+    </div>
   );
 };
 
@@ -720,7 +710,7 @@ export default function ResultPage() {
               <div className="overflow-hidden rounded-lg border border-white/15 bg-black/35 shadow-glow backdrop-blur-xl saturate-150">
                 <ResultArtwork work={work} />
                 <div className="border-t border-white/10 px-5 py-4">
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">作品圖像識別</p>
+                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">官方預告片播放</p>
                   <p className="mt-1 text-xl font-semibold text-white">{work.title}</p>
                   {work.originalTitle ? (
                     <p className="mt-1 text-sm text-slate-400">{work.originalTitle}</p>
@@ -871,7 +861,7 @@ export default function ResultPage() {
             </div>
           </div>
 
-          <div className="pb-12">
+          <div className="pb-12 flex flex-col items-center">
             <Link
               href="/quiz"
               onClick={() => window.localStorage.removeItem("pc-quiz-profile")}
@@ -880,6 +870,18 @@ export default function ResultPage() {
               <RotateCcw size={18} />
               重新測驗
             </Link>
+
+            {/* Copyright & Fair Use Disclaimer */}
+            <footer className="mt-12 w-full border-t border-white/5 pt-6 text-center text-[10px] leading-5 text-slate-500 max-w-3xl">
+              <p className="font-semibold text-slate-400 mb-1.5 flex items-center justify-center gap-1.5">
+                <span>⚖️</span>
+                <span>著作權與合理使用聲明 (Copyright & Fair Use Disclaimer)</span>
+              </p>
+              <p>
+                本站為非營利性質之文化社群評論與互動模擬測驗。網頁中引用之所有作品名稱、官方預告片與商標所有權均歸屬原著作權持有人或其所屬公司所有。
+                本站依據著作權法相關合理使用（Fair Use）規定，僅出於教育、評論與學術探討目的嵌入官方公開之 YouTube 影片，絕無任何侵害版權或攀附商譽之意圖。
+              </p>
+            </footer>
           </div>
         </div>
       </section>

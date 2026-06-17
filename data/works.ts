@@ -1,4 +1,4 @@
-﻿export type WorkType = "film" | "game";
+export type WorkType = "film" | "game";
 
 export type TagKey =
   | "genreSpectacle"
@@ -150,6 +150,7 @@ export type Work = {
   ratings: RatingSource[];
   reviewQuotes: ReviewQuote[];
   comments: string[];
+  youtubeId?: string;
 };
 
 type Tone = NonNullable<RatingSource["tone"]>;
@@ -169,6 +170,7 @@ type FilmSeed = {
     metacritic: string;
     rottenTomatoes: string;
   };
+  youtubeId?: string;
 };
 
 type GameSeed = {
@@ -185,6 +187,7 @@ type GameSeed = {
     metacritic: string;
     steam: string;
   };
+  youtubeId?: string;
 };
 
 const baseTags: Record<TagKey, number> = {
@@ -808,6 +811,7 @@ const makeFilm = (seed: FilmSeed): Work => ({
   ],
   reviewQuotes: curatedReviewQuotes[seed.id] ?? [],
   comments: commentsFor(seed, seed.ratings, curatedReviewQuotes[seed.id] ?? [], "film"),
+  youtubeId: seed.youtubeId,
 });
 
 const makeGame = (seed: GameSeed): Work => ({
@@ -850,6 +854,7 @@ const makeGame = (seed: GameSeed): Work => ({
   ],
   reviewQuotes: curatedReviewQuotes[seed.id] ?? [],
   comments: commentsFor(seed, seed.ratings, curatedReviewQuotes[seed.id] ?? [], "game"),
+  youtubeId: seed.youtubeId,
 });
 
 const filmSeeds: FilmSeed[] = [
