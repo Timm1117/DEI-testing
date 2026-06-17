@@ -605,10 +605,6 @@ export default function ResultPage() {
   if (!result) {
     return (
       <main className="relative isolate flex min-h-screen items-center justify-center overflow-hidden px-5">
-        <div
-          className="absolute inset-[-2rem] -z-30 bg-cover bg-center opacity-35 blur-xl"
-          style={{ backgroundImage: `url(${works[0]?.coverImage ?? ""})` }}
-        />
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,#090a0f,rgba(9,10,15,0.88),#090a0f)]" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-60" />
         <section className="max-w-md rounded-lg border border-white/10 bg-white/[0.07] p-6 text-center backdrop-blur-xl saturate-150 shadow-glow">
@@ -639,18 +635,6 @@ export default function ResultPage() {
       <Danmaku comments={work.comments} />
 
       <section className="relative isolate min-h-screen overflow-hidden px-5 py-10">
-        <div
-          className="absolute inset-[-2rem] -z-50 bg-cover bg-center opacity-55 blur-xl"
-          style={{ backgroundImage: `url(${work.coverImage})` }}
-        />
-        <div
-          className="absolute inset-0 -z-40 bg-cover bg-center opacity-22 mix-blend-screen"
-          style={{ backgroundImage: `url(${work.backgroundImage})` }}
-        />
-        <div
-          className="absolute right-0 top-12 -z-30 hidden h-[76vh] w-[42vw] bg-contain bg-right-center bg-no-repeat opacity-60 drop-shadow-[0_2rem_5rem_rgba(0,0,0,0.65)] lg:block"
-          style={{ backgroundImage: `url(${work.backgroundImage})` }}
-        />
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,#090a0f_0%,rgba(9,10,15,0.96)_36%,rgba(9,10,15,0.78)_68%,rgba(9,10,15,0.58)_100%)]" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-60" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#090a0f]/20 via-[#090a0f]/58 to-[#090a0f]" />
