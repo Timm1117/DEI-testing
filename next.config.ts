@@ -11,6 +11,7 @@ const getRepositoryName = () => {
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["some-years-punch.loca.lt"],
   output: "export",
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },
