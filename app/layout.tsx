@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "政治正確影響測驗",
-  description: "互動式作品製作測驗，推薦最相似的真實影視或遊戲作品。",
+  title: "輿論風暴：製作人的求生指南",
+  description: "互動式 DEI 製作決策模擬測驗，推薦最相似的真實影視或遊戲作品。",
 };
 
 export default function RootLayout({
