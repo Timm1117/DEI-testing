@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "輿論風暴：製作人的求生指南",
+  title: "政確巨擎：DEI or Not? ｜ 輿論風暴：製作人的求生指南",
   description: "互動式 DEI 製作決策模擬測驗，推薦最相似的真實影視或遊戲作品。",
 };
 

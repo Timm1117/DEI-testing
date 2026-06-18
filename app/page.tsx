@@ -35,6 +35,9 @@ export default function HomePage() {
             {/* Main Title */}
             <h1 className="text-4xl font-black leading-tight text-white sm:text-6xl tracking-tight">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-200 via-white to-purple-300">
+                政確巨擎：DEI or Not?
+              </span>
+              <span className="block mt-3.5 text-lg sm:text-2xl font-extrabold text-amber-300/95 tracking-wide drop-shadow-md">
                 輿論風暴：製作人的求生指南
               </span>
             </h1>
