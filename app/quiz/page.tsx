@@ -59,8 +59,8 @@ const questionPhases: Record<string, "pre" | "prod" | "launch"> = {
   "game-liveops": "launch",
 };
 
-const suddenEvents: Record<number, SuddenEvent> = {
-  3: {
+const CRISIS_POOL: SuddenEvent[] = [
+  {
     id: "leak",
     title: "🚨 突發危機：開發版本美術遭內鬼外洩！",
     subtitle: "早期主角人設草圖（膚色與穿著修改）被發佈到網路論壇與 X。核心粉絲強烈質疑「政治正確毀原作」，社群輿論急劇升溫。公關團隊急需您的指示以發布回應：",
@@ -85,7 +85,7 @@ const suddenEvents: Record<number, SuddenEvent> = {
       }
     ]
   },
-  7: {
+  {
     id: "consultant",
     title: "🚨 突發危機：顧問機構的強勢干預！",
     subtitle: "合作的外部 DEI 審查機構發出最後通牒：要求將劇中某位主要配角修改為非二元性別，否則將無法通過下一輪的 ESG 文化合規審核。一旦失去審核認證，外部風投基金的第二期融資將會被撤回。您的決定是：",
@@ -104,7 +104,7 @@ const suddenEvents: Record<number, SuddenEvent> = {
       }
     ]
   },
-  10: {
+  {
     id: "journalist",
     title: "🚨 突發危機：主流媒體記者的訪談陷阱！",
     subtitle: "知名媒體主編發來私信提問，言詞中隱藏政治審查陷阱：「對於網路上反對您遊戲新設計的聲音，您是否認為那是極右翼有害玩家無理取鬧的文化反彈？」您的回答將會被作為頭條發表：",
@@ -122,8 +122,103 @@ const suddenEvents: Record<number, SuddenEvent> = {
         theme: "blue"
       }
     ]
+  },
+  {
+    id: "budget_cut",
+    title: "🚨 突發危機：融資方要求增加氪金點以確保資金到位！",
+    subtitle: "融資方突然以市場大環境不佳為由縮減投資，並威脅如果不加入能快速變現的『微交易/商城抽卡』機制，將立即凍結後續資金。這引發了研發部與發行部的激烈衝突。",
+    options: [
+      {
+        label: "妥協加入：引入微交易與內購商城",
+        description: "「項目存活是第一位的。只要資金安全，哪怕犧牲一些玩家好感也必須做。」",
+        effects: { commercialEntertainment: 20, controversyRisk: 10, audienceAcceptance: -15, studioRisk: -15 },
+        theme: "amber"
+      },
+      {
+        label: "堅持初心：拒絕任何逼氪內購，縮減開發預算",
+        description: "「我們承諾過不做逼氪逼肝的換皮產品！拒絕文化與商業綁架，哪怕要縮減其他開發預算！」",
+        effects: { commercialEntertainment: -15, controversyRisk: -10, audienceAcceptance: 15, studioRisk: 20 },
+        theme: "blue"
+      }
+    ]
+  },
+  {
+    id: "streamer_boycott",
+    title: "🚨 突發危機：百萬粉絲主播公開發起抵制！",
+    subtitle: "一位擁有百萬訂閱的保守派頂流實況主在直播中猛烈抨擊我們的預告片，稱主角人設『醜化、迎合政治正確』，並發起了「#NoWokeGame」抵制標籤。大量極端玩家隨之湧入論壇刷负評。",
+    options: [
+      {
+        label: "強硬聲明：反對審美單一，拒絕迎合男性凝視",
+        description: "「我們支持多元審美與創作包容性，不歡迎帶有偏見與仇恨的極端觀點。」",
+        effects: { representation: 15, mediaFriendly: 20, controversyRisk: 25, audienceAcceptance: -15 },
+        theme: "purple"
+      },
+      {
+        label: "冷處理：不點名回應，宣傳產品核心體驗",
+        description: "「我們尊重所有受眾的喜好。作品正處於最後打磨階段，請期待後續更多實機展示。」",
+        effects: { controversyRisk: -5, studioRisk: 5 },
+        theme: "slate"
+      }
+    ]
+  },
+  {
+    id: "staff_protest",
+    title: "🚨 突發危機：內部多元倡議員工聯署投訴！",
+    subtitle: "工作室內部的『進步派多元文化小組』聯名發表抗議信，指責劇本中對部分小眾族群的設定不夠正面，涉嫌刻板印象，並要求停工微調角色背景，否則將在社交平台公開舉報工作室存在『文化歧視』。",
+    options: [
+      {
+        label: "接受要求：停工兩週微調劇本以表尊重",
+        description: "「內部團結與ESG合規大於一切，我們不能承擔被指控『歧視』的輿論風險。」",
+        effects: { representation: 15, controversyRisk: -15, studioRisk: 25, audienceAcceptance: -10 },
+        theme: "purple"
+      },
+      {
+        label: "重申合約：拒絕非合理改動，堅持創作自由",
+        description: "「每個人對藝術有不同解讀，但開發進度與合約規範不容打破。重申保密協議以防洩密。」",
+        effects: { representation: -15, controversyRisk: 15, audienceAcceptance: 12, studioRisk: -10 },
+        theme: "blue"
+      }
+    ]
+  },
+  {
+    id: "review_bomb",
+    title: "🚨 突發危機：社群論壇遭遇大規模洗版抗議！",
+    subtitle: "由於近期發布的開發者日誌中，女性主角造型偏向寫實而非美型，Steam 社群討論區與社群媒體湧入大量反 DEI 玩家進行惡意舉報和辱罵洗版，試圖施壓我們修改人設。",
+    options: [
+      {
+        label: "配合調整：進行微調，使造型更符合大眾審美",
+        description: "「玩家是衣食父母，適當的妥協和美化有助於平息風波、提振預售銷量。」",
+        effects: { representation: -15, controversyRisk: -15, audienceAcceptance: 15, studioRisk: 10 },
+        theme: "amber"
+      },
+      {
+        label: "堅守設計：鎖定評論區，拒絕對網暴妥協",
+        description: "「我們的設計具有獨特性和藝術堅持，絕不向有組織的網絡暴力低頭。」",
+        effects: { representation: 15, controversyRisk: 20, audienceAcceptance: -10, studioRisk: 5 },
+        theme: "purple"
+      }
+    ]
+  },
+  {
+    id: "actor_scandal",
+    title: "🚨 突發危機：核心演員發表敏感社會言論！",
+    subtitle: "作品的核心主角配音員/宣傳模特兒突然在私人社群平台上發表了極具爭議的社會議題觀點，隨即遭到全網出征。正反兩派網民在留言區瘋狂開戰，要求工作室表態。",
+    options: [
+      {
+        label: "火速切割：解除合作並重新錄製/更換演員",
+        description: "「立即劃清界線以維護品牌公眾形象，但這意味著必須支付巨額違約金並推遲發售。」",
+        effects: { controversyRisk: -20, studioRisk: 28, audienceAcceptance: 10, mediaFriendly: 10 },
+        theme: "purple"
+      },
+      {
+        label: "聲明冷處理：強調個人言論不代表官方立場",
+        description: "「我們尊重個人言論自由，作品與演員個人言論無關，將繼續專注於產品本身。」",
+        effects: { controversyRisk: 15, studioRisk: -5, audienceAcceptance: -10 },
+        theme: "slate"
+      }
+    ]
   }
-};
+];
 
 const getAdviserOpinion = (questionId: string, isEvent: boolean) => {
   if (isEvent) {
@@ -139,6 +234,26 @@ const getAdviserOpinion = (questionId: string, isEvent: boolean) => {
       journalist: {
         consultant: "「記者是我們的盟友。只要順著記者的話說，我們就能在 IGN 等主流媒體上拿到好幾天的免費黃金宣傳位！」",
         dev: "「這是挖坑給我們跳！只要我們說錯一個字，就是跟幾十萬玩家公開宣戰，發售當天會直接被洗成壓倒性負評的！」"
+      },
+      budget_cut: {
+        consultant: "「資金是項目的生命線！沒有了這筆融資，我們連下個月的薪水都發不出來。微交易和商城抽卡是保證項目能活下去的唯一出路！」",
+        dev: "「一旦在單機或買斷制作品中硬塞重度課金要素，會立刻激怒所有付費玩家。這不叫救火，這叫飲鴆止渴，玩家口碑會徹底完蛋的！」"
+      },
+      streamer_boycott: {
+        consultant: "「這位主播的言論充滿了偏見與排他性。我們必須藉此機會發表嚴正聲明，聯合主流媒體進行反擊，這能大大提升我們在進步價值倡議團體中的聲量！」",
+        dev: "「老闆，他的粉絲基數極大。跟這種自媒體頂流正面開撕只會給我們帶來更可怕的黑流量。最好的辦法是冷處理，用過硬的產品質量讓謠言不攻自破。」"
+      },
+      staff_protest: {
+        consultant: "「內部多元文化倡議小組的投訴非常嚴肅，如果處理不當被曝光，我們將面臨嚴重的企業公關危機與ESG評級暴跌！我強烈建議配合修改設定並重組劇本。」",
+        dev: "「為了解決幾個台詞問題而停工兩週？這個開發週期延誤會引發項目的連鎖反應！而且這會開創惡劣先例，讓少數人綁架整個團隊的創作自由！」"
+      },
+      review_bomb: {
+        consultant: "「這些論壇上的辱罵洗版都是極少數極端反對者的有組織攻擊，這恰好證明我們的多元嘗試是正確的。我們絕不能退讓，應立即向平台申請鎖帖，堅守價值底線！」",
+        dev: "「玩家的憤怒有時並不只是因為偏見，而是主角設定確實偏離了美感。適度的美化與微調造型既能平息玩家怒火，也能拉回雪崩的預售銷量，對專案是雙贏。」"
+      },
+      actor_scandal: {
+        consultant: "「這位演員的敏感言論已經嚴重觸碰了主流業界的紅線，繼續合作會遭到抵制。我們必須以最快速度發表切割聲明，重新尋找配音，展現零容忍的決心！」",
+        dev: "「火速切割？重新海選、租用錄音棚加上重新製作演算法對口型，這會讓開發成本暴漲幾十萬，並導致遊戲延期半年發售！這負擔對團隊太沉重了！」"
       }
     };
     return eventOpinions[questionId] ?? {
@@ -1178,6 +1293,8 @@ export default function QuizPage() {
   const [isGameOver, setIsGameOver] = useState(false);
   const [gameOverReason, setGameOverReason] = useState<"esg_bankruptcy" | "pr_firestorm" | "user_rating_death" | null>(null);
 
+  const [assignedCrises, setAssignedCrises] = useState<Record<number, SuddenEvent>>({});
+
   const handleCrisisTimeout = () => {
     if (!currentEvent || !profile) return;
     
@@ -1193,6 +1310,21 @@ export default function QuizPage() {
     } else if (currentEvent.id === "journalist") {
       timeoutEffects = { mediaFriendly: -25, controversyRisk: 20 };
       message = "「由於您沉默未答，媒體頭條發布《沉默代表默認？製作組逃避輿論監督》，信任度大跌！」";
+    } else if (currentEvent.id === "budget_cut") {
+      timeoutEffects = { commercialEntertainment: -10, studioRisk: 20 };
+      message = "「融資談判超時，未能及時確定商業模式，資金鏈吃緊，研發進度受阻！」";
+    } else if (currentEvent.id === "streamer_boycott") {
+      timeoutEffects = { controversyRisk: 15, audienceAcceptance: -10 };
+      message = "「由於您遲遲未作回應，主播抵制標籤發酵擴大，玩家流失加劇！」";
+    } else if (currentEvent.id === "staff_protest") {
+      timeoutEffects = { representation: -10, studioRisk: 15 };
+      message = "「內部矛盾未及時處理，研發小組消極怠工，專案進度遭受拖延！」";
+    } else if (currentEvent.id === "review_bomb") {
+      timeoutEffects = { controversyRisk: 15, audienceAcceptance: -10 };
+      message = "「未採取任何社群維護措施，商店頁面遭差評刷爆，期待度大幅下降！」";
+    } else if (currentEvent.id === "actor_scandal") {
+      timeoutEffects = { controversyRisk: 15, studioRisk: 10 };
+      message = "「演員爭議事件持續升溫，官方未能及時表態，導致品牌形象受損！」";
     } else {
       timeoutEffects = { controversyRisk: 15 };
       message = "「未能在時限內做出決策，公關事件持續發酵！」";
@@ -1282,6 +1414,15 @@ export default function QuizPage() {
 
     // Set game questions sequence (total of 9 questions + crisis events)
     setGameQuestions([...selectedPre, ...selectedProd, ...selectedLaunch]);
+
+    // Select 3 random crisis events from the pool and assign them to steps 3, 6, and 9
+    const shuffledCrises = shuffle(CRISIS_POOL);
+    const selectedCrises: Record<number, SuddenEvent> = {
+      3: { ...shuffledCrises[0] },
+      6: { ...shuffledCrises[1] },
+      9: { ...shuffledCrises[2] }
+    };
+    setAssignedCrises(selectedCrises);
   };
 
   const handleGameOverCheck = (nextProfile: UserProfile, stepIndex: number) => {
@@ -1334,14 +1475,19 @@ export default function QuizPage() {
     if (currentEvent) {
       setCurrentEvent(null);
       setProfile(nextProfile);
+      if (step >= gameQuestions.length - 1) {
+        window.localStorage.setItem("pc-quiz-profile", JSON.stringify(nextProfile));
+        router.push("/result");
+        return;
+      }
       setStep((current) => current + 1);
       return;
     }
 
     const nextStep = step + 1;
 
-    if (suddenEvents[nextStep]) {
-      setCurrentEvent(suddenEvents[nextStep]);
+    if (assignedCrises[nextStep]) {
+      setCurrentEvent(assignedCrises[nextStep]);
       setProfile(nextProfile);
       return;
     }
