@@ -1305,7 +1305,7 @@ const filmSeeds: FilmSeed[] = [
     tags: { genrePrestige: 98, adaptation: 76, canonFaithful: 78, representation: 86, issueInsertion: 90, commercialEntertainment: 42, controversyRisk: 36, mediaFriendly: 96, audienceAcceptance: 74, studioRisk: 68, storyDriven: 92 },
     politicalIndex: { representation: 86, canonFaithful: 78, adaptationFreedom: 64, issueInsertion: 90, controversyRisk: 36, mediaFriendly: 96, audienceSplit: 34 },
     ratings: { tmdb: "7.4/10", imdb: "7.6/10", metacritic: "89/100", rottenTomatoes: "93%" },
-    youtubeId: "EXi1w10sLz0",
+    youtubeId: "EP34Yoxs3FQ",
   },
   {
     id: "wicked",
