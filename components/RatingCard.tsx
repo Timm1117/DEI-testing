@@ -46,21 +46,65 @@ function SourceIcon({ source }: { source: RatingSourceKey }) {
   return <Star size={20} />;
 }
 
+const translateRatingLabel = (label: string, isEn: boolean) => {
+  if (!isEn) return label;
+  return label
+    .replace("玩家好評", "User Reviews")
+    .replace("影評推薦", "Tomatometer")
+    .replace("觀眾好評", "Audience Score")
+    .replace("媒體評分", "Metacritic")
+    .replace("一般觀眾", "IMDb User Rating")
+    .replace("影迷評分", "TMDB Rating");
+};
+
+const translateRatingVerdict = (verdict: string, isEn: boolean) => {
+  if (!isEn) return verdict;
+  return verdict
+    .replace("壓倒性好評", "Overwhelmingly Positive")
+    .replace("極度好評", "Very Positive")
+    .replace("大多好評", "Mostly Positive")
+    .replace("普遍好評", "Mostly Positive")
+    .replace("普遍好評", "Mostly Favorable")
+    .replace("好評率", "Positive rate ")
+    .replace("分", " pts")
+    .replace("褒貶不一", "Mixed")
+    .replace("普遍差評", "Mostly Negative")
+    .replace("大多負評", "Mostly Negative")
+    .replace("極度負評", "Very Negative")
+    .replace("壓倒性負評", "Overwhelmingly Negative")
+    .replace("新鮮", "Fresh")
+    .replace("爛", "Rotten")
+    .replace("爆米花", "Fresh (Audience)")
+    .replace("倒了", "Rotten (Audience)")
+    .replace("推薦", "Recommended")
+    .replace("大眾推薦", "Highly Recommended")
+    .replace("無特別標籤", "No Verdict");
+};
+
 export function RatingCard({
   ratings,
   type,
+  lang = "zh"
 }: {
   ratings: RatingSource[];
   type: WorkType;
+  lang?: "zh" | "en";
 }) {
+  const isEn = lang === "en";
   const sources =
     type === "film" ? "TMDB / IMDb / Metacritic / Rotten Tomatoes" : "RAWG / Metacritic / Steam";
 
   return (
     <section className="rounded-lg border border-white/20 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-5 backdrop-blur-xl saturate-150 shadow-glow">
       <div className="mb-5">
-        <h2 className="text-lg font-semibold text-white">實際評分</h2>
-        <p className="mt-1 text-sm text-slate-300">{sources}，保留各網站原始呈現。</p>
+        <h2 className="text-lg font-semibold text-white">
+          {isEn ? "Actual Ratings" : "實際評分"}
+        </h2>
+        <p className="mt-1 text-sm text-slate-300">
+          {isEn 
+            ? `${sources}, preserving each platform's original format.`
+            : `${sources}，保留各網站原始呈現。`}
+        </p>
       </div>
 
       <div className="space-y-3">
@@ -82,10 +126,10 @@ export function RatingCard({
                   rel="noreferrer"
                   className="inline-flex max-w-full items-center gap-1 font-bold text-white underline-offset-4 hover:text-teal-200 hover:underline"
                 >
-                  <span className="truncate">{rating.label}</span>
+                  <span className="truncate">{translateRatingLabel(rating.label, isEn)}</span>
                   <ExternalLink size={14} className="shrink-0" />
                 </a>
-                <p className="mt-1 text-sm text-slate-300">{rating.verdict}</p>
+                <p className="mt-1 text-sm text-slate-300">{translateRatingVerdict(rating.verdict, isEn)}</p>
               </div>
 
               <div className="shrink-0 text-right">

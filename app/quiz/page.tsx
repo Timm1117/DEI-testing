@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Clapperboard, Crosshair, Gamepad2, ShieldAlert } from "lucide-react";
 import { questions } from "@/data/questions";
+import { questionsEn } from "@/data/questions_en";
 import type { WorkType, TagKey } from "@/data/works";
 import { applyEffects, createEmptyProfile, normalizeProfile, type UserProfile } from "@/lib/matchWork";
 
@@ -220,9 +221,196 @@ const CRISIS_POOL: SuddenEvent[] = [
   }
 ];
 
-const getAdviserOpinion = (questionId: string, isEvent: boolean) => {
+const crisisTranslations: Record<string, { title: string; subtitle: string; options: { label: string; description: string }[] }> = {
+  leak: {
+    title: "🚨 Crisis: Dev Build Art Leaked!",
+    subtitle: "Early character design drafts (skin tone and outfit tweaks) were leaked to forums and X. Core fans are questioning 'political correctness ruining the original', causing online backlash. PR team needs your directive:",
+    options: [
+      {
+        label: "Stand Firm: Defend Diverse & Inclusive Creative Freedom",
+        description: "“This is creative freedom in a diverse society. We don't conform to traditional aesthetics. Don't buy it if you don't like it.”"
+      },
+      {
+        label: "Apologize & Compromise: Issue PR Statement to Pacify Core Fans",
+        description: "“These are just early concepts. We highly respect the original setting and will tweak the designs.”"
+      },
+      {
+        label: "Silent Treatment: Lock Comments & Remain Quiet",
+        description: "Standard PR strategy. While it won't quench the anger, it won't supply the opposition with fresh ammo."
+      }
+    ]
+  },
+  consultant: {
+    title: "🚨 Crisis: Auditing Agency Demands Changes!",
+    subtitle: "Our external DEI auditing agency issued an ultimatum: change a major supporting character to non-binary, or fail the next ESG cultural compliance audit. Failing means losing the second phase of venture capital funding. Your decision:",
+    options: [
+      {
+        label: "Complete Compromise: Adjust Script to Secure Funding",
+        description: "“Just tweak the script. Financial security and critic scores are what matter most.”"
+      },
+      {
+        label: "Firm Refusal: No External Meddling, Retain Original Script",
+        description: "“We make art, not propaganda pamphlets. Refuse to bow to financial culture blackmail!”"
+      }
+    ]
+  },
+  journalist: {
+    title: "🚨 Crisis: Mainstream Media Interview Trap!",
+    subtitle: "A prominent editor DMs a question containing a political audit trap: 'Regarding the backlash against your new designs, do you view it as toxic cultural pushback from far-right gamers?' Your response will be published as a headline:",
+    options: [
+      {
+        label: "Progressive Alignment: Agree with Media, Promote Inclusion",
+        description: "“Yes, we are breaking outdated molds to serve a more inclusive modern audience.”"
+      },
+      {
+        label: "Gamer-Centric Response: Defend Players, Emphasize Product",
+        description: "“We focus on serving the core players who have supported us for years, not any political stance.”"
+      }
+    ]
+  },
+  budget_cut: {
+    title: "🚨 Crisis: Investors Demand Monetization to Secure Capital!",
+    subtitle: "Citing poor market conditions, investors cut funding and threaten to freeze remaining capital unless we add fast-monetizing 'microtransactions/loot boxes', triggering clashes between R&D and publishing.",
+    options: [
+      {
+        label: "Compromise: Introduce Microtransactions & Cash Shop",
+        description: "“Survival comes first. As long as funds are safe, sacrificing player goodwill is necessary.”"
+      },
+      {
+        label: "Stick to Vision: Refuse Pay-to-Win, Trim Dev Budget",
+        description: "“We promised no pay-to-win mechanics! Refuse commercial blackmail, even if we must cut other features!”"
+      }
+    ]
+  },
+  streamer_boycott: {
+    title: "🚨 Crisis: Top Streamer Launches Boycott!",
+    subtitle: "A conservative influencer with millions of subscribers slammed our trailer, calling the lead 'ugly and woke', initiating the '#NoWokeGame' tag. Angry players are review-bombing forums.",
+    options: [
+      {
+        label: "Defiant Response: Reject Homogeneous Aesthetics & Male Gaze",
+        description: "“We support diverse beauty and creative inclusion, and reject biased or hateful extreme views.”"
+      },
+      {
+        label: "Quiet Response: Standard PR, Highlight Gameplay",
+        description: "“We respect all opinions. The project is in final polishing; please look forward to gameplay reveals.”"
+      }
+    ]
+  },
+  staff_protest: {
+    title: "🚨 Crisis: Internal Diversity Group Protest!",
+    subtitle: "The studio's internal 'diversity council' signed a protest letter accusing the script of stereotyping minorities. They demand halting production for rewrites, threatening a public whistleblowing campaign.",
+    options: [
+      {
+        label: "Accept Demands: Halt Production for Two Weeks to Rewrite",
+        description: "“Internal unity and ESG compliance outweigh all. We cannot risk being branded discriminatory.”"
+      },
+      {
+        label: "Uphold Contracts: Refuse Unreasonable Changes, Defend Freedom",
+        description: "“Art is open to interpretation, but dev schedules and contracts cannot be broken. Reiterate NDAs.”"
+      }
+    ]
+  },
+  review_bomb: {
+    title: "🚨 Crisis: Massive Forum Review-Bombing!",
+    subtitle: "Due to the realistic rather than idealized look of the female lead in our dev log, Steam forums and socials are flooded with anti-DEI review-bombing and abusive posts demanding changes.",
+    options: [
+      {
+        label: "Adjust: Make Looks More Appealing to the Public",
+        description: "“Players pay our bills. Moderate adjustments will calm the storm and boost pre-orders.”"
+      },
+      {
+        label: "Stand Firm: Lock Forums, No Giving in to Cyberbullying",
+        description: "“Our design has artistic integrity. We will never bow to organized internet harassment.”"
+      }
+    ]
+  },
+  actor_scandal: {
+    title: "🚨 Crisis: Lead Actor Posts Controversial Social Views!",
+    subtitle: "The lead actor/model suddenly posted highly controversial views on social issues. Online groups are fighting, demanding the studio take a stand immediately.",
+    options: [
+      {
+        label: "Cut Ties: Terminate Contract, Recast & Re-record",
+        description: "“Cut ties immediately to save brand image, despite massive breach fines and half-year delays.”"
+      },
+      {
+        label: "Neutral Stance: State Personal Views Don't Represent Studio",
+        description: "“We respect personal expression. The work is unrelated to personal views; we focus on the product.”"
+      }
+    ]
+  }
+};
+
+const translateQuestion = (q: any, lang: "zh" | "en") => {
+  if (lang === "en" && questionsEn[q.id]) {
+    const en = questionsEn[q.id];
+    return {
+      ...q,
+      title: en.title,
+      subtitle: en.subtitle || q.subtitle,
+      options: q.options.map((opt: any, idx: number) => ({
+        ...opt,
+        label: en.options[idx]?.label || opt.label,
+        description: en.options[idx]?.description || opt.description,
+      }))
+    };
+  }
+  return q;
+};
+
+const translateCrisis = (c: any, lang: "zh" | "en") => {
+  if (lang === "en" && crisisTranslations[c.id]) {
+    const en = crisisTranslations[c.id];
+    return {
+      ...c,
+      title: en.title,
+      subtitle: en.subtitle,
+      options: c.options.map((opt: any, idx: number) => ({
+        ...opt,
+        label: en.options[idx]?.label || opt.label,
+        description: en.options[idx]?.description || opt.description,
+      }))
+    };
+  }
+  return c;
+};
+
+const getAdviserOpinion = (questionId: string, isEvent: boolean, lang: "zh" | "en" = "zh") => {
+  const isEn = lang === "en";
   if (isEvent) {
-    const eventOpinions: Record<string, { consultant: string; dev: string }> = {
+    const eventOpinions: Record<string, { consultant: string; dev: string }> = isEn ? {
+      leak: {
+        consultant: "“Seize this opportunity to stand firm on diversity! Mainstream media and critics will praise us for being brave, and we might even win some advocacy awards!”",
+        dev: "“Boss, if we go to war with players, pre-orders will crash instantly! Apologize, make tweaks, and revert the settings while we still can!”"
+      },
+      consultant: {
+        consultant: "“This is our funding deadline! If we don't modify it as requested, our ESG rating will drop to D this quarter, and our cash flow will freeze immediately!”",
+        dev: "“Forcing a tough character to become a preachy one will make fans feel betrayed. If the game doesn't sell, no amount of funding will save us from bankruptcy!”"
+      },
+      journalist: {
+        consultant: "“Journalists are our allies. Agreeing with them will secure us days of free front-page promo on mainstream sites like IGN!”",
+        dev: "“This is a trap! If we say the wrong word, we're declaring war on hundreds of thousands of players. We'll be buried in negative reviews on day one!”"
+      },
+      budget_cut: {
+        consultant: "“Funding is our lifeblood! Without it, we can't pay salaries next month. Microtransactions and cash shops are the only way to keep the project alive!”",
+        dev: "“Forcing heavy monetization into a premium title will instantly alienate paying players. That's not putting out a fire, that's drinking poison to quench thirst. Our reputation will be ruined!”"
+      },
+      streamer_boycott: {
+        consultant: "“This streamer's remarks are prejudiced and exclusive. We must issue a solemn statement, coordinate with mainstream media to hit back, and boost our standing among progressive groups!”",
+        dev: "“Boss, his fanbase is massive. Picking a fight with a top influencer will only invite toxic review-bombing. The best way is to keep quiet and let a high-quality product speak for itself.”"
+      },
+      staff_protest: {
+        consultant: "“The internal diversity group's complaint is serious. If leaked, we'll face a PR disaster and an ESG downgrade. I strongly advise halting production for rewrites.”",
+        dev: "“Halting production for two weeks over a few lines? The delay will trigger a domino effect! Plus, it sets a terrible precedent of letting a minority hijack creative freedom.”"
+      },
+      review_bomb: {
+        consultant: "“This forum spam is just organized toxicity from a vocal minority. It proves our diversity push is right. We must stand firm, lock the threads, and protect our values!”",
+        dev: "“Player anger isn't always just prejudice; sometimes the designs genuinely lack aesthetic appeal. Tuning the models can calm fans and save pre-orders. It's a win-win.”"
+      },
+      actor_scandal: {
+        consultant: "“The actor's comments crossed industry red lines. Continuing to work with them will trigger boycotts. We must cut ties immediately and recast to show zero tolerance!”",
+        dev: "“Cut ties? Auditioning, renting studios, and re-syncing lips will balloon our budget by hundreds of thousands and delay us by half a year! The team cannot afford this.”"
+      }
+    } : {
       leak: {
         consultant: "「趁現在站穩進步多元的立場！這能讓主流媒體和影評人瘋狂為我們的『勇敢發聲』點讚，順便拿幾個倡議獎項！」",
         dev: "「老闆，如果直接跟玩家開戰，預購訂單會直接雪崩的！現在道歉退讓、把設定改回去還來得及！」"
@@ -248,21 +436,85 @@ const getAdviserOpinion = (questionId: string, isEvent: boolean) => {
         dev: "「為了解決幾個台詞問題而停工兩週？這個開發週期延誤會引發項目的連鎖反應！而且這會開創惡劣先例，讓少數人綁架整個團隊的創作自由！」"
       },
       review_bomb: {
-        consultant: "「這些論壇上的辱罵洗版都是極少數極端反對者的有組織攻擊，這恰好證明我們的多元嘗試是正確的。我們絕不能退讓，應立即向平台申請鎖帖，堅守價值底線！」",
-        dev: "「玩家的憤怒有時並不只是因為偏見，而是主角設定確實偏離了美感。適度的美化與微調造型既能平息玩家怒火，也能拉回雪崩的預售銷量，對專案是雙贏。」"
+        consultant: "「這些論壇上的辱罵洗版都是極少數極端反對者物有組織攻擊，這恰好證明我們的多元嘗試是正確的。我們絕不能退讓，應立即向平台申請鎖帖，堅守價值底線！」",
+        dev: "「玩家的憤怒有時並不決是因為偏見，而是主角設定確實偏離了美感。適度的美化與微調造型既能平息玩家怒火，也能拉回雪崩的預售銷量，對專案是雙贏。」"
       },
       actor_scandal: {
         consultant: "「這位演員的敏感言論已經嚴重觸碰了主流業界的紅線，繼續合作會遭到抵制。我們必須以最快速度發表切割聲明，重新尋找配音，展現零容忍的決心！」",
         dev: "「火速切割？重新海選、租用錄音棚加上重新製作演算法對口型，這會讓開發成本暴漲幾十萬，並導致遊戲延期半年發售！這負擔對團隊太沉重了！」"
       }
     };
-    return eventOpinions[questionId] ?? {
+    return eventOpinions[questionId] ?? (isEn ? {
+      consultant: "“Must cooperate with external compliance standards; it is the only way to survive in the mainstream industry.”",
+      dev: "“Keep the product strong. Players only care about whether the work is actually good and fun.”"
+    } : {
       consultant: "「必須配合外部合規標準，這是確保專案在主流業界生存的唯一方式。」",
       dev: "「不要亂改，保持產品硬實力，玩家只在乎作品到底好不好吃、好不好玩。」"
-    };
+    });
   }
 
-  const opinions: Record<string, { consultant: string; dev: string }> = {
+  const opinions: Record<string, { consultant: string; dev: string }> = isEn ? {
+    genre: {
+      consultant: "“Go for a prestige, issue-driven project. It builds a sophisticated image and attracts dedicated media features.”",
+      dev: "“Boss, audiences want entertainment, not a civics class! Max out pacing and spectacle. Making a fun project is the safest bet.”"
+    },
+    adaptation: {
+      consultant: "“Adapting a famous IP with a modern, diverse spin is the fastest way to gain mainstream relevance today.”",
+      dev: "“Touching a famous IP is walking through a minefield. Change too much, and the lore fans will tear us apart in the comments.”"
+    },
+    canon: {
+      consultant: "“Classic character setups are outdated. We must modernize them to align with progressive standards.”",
+      dev: "“The source material is the fans' holy bible! Butchering it will cause review-bombing in a heartbeat.”"
+    },
+    representation: {
+      consultant: "“We must put diverse representation at the forefront. It's key to securing ESG ratings and media backing.”",
+      dev: "“Promote it if you want, but don't force it. If characters feel like checklist tokens, players will spot it and reject them.”"
+    },
+    "gender-power": {
+      consultant: "“Flipping power structures and letting women/marginalized groups lead is the absolute standard in the industry today.”",
+      dev: "“As long as characters are well-written, it's fine. Demeaning classic archetypes just to make a point will cause forums to explode.”"
+    },
+    issues: {
+      consultant: "“The project should exercise social responsibility. Inject themes like ecology, equality, or identity into the main conflict.”",
+      dev: "“If the preachy tone is too strong, players will feel like they are being lectured and refund immediately.”"
+    },
+    entertainment: {
+      consultant: "“Popcorn fun can be sacrificed. Deep thematic reflection and artistic expression are what build a legacy.”",
+      dev: "“Boss! Fun is priority number one! If the core experience is boring, nobody will stay to hear our deep messages!”"
+    },
+    risk: {
+      consultant: "“Controversy is free marketing. Cultural division drives massive engagement and puts eyes on our project.”",
+      dev: "“That engagement is toxic! Once labeled preachy or woke, we'll face boycotts from core fans that we can't recover from.”"
+    },
+    press: {
+      consultant: "“We should proactively flatter mainstream critics with progressive talking points to ensure excellent launch scores.”",
+      dev: "“What good are high critic scores if players feel cheated? If reviews and user scores split, we become a laughingstock.”"
+    },
+    audience: {
+      consultant: "“Ignore the conservative voices of core fans. The modern mainstream and younger generations are the blue ocean market we need.”",
+      dev: "“Core fans are the loyal base spending real money! Offend them, and we won't even have first-week sales!”"
+    },
+    ending: {
+      consultant: "“The ending should offer realistic cruelty, exposing systemic bias to elevate the artwork's social value.”",
+      dev: "“Players spend dozens of hours only to get a mouthful of ashes? Give them a satisfying, happy ending so they leave happy!”"
+    },
+    marketing: {
+      consultant: "“Marketing should highlight our trailblazing diversity, progressive values, and social responsibility.”",
+      dev: "“Please show some actual visuals and gameplay. Over-promoting values only makes players roll their eyes.”"
+    },
+    budget: {
+      consultant: "“Only a massive budget can support blockbuster marketing campaigns and secure international awards.”",
+      dev: "“A huge budget forces us to chase massive commercial returns, leaving no room to balance compliance and sales!”"
+    },
+    "film-casting": {
+      consultant: "“Boldly cast minority leads. It breaks prejudice and guarantees awards and media praise.”",
+      dev: "“If the setting doesn't fit, forcing modern demographic ratios will send fan blood pressures through the roof.”"
+    },
+    "game-character": {
+      consultant: "“Leads should steer clear of traditional beauty standards. Inclusive, realistic looks prevent male-gaze objectification.”",
+      dev: "“Players want immersion and visual appeal when they play heroes. Making characters plain or unattractive turns them off on step one.”"
+    }
+  } : {
     genre: {
       consultant: "「建議選擇文藝與議題導向，這有利於建立高雅的作品形象，並吸引主流媒體寫專題報導。」",
       dev: "「老闆，玩家買票是來爽的，不是來上公民課的！節奏和視覺場面拉滿，先做爽片才是最保險的！」"
@@ -297,7 +549,7 @@ const getAdviserOpinion = (questionId: string, isEvent: boolean) => {
     },
     press: {
       consultant: "「必須主動向主流媒體示好，提供他們喜歡的政治宣傳詞，這能保證我們的首發評分十分好看。」",
-      dev: "「媒體分高有什麼用？如果玩家玩完覺得被騙，兩者評分撕裂，我們反而會成為玩家的笑柄。」"
+      dev: "「媒體分分高有什麼用？如果玩家玩完覺得被騙，兩者評分撕裂，我們反而會成為玩家的笑柄。」"
     },
     audience: {
       consultant: "「核心粉絲保守的聲音不用理會，現代主流大眾 and 年輕一代的藍海才是我們應該開拓的市場。」",
@@ -316,19 +568,22 @@ const getAdviserOpinion = (questionId: string, isEvent: boolean) => {
       dev: "「預算開太大，我們就必須背負極高的商業回報壓力，到時候在合規與銷量之間根本沒有退路！」"
     },
     "film-casting": {
-      consultant: "「必須大膽起用少數族裔主角，打破傳統偏見，這是拿獎和媒體友善的保證。」",
+      consultant: "「必須大膽起用少數族裔主角，打破傳統偏見，這是拿獎 and 媒體友善的保證。」",
       dev: "「如果原作背景不合適卻強行塞入現代人種比例，老粉血壓真的會拉滿。」"
     },
     "game-character": {
-      consultant: "「主角應該擺脫傳統審美，採用更有包容性、平實的造型，避免物化女性或迎合男性凝視。」",
+      consultant: "「主角應該擺擺脫傳統審美，採用更有包容性、平實的造型，避免物化女性或迎合男性凝視。」",
       dev: "「玩家在遊戲裡扮演英雄，是想獲得代入感和視覺享受的。把主角改得平庸甚至不好看，第一步就勸退玩家了。」"
     }
   };
 
-  return opinions[questionId] ?? {
+  return opinions[questionId] ?? (isEn ? {
+    consultant: "“Suggest introducing diverse, inclusive, and progressive narratives to align with critics' preferences.”",
+    dev: "“As long as the story is solid and design is fun, it's better than any checklist packaging.”"
+  } : {
     consultant: "「建議在決策中引入多元、包容與進步的當代敘事結構，這能迎合主流評獎標準。」",
     dev: "「只要故事寫得紮實、設計好玩，比什麼包裝都有用，別搞花架子了。」"
-  };
+  });
 };
 
 const axisFromProfile = (profile: UserProfile | null) => {
@@ -388,7 +643,8 @@ const calculateUserScore = (profile: UserProfile | null, selectedType: WorkType)
   }
 };
 
-function getDetailedContent(alert: MockAlert) {
+function getDetailedContent(alert: MockAlert, lang: "zh" | "en" = "zh") {
+  const isEn = lang === "en";
   const publication = alert.senderOrPublication;
   const content = alert.content;
   
@@ -396,31 +652,53 @@ function getDetailedContent(alert: MockAlert) {
     const isMic = /interview|press|podcast|radio/i.test(publication);
     const mediaName = publication.split(" ")[0];
     
-    let headline = `${publication} — 深度專題報導`;
-    let paragraphs = [
+    let headline = isEn ? publication + " — In-depth Special Report" : publication + " — 深度專題報導";
+    let paragraphs = isEn ? [
+      "[Report] In response to the key decisions recently announced by the production team, we have conducted an in-depth follow-up and public opinion survey. As the mass market's demands for content become increasingly strict, every design change or casting adjustment causes waves online.",
+      "According to senior industry analysts, there is a clear divide among modern audiences between seeking sensory stimulation and deep resonance. Supporters argue bold innovations push media boundaries, while opponents warn that straying too far from classics leads to losing the core group.",
+      "We will continue to follow the progress. Whichever way this decision leads the project, it has undoubtedly become one of the most discussed and controversial industry focuses of the year."
+    ] : [
       "【本報訊】針對製作團隊近日公布的關鍵決策，本報進行了深入追蹤與社群輿情調查。隨著大眾市場對於作品內容的要求日益嚴苛，每一次的設計變更或選角調整，都在網路上掀起軒然大波。",
       "根據業內資深分析師指出，現代受眾在尋求感官刺激與深度共鳴之間存在著顯著的分歧。支持派認為大膽的創新有助於推動媒介的邊界，而反對派則警告過度偏離經典可能導致核心群體的流失。",
       "本報將持續鎖定後續進度。不論這項決策最終引領作品走向何方，它無疑已經成為今年最具討論度與爭議性的行業焦點之一。"
     ];
 
-    if (/多元|代表性|人設|種族/.test(content)) {
-      headline = "【專題】進步多元與核心情懷的對立：新主角設定引發的產業思考";
-      paragraphs = [
+    if (/多元|代表性|人設|種族|diversity|representation|character|race|gender|woke|DEI/i.test(content)) {
+      headline = isEn 
+        ? "[Special] Progressive Inclusivity vs. Heritage Sentiment: Reflections on New Designs"
+        : "【專題】進步多元與核心情懷的對立：新主角設定引發的產業思考";
+      paragraphs = isEn ? [
+        "[Report] With the recent reveal of the lead's designs, the debate around diverse representation (DEI) has once again put the project at the center of a social media storm. Mainstream judges and progressive outlets show high support, viewing it as an important step toward modernization and inclusivity.",
+        "However, the core community's reaction is deeply split. On forums, discussions questioning 'forced design changes' and 'compromising for compliance scores' are quickly pinned, with some even calling to boycott pre-orders. Analysts point out that balancing ESG standards demanded by investors against core player satisfaction is now a required course for modern studios.",
+        "“This is no longer just an entertainment product; it has become a miniature replica of a cultural values war,” an anonymous publisher executive told our reporter."
+      ] : [
         "【本報訊】近日隨著主角造型與設定的公開，有關多元代表性（DEI）的議題再度成為社群討論的風暴中心。主流評審與部分進步派媒體對此表示高度支持，認為這是作品走向現代化、展現包容力的重要一步。",
         "然而，核心玩家社群的反應卻十分兩極。在論壇上，大量質疑「強行修改人設」與「為迎合評級而妥協」的討論串迅速被置頂，甚至發起了抵制預購的活動。分析人士指出，如何在投資人要求的 ESG 標準與核心玩家的滿意度之間取得平衡，已成為現代工作室的必修課。",
         "「這不再只是娛樂產品，它已經成為一場文化價值觀的縮影。」一位不願透露姓名的發行商主管向記者透露。"
       ];
-    } else if (/爽度|視覺|奇觀|場面/.test(content)) {
-      headline = "【熱點】場面拉滿！視覺特效與大螢幕奇觀引發的感官狂歡";
-      paragraphs = [
+    } else if (/爽度|視覺|奇觀|場面|spectacle|visual|action/i.test(content)) {
+      headline = isEn
+        ? "[Review] Visual Feast: Sensory Carnival Triggered by Special Effects"
+        : "【熱點】場面拉滿！視覺特效與大螢幕奇觀引發的感官狂歡";
+      paragraphs = isEn ? [
+        "[Review] Breathless detail and top-tier execution: the project captured immediate attention from the first second of the trailer. There is no doubt that the production team poured a massive percentage of the budget into visual spectacle.",
+        "“We wanted to give the audience a sensory feast they couldn't refuse,” the lead developer told our reporter. Critics also gave high marks, calling it a state-of-the-art technical demonstration. At the same time, some narrative fans questioned: under the gorgeous shell, does the script have enough weight to carry this visual spectacle?",
+        "Currently, pre-orders are highly optimistic, with the enthusiasm of visual-oriented audiences driving expectations to new heights."
+      ] : [
         "【本報評測】令人窒息的畫面細節與頂級的音效表現，這部作品在釋出預告片的第一秒就牢牢抓住了所有人的眼球。毫無疑問，製作團隊將極大比例的預算傾注在了奇觀的塑造上。",
         "「我們希望給觀眾一個無法拒絕的感官盛宴，」製作組長在接受本報採訪時表示。影評人也紛紛給出高分，認為這代表了當前行業的最高技術水準。但與此同時，部分深度影迷也提出質疑：在華麗的外殼之下，劇本的厚度是否能撐得起這份視覺的重量？",
         "目前市場的預售數據非常樂觀，視覺派受眾的狂熱將本作的期待度推上了全新高峰。"
       ];
-    } else if (/說教|教育|台詞/.test(content)) {
-      headline = "【評論】角色靈魂還是硬塞標籤？談台詞「說教感」對沈浸體驗的雙刃效應";
-      paragraphs = [
-        "【記者專題】隨著第一批測試反饋流出，部分體驗者對於作品中直白且高頻率出現的社會議題台詞表示了憂慮。他們認為，過於硬核的說教感會打破故事的沉浸感，讓作品更像是政治宣導，而非互動娛樂。",
+    } else if (/說教|教育|台詞|preachy|lecture|dialogue/i.test(content)) {
+      headline = isEn
+        ? "[Column] Character Soul or Checklist Slogans? The Double-Edged Sword of Dialogue Preachiness"
+        : "【評論】角色靈魂還是硬塞標籤？談台詞「說教感」對沈浸體驗的雙刃效應";
+      paragraphs = isEn ? [
+        "[Special] As early playtest feedback leaked, some testers expressed concern about the direct and high-frequency social messaging in the dialogue. They felt that the heavy preachy tone breaks immersion, making the project feel more like a political pamphlet than interactive entertainment.",
+        "However, social issue scholars pointed out that art inherently bears social responsibility. Writing modern dilemmas like identity and ecology into character motives gives the project longer-lasting value.",
+        "Finding the balance between 'preachy lecture' and 'natural integration' will be a key factor determining the final scores after launch."
+      ] : [
+        "【本報記者專題】隨著第一批測試反饋流出，部分體驗者對於作品中直白且高頻率出現的社會議題台詞表示了憂慮。他們認為，過於硬核的說教感會打破故事的沉浸感，讓作品更像是政治宣導，而非互動娛樂。",
         "但也有議題研究學者指出，藝術創作本就肩負著反映社會現實與啟發思考的責任。將身分認同、環境保護等現代困境寫入角色動機，能賦予作品更長久的生命力與社會學價值。",
         "如何在「說教宣傳」與「自然融合」之間找到平衡點，將是影響本作發售後最終評分的重要分水嶺。"
       ];
@@ -430,13 +708,46 @@ function getDetailedContent(alert: MockAlert) {
   }
 
   if (alert.source === "Forum") {
-    const title = `這一次的決策大家怎麼看？老實說我有點被破防了...`;
-    const comments = [
+    const title = isEn 
+      ? "How do you guys view this decision? Honestly, I feel a bit crushed..."
+      : "這一次的決策大家怎麼看？老實說我有點被破防了...";
+    const comments = isEn ? [
       {
         user: "u/GamerAlpha_99",
         score: "2.4k",
         time: "5 hr. ago",
-        text: `老實說，這決策真的讓我對這家工作室刮目相看。${content.replace(/「|」/g, "")} 至少他們聽到了我們的聲音。`,
+        text: "Honestly, this decision makes me respect the studio. " + content.replace(/「/g, "").replace(/」/g, "") + " At least they listened to us."
+      },
+      {
+        user: "u/Lvl100Paladin",
+        score: "1.8k",
+        time: "4 hr. ago",
+        text: "OP +1! Was super worried about being forced strange values, but looks like the original soul is preserved. Buying day one!"
+      },
+      {
+        user: "u/WokeSlayer_PRO",
+        score: "850",
+        time: "3 hr. ago",
+        text: "Agreed. Stop letting external consultants lecture us. Fun gameplay is what matters. Hope launch doesn't crash."
+      },
+      {
+        user: "u/ProgressiveGamer",
+        score: "-240",
+        time: "2 hr. ago",
+        text: "Am I the only one who thinks this is backward? Keeping outdated settings and refusing modern inclusive representation is bowing to conservative backlash."
+      },
+      {
+        user: "u/MemeLord_X",
+        score: "125",
+        time: "1 hr. ago",
+        text: "Either way, I've got my popcorn ready for the Metacritic user score war on launch day, it's gonna be a bloodbath 🍿"
+      }
+    ] : [
+      {
+        user: "u/GamerAlpha_99",
+        score: "2.4k",
+        time: "5 hr. ago",
+        text: "老實說，這決策真的讓我對這家工作室刮目相看。" + content.replace(/「/g, "").replace(/」/g, "") + " 至少他們聽到了我們的聲音。",
       },
       {
         user: "u/Lvl100Paladin",
@@ -464,10 +775,31 @@ function getDetailedContent(alert: MockAlert) {
       }
     ];
 
-    if (/魔改|面目全非|閹割|背叛|吐槽/.test(content)) {
+    if (/魔改|面目全非|閹割|背叛|吐槽|boycott|ruined|butchered|woke|crap/i.test(content)) {
       return {
-        title: "「別買了！這根本是借殼上市的魔改垃圾，原作粉集體破防中」",
-        comments: [
+        title: isEn 
+          ? "“Don't buy it! This is basically a butchered cash-grab, lore fans are completely devastated”"
+          : "「別買了！這根本是借殼上市的魔改垃圾，原作粉集體破防中」",
+        comments: isEn ? [
+          {
+            user: "u/CanonIsHoly",
+            score: "5.2k",
+            time: "6 hr. ago",
+            text: "I am literally shaking. Old fans waited so many years for this garbage? The core characters are ruined. Does the writer even know the source material?"
+          },
+          {
+            user: "u/GoWokeGoBroke_2026",
+            score: "3.1k",
+            time: "5 hr. ago",
+            text: "Classic 'Go Woke, Go Broke'. Another franchise destroyed by DEI compliance checklist. Refunding is the only way."
+          },
+          {
+            user: "u/OptimistPrime",
+            score: "510",
+            time: "3 hr. ago",
+            text: "Maybe wait for reviews? Visuals and gameplay loop still look decent, character adjustments might not ruin the whole experience."
+          }
+        ] : [
           {
             user: "u/CanonIsHoly",
             score: "5.2k",
@@ -484,13 +816,7 @@ function getDetailedContent(alert: MockAlert) {
             user: "u/OptimistPrime",
             score: "510",
             time: "3 hr. ago",
-            text: "大家冷靜點，也許這只是預告片剪輯的問題？等實際出來看故事邏輯怎麼樣再噴也不遲吧？",
-          },
-          {
-            user: "u/AngryGamer_99",
-            score: "1.2k",
-            time: "2 hr. ago",
-            text: "樓上還在洗？設定圖都洩漏了，主角連性別氣質都變了，這還有救？洗地的可以省省力氣了。",
+            text: "也許可以等發售評測？畫面和玩法看起來還是合格的，人設調整不一定會毀掉整個體驗吧。",
           }
         ]
       };
@@ -499,44 +825,30 @@ function getDetailedContent(alert: MockAlert) {
     return { title, comments };
   }
 
-  return {
-    channel: "#marketing-pr-channel",
-    messages: [
-      {
-        user: "公關總監 (Director)",
-        avatar: "PR",
-        time: "11:34 AM",
-        text: `團隊注意，最新決策影響評估已出來：${content.replace(/「|」/g, "")}`,
-      },
-      {
-        user: "社群經理 (Community)",
-        avatar: "CM",
-        time: "11:36 AM",
-        text: "目前 Reddit 和 X 平台上的討論度已經衝上來了，核心老粉的反應有些激烈，我們的公關稿要不要先準備？",
-      },
-      {
-        user: "主企劃 (Lead Designer)",
-        avatar: "LD",
-        time: "11:39 AM",
-        text: "設計組這邊認為既然路子定下了就不要隨便縮，現在如果又道歉退讓，只會被兩邊同時唾棄，堅持品質才是正解。",
-      },
-      {
-        user: "專案經理 (Producer)",
-        avatar: "PM",
-        time: "11:42 AM",
-        text: "同意。預算和時程都不允許我們再做大改動了，研發組長要注意成員心理壓力，公關部隨時監控輿情動態。",
-      }
-    ]
-  };
+  // Slack default messages
+  const defaultMessages = isEn ? [
+    { avatar: "📢", user: "PR Assistant", time: "11:35 AM", text: "Brand indicators are updating. External compliance indices look stable." },
+    { avatar: "👥", user: "Community Mgr", time: "11:36 AM", text: "Some discussions on forums regarding the choice, but no major backlash organized yet." },
+    { avatar: "💼", user: "Compliance Officer", time: "11:38 AM", text: "Mainstream fund representatives expressed satisfaction with the recent ESG direction." }
+  ] : [
+    { avatar: "📢", user: "公關專員", time: "11:35 AM", text: "輿情監控指標更新中，目前外部合規評級指標運作平穩。" },
+    { avatar: "👥", user: "社群主管", time: "11:36 AM", text: "各大論壇對於此項決策有一些零星討論，但目前尚未形成有組織的炎上活動。" },
+    { avatar: "💼", user: "合規專員", time: "11:38 AM", text: "主流風投基金代表對我們近期在 ESG 合規上的積極姿態表示肯定。" }
+  ];
+
+  return { messages: defaultMessages };
 }
 
-function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: WorkType): MockAlert {
+function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: WorkType, lang: "zh" | "en" = "zh"): MockAlert {
+  const isEn = lang === "en";
   const keys = Object.keys(effects) as TagKey[];
   if (keys.length === 0) {
     return {
       source: "Slack",
       senderOrPublication: "#pr-monitoring",
-      content: "「決策已存檔。目前市場反應平靜，公關處於監控狀態。」"
+      content: isEn
+        ? "“Decision saved. Current market response is calm, PR monitoring is active.”"
+        : "「決策已存檔。目前市場反應平靜，公關處於監控狀態。」"
     };
   }
 
@@ -556,18 +868,24 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
         ? {
             source: "Media",
             senderOrPublication: "IGN NEWS",
-            content: "「大膽的跨步！新作品承諾為多元性與代表性帶來前所未有的深度呈現，業界同聲讚譽。」"
+            content: isEn
+              ? "“A bold step forward! The new project promises unprecedented depth in diversity and representation, winning industry-wide praise.”"
+              : "「大膽的跨步！新作品承諾為多元性與代表性帶來前所未有的深度呈現，業界同聲讚譽。」"
           }
         : {
             source: "Slack",
-            senderOrPublication: "社群經理 @Slack",
-            content: "「Reddit 上已經有老粉發帖抗議我們『強行修改主角種族人設』，輿情警戒度上升。」"
+            senderOrPublication: isEn ? "Community Mgr @Slack" : "社群經理 @Slack",
+            content: isEn
+              ? "“Core fans are already posting on Reddit protesting 'forced race swaps of characters', PR alert level rising.”"
+              : "「Reddit 上已經有老粉發帖抗議我們『強行修改主角種族人設』，輿情警戒度上升。」"
           };
     } else {
       return {
         source: "Forum",
         senderOrPublication: "r/gaming",
-        content: "「良心之作！這次沒有強加政治正確設定，主角人設經典扎實，預售準備支持！」"
+        content: isEn
+          ? "“A project with integrity! No forced political correctness, solid classic character designs, pre-ordering immediately!”"
+          : "「良心之作！這次沒有強加政治正確設定，主角人設經典扎實，預售準備支持！」"
       };
     }
   }
@@ -576,14 +894,18 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
     if (maxValue > 0) {
       return {
         source: "Forum",
-        senderOrPublication: "Reddit 原作粉板",
-        content: "「看過概念設定了！原汁原味，配樂和核心人設完全保留，核心粉絲群一致大好評！」"
+        senderOrPublication: isEn ? "Reddit Canon Fans" : "Reddit 原作粉板",
+        content: isEn
+          ? "“Checked the concept art! Completely faithful, the music and core character designs are preserved. Massive acclaim from core fans!”"
+          : "「看過概念設定了！原汁原味，配樂和核心人設完全保留，核心粉絲群一致大好評！」"
       };
     } else {
       return {
         source: "Forum",
-        senderOrPublication: "貼吧老粉吐槽區",
-        content: "「這改得面目全非了。除了保留名字借殼上市外，原作設定和精神全被閹割，這是對老粉的背叛！」"
+        senderOrPublication: isEn ? "Tieba Lore Complaints" : "貼吧老粉吐槽區",
+        content: isEn
+          ? "“This is butchered beyond recognition. Except for using the name for cash-grabbing, the lore and spirit are completely gutted. A betrayal!”"
+          : "「這改得面目全非了。除了保留名字借殼上市外，原作設定 and 精神全被閹割，這是對老粉的背叛！」"
       };
     }
   }
@@ -594,18 +916,24 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
         ? {
             source: "Media",
             senderOrPublication: "KOTAKU COLUMN",
-            content: "「這不只是一部作品，更是一面照向當代社會邊緣族群創傷的明鏡。其議題表達具高度社會意義。」"
+            content: isEn
+              ? "“More than entertainment, this project is a mirror reflecting the trauma of marginalized groups in modern society. Highly meaningful.”"
+              : "「這不只是一部作品，更是一面照向當代社會邊緣族群創傷的明鏡。其議題表達具高度社會意義。」"
           }
         : {
             source: "Slack",
-            senderOrPublication: "公關總監 @Slack",
-            content: "「行銷回報指出，大眾評測反饋台詞的『教育意味』有些過重，可能勸退注重放鬆娛樂的輕度玩家。」"
+            senderOrPublication: isEn ? "PR Director @Slack" : "公關總監 @Slack",
+            content: isEn
+              ? "“Marketing reports show mass playtesters find the 'preachiness' a bit too heavy, which might turn off casual gamers seeking relaxation.”"
+              : "「行銷回報指出，大眾評測反饋台詞的『教育意味』有些過重，可能勸退注重放鬆娛樂的輕度玩家。」"
           };
     } else {
       return {
         source: "Forum",
-        senderOrPublication: "Steam 評測區預測",
-        content: "「終於沒有強塞說教台詞了。能安安靜靜在作品裡沉浸一個週末，這才是我們要的體驗。」"
+        senderOrPublication: isEn ? "Steam Reviews Predictor" : "Steam 評測區預測",
+        content: isEn
+          ? "“Finally, no forced preachy dialogue. Just peace, quiet, and immersion for the weekend—exactly the experience we want.”"
+          : "「終於沒有強塞說教台詞了。能安安靜靜在作品裡沉浸一個週末，這才是我們要的體驗。」"
       };
     }
   }
@@ -615,13 +943,17 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
       return {
         source: "Media",
         senderOrPublication: "METACRITIC PREVIEW",
-        content: "「爽度拉滿！頂級的視聽饗宴與流暢的操作手感，無疑是今年最穩健的商業娛樂大作。」"
+        content: isEn
+          ? "“Sensory feast! Top-tier visuals, audio, and smooth gameplay—clearly this year's most solid commercial blockbuster.”"
+          : "「爽度拉滿！頂級的視聽饗宴與流暢的操作手感，無疑是今年最穩健的商業娛樂大作。」"
       };
     } else {
       return {
         source: "Media",
         senderOrPublication: "INDIEWIRE REVIEW",
-        content: "「作品刻意避開爆米花公式，著重深沉的主題表達與角色刻畫，但在商業化考驗上面臨挑戰。」"
+        content: isEn
+          ? "“Deliberately avoids commercial formulas, focusing on deep themes and character study, but faces challenges in market viability.”"
+          : "「作品刻意避開爆米花公式，著重深沉的主題表達與角色刻畫，但在商業化考驗上面臨挑戰。」"
       };
     }
   }
@@ -630,14 +962,18 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
     if (maxValue > 0) {
       return {
         source: "Slack",
-        senderOrPublication: "公關經理 @Slack",
-        content: "「警告：論壇上因為人設政治正確已經吵成一團，『Go Woke Go Broke』標籤開始洗版，面臨被刷負評風險。」"
+        senderOrPublication: isEn ? "PR Mgr @Slack" : "公關經理 @Slack",
+        content: isEn
+          ? "“Warning: Forums are in a flame war over character designs. The '#GoWokeGoBroke' tag is trending, risking user review-bombing.”"
+          : "「警告：論壇上因為人設政治正確已經吵成一團，『Go Woke Go Broke』標籤開始洗版，面臨被刷負評風險。」"
       };
     } else {
       return {
         source: "Slack",
-        senderOrPublication: "行銷組長 @Slack",
-        content: "「目前的決策非常安全，沒有踩到任何文化戰雷區，各方討論平穩，預期口碑回報良好。」"
+        senderOrPublication: isEn ? "Marketing Lead @Slack" : "行銷組長 @Slack",
+        content: isEn
+          ? "“Current decisions are extremely safe. Zero culture-war minefields triggered, community discussions are stable, good word of mouth expected.”"
+          : "「目前的決策非常安全，沒有踩到任何文化戰雷區，各方討論平穩，預期口碑回報良好。」"
       };
     }
   }
@@ -646,14 +982,18 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
     if (maxValue > 0) {
       return {
         source: "Forum",
-        senderOrPublication: "巴哈姆特哈啦區",
-        content: "「還沒發售就狂塞商城課金要素和賽季通行證？吃相太難看了吧，又一款半成品騙錢作誕生！」"
+        senderOrPublication: isEn ? "Gamer Forums" : "巴哈姆特哈啦區",
+        content: isEn
+          ? "“Monetization and battle passes crammed in before launch? How greedy can they get? Another half-baked cash grab!”"
+          : "「還沒發售就狂塞商城課金要素和賽季通行證？吃相太難看了吧，又一款半成品騙錢作誕生！」"
       };
     } else {
       return {
         source: "Forum",
         senderOrPublication: "r/Steam",
-        content: "「買斷制，無微交易！這年頭還有不逼氪、不搞商城打卡的完整大作，必須買爆支持！」"
+        content: isEn
+          ? "“Buy-to-play, zero microtransactions! An actual complete game without forced grind or cash shops. Day-one buy!”"
+          : "「買斷制，無微交易！這年頭還有不逼氪、不搞商城打卡的完整大作，必須買爆支持！」"
       };
     }
   }
@@ -663,13 +1003,17 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
       return {
         source: "Forum",
         senderOrPublication: "r/RPG_Gamers",
-        content: "「開發團隊承諾極高的主動選擇自由度，可以用自己的路線探索世界，這才是RPG的精髓！」"
+        content: isEn
+          ? "“Dev team promises high freedom, letting us explore the world our own way. This is the true essence of RPGs!”"
+          : "「開發團隊承諾極高的主動選擇自由度，可以用自己的路線探索世界，這才是RPG的精髓！」"
       };
     } else {
       return {
         source: "Slack",
-        senderOrPublication: "主企劃 @Slack",
-        content: "「為保證劇本推進，我們限制了多線選擇。社群內有部分偏好高自由度的玩家對此表示遺憾。」"
+        senderOrPublication: isEn ? "Lead Designer @Slack" : "主企劃 @Slack",
+        content: isEn
+          ? "“To ensure narrative progression, we limited branching choices. Some freedom-loving players in the community are disappointed.”"
+          : "「為保證劇本推進，我們限制了多線選擇。社群內有部分偏好高自由度的玩家對此表示遺憾。」"
       };
     }
   }
@@ -679,13 +1023,17 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
       return {
         source: "Media",
         senderOrPublication: "IGN NEWS",
-        content: "「爽度突破天際！令人屏息的視覺特效與史詩級大場面，本作毫無疑問是年度娛樂盛宴。」"
+        content: isEn
+          ? "“Action and visuals out of this world! Breathless special effects and epic scale. A must-experience blockbuster of the year.”"
+          : "「爽度突破天際！令人屏息的視覺特效與史詩級大場面，本作毫無疑問是年度娛樂盛宴。」"
       };
     } else {
       return {
         source: "Media",
         senderOrPublication: "VARIETY REPORT",
-        content: "「缺乏視覺奇觀，本作在場面調度上顯得保守，難以吸引大眾市場注意。」"
+        content: isEn
+          ? "“Lacks visual spectacle, keeping a conservative direction that might struggle to capture mainstream attention.”"
+          : "「缺乏視覺奇觀，本作在場面調度上顯得保守，難以吸引大眾市場注意。」"
       };
     }
   }
@@ -695,13 +1043,17 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
       return {
         source: "Media",
         senderOrPublication: "INDIEWIRE REVIEW",
-        content: "「深邃的人性探索與極致的文藝美學，本作在藝術層面上達到了少見的高峰。」"
+        content: isEn
+          ? "“Deep human exploration and absolute artistic aesthetics, reaching a rare high peak in cinematic art.”"
+          : "「深邃的人性探索與極致的文藝美學，本作在藝術層面上達到了少見的高峰。」"
       };
     } else {
       return {
         source: "Media",
         senderOrPublication: "KOTAKU COLUMN",
-        content: "「過於公式化與商業妥協，本作在議題深度與藝術探討上顯得有些心口不一。」"
+        content: isEn
+          ? "“Too formulaic and commercially compromised, lacking sincerity in its thematic depth and artistic exploration.”"
+          : "「過於公式化與商業妥協，本作在議題深度與藝術探討上顯得有些心口不一。」"
       };
     }
   }
@@ -710,14 +1062,18 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
     if (maxValue > 0) {
       return {
         source: "Forum",
-        senderOrPublication: "Reddit 原作改編板",
-        content: "「改編消息引發熱烈討論！原作忠實派與現代改編派在討論區已經吵翻了。」"
+        senderOrPublication: isEn ? "Reddit Adaptation Board" : "Reddit 原作改編板",
+        content: isEn
+          ? "“Adaptation news has triggered intense debate! Faithful purists and modern adaptation advocates are clashing on forums.”"
+          : "「改編消息引發熱烈討論！原作忠實派與現代改編派在討論區已經吵翻了。」"
       };
     } else {
       return {
         source: "Forum",
-        senderOrPublication: "Steam 原創板",
-        content: "「全新原創 IP 雖然沒有情懷包袱，但前期知名度偏低，宣傳工作將是一大挑戰。」"
+        senderOrPublication: isEn ? "Steam Original Board" : "Steam 原創板",
+        content: isEn
+          ? "“A brand new original IP avoids lore baggage, but low initial awareness makes marketing a major uphill battle.”"
+          : "「全新原創 IP 雖然沒有情懷包袱，但前期知名度偏低，宣傳工作將是一大挑戰。」"
       };
     }
   }
@@ -727,13 +1083,17 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
       return {
         source: "Media",
         senderOrPublication: "KOTAKU COLUMN",
-        content: "「業界的良心！本作大膽擁抱多元價值，主流媒體齊聲稱讚其對當代社會的深刻關懷。」"
+        content: isEn
+          ? "“The conscience of the industry! Embracing diverse values boldly, with mainstream critics applauding its deep social concern.”"
+          : "「業界的良心！本作大膽擁抱多元價值，主流媒體齊聲稱讚其對當代社會的深刻關懷。」"
       };
     } else {
       return {
         source: "Media",
         senderOrPublication: "IGN NEWS",
-        content: "「立場過於保守？部分影評人指出作品缺乏當代多元視角，對其老套的價值觀感到失望。」"
+        content: isEn
+          ? "“Too conservative? Some critics point out a lack of contemporary diverse perspectives, disappointed by outdated values.”"
+          : "「立場過於保守？部分影評人指出作品缺乏當代多元視角，對其老套的價值觀感到失望。」"
       };
     }
   }
@@ -743,13 +1103,17 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
       return {
         source: "Forum",
         senderOrPublication: "r/gaming",
-        content: "「好評如潮！首波測試反饋極佳，核心與輕度玩家一致讚賞，預購量正在快速攀升。」"
+        content: isEn
+          ? "“Rave reviews! Initial playtest feedback is superb, with core and casual gamers alike praising it. Pre-orders spiking.”"
+          : "「好評如潮！首波測試反饋極佳，核心與輕度玩家一致讚賞，預購量正在快速攀升。」"
       };
     } else {
       return {
         source: "Forum",
-        senderOrPublication: "貼吧老粉吐槽區",
-        content: "「雷作警告！玩家社群痛批遊戲內容敷衍，大量要求退款的呼聲正在蔓延。」"
+        senderOrPublication: isEn ? "Tieba Lore Complaints" : "貼吧老粉吐槽區",
+        content: isEn
+          ? "“Trash game alert! Community slamming lazy content, with a wave of refund petitions spreading rapidly.”"
+          : "「雷作警告！玩家社群痛批遊戲內容敷衍，大量要求退款的呼聲正在蔓延。」"
       };
     }
   }
@@ -758,14 +1122,18 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
     if (maxValue > 0) {
       return {
         source: "Slack",
-        senderOrPublication: "主企劃 @Slack",
-        content: "「警告：頻繁的設計變更與加班壓力已讓團隊疲憊不堪，必須注意交付品質。」"
+        senderOrPublication: isEn ? "Lead Designer @Slack" : "主企劃 @Slack",
+        content: isEn
+          ? "“Warning: Constant design shifts and crunch have exhausted the team. We must monitor delivery quality closely.”"
+          : "「警告：頻繁的設計變更與加班壓力已讓團隊疲憊不堪，必須注意交付品質。」"
       };
     } else {
       return {
         source: "Slack",
-        senderOrPublication: "專案主管 @Slack",
-        content: "「好消息：開發進度完全在掌控之中，目前測試反饋穩定，沒有重大的技術或設計風險。」"
+        senderOrPublication: isEn ? "Project Mgr @Slack" : "專案主管 @Slack",
+        content: isEn
+          ? "“Good news: Dev progress is fully under control, playtest feedback is stable, zero major technical or design risks.”"
+          : "「好消息：開發進度完全在掌控之中，目前測試反饋穩定，沒有重大的技術或設計風險。」"
       };
     }
   }
@@ -775,13 +1143,17 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
       return {
         source: "Media",
         senderOrPublication: "VARIETY REPORT",
-        content: "「大膽突破！顛覆性的性別權力結構，女性與多元族群成為敘事核心，為類型作品注入全新活力。」"
+        content: isEn
+          ? "“Bold breakthrough! Subversive gender power structures put women and marginalized groups at the core, revitalizing the genre.”"
+          : "「大膽突破！顛覆性的性別權力結構，女性與多元族群成為敘事核心，為類型作品注入全新活力。」"
       };
     } else {
       return {
         source: "Forum",
-        senderOrPublication: "Reddit 原作粉板",
-        content: "「Reddit 熱帖：『強行弱化經典男性配角？』，粉絲對角色設計被刻意矮化表示強烈不滿。」"
+        senderOrPublication: isEn ? "Reddit Canon Fans" : "Reddit 原作粉板",
+        content: isEn
+          ? "“Trending thread: 'Deliberately weakening classic male characters?' Fans furious over characters being sidelined.”"
+          : "「Reddit 熱帖：『強行弱化經典男性配角？』，粉絲對角色設計被刻意矮化表示強烈不滿。」"
       };
     }
   }
@@ -791,13 +1163,17 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
       return {
         source: "Forum",
         senderOrPublication: "r/RPG_Gamers",
-        content: "「劇本殺瘋了！極具張力的故事線與令人心碎的兩難抉擇，讓愛看劇情的玩家徹底陷進去了。」"
+        content: isEn
+          ? "“The writing is insane! Gripping narrative arcs and heartbreaking dilemmas have story fans completely hooked.”"
+          : "「劇本殺瘋了！極具張力的故事線與令人心碎的兩難抉擇，讓愛看劇情的玩家徹底陷進去了。」"
       };
     } else {
       return {
         source: "Slack",
-        senderOrPublication: "行銷組長 @Slack",
-        content: "「部分社群反饋指出劇本過於平淡，缺乏情緒爆點，可能影響長線的討論度。」"
+        senderOrPublication: isEn ? "Marketing Lead @Slack" : "行銷組長 @Slack",
+        content: isEn
+          ? "“Some community feedback indicates the script is flat, lacking emotional highs, which might affect long-term engagement.”"
+          : "「部分社群反饋指出劇本過於平淡，缺乏情緒爆點，可能影響長線的討論度。」"
       };
     }
   }
@@ -805,34 +1181,47 @@ function generateAlert(effects: Partial<Record<TagKey, number>>, selectedType: W
   return {
     source: "Slack",
     senderOrPublication: "#marketing",
-    content: "「決策已執行。各管道回饋數據分析中，目前輿論處於可控範圍。」"
+    content: isEn
+      ? "“Decision executed. Analyzing feedback across all channels, public opinion is currently stable.”"
+      : "「決策已執行。各管道回饋數據分析中，目前輿論處於可控範圍。」"
   };
 }
 
-function CriticUserPredictor({ profile, selectedType }: { profile: UserProfile | null; selectedType: WorkType }) {
+function CriticUserPredictor({ profile, selectedType, lang = "zh" }: { profile: UserProfile | null; selectedType: WorkType; lang?: "zh" | "en" }) {
+  const isEn = lang === "en";
   const critic = calculateCriticScore(profile);
   const user = calculateUserScore(profile, selectedType);
 
   const criticBg = critic >= 75 ? "bg-emerald-600 text-white" : critic >= 50 ? "bg-amber-500 text-slate-950" : "bg-rose-600 text-white";
-  const criticLabel = critic >= 90 ? "媒體盛讚 (Acclaim)" : critic >= 75 ? "普遍好評 (Favorable)" : critic >= 50 ? "褒貶不一 (Mixed)" : "普遍差評 (Unfavorable)";
+  const criticLabel = isEn
+    ? (critic >= 90 ? "Critical Acclaim" : critic >= 75 ? "Mostly Favorable" : critic >= 50 ? "Mixed / Average" : "Mostly Unfavorable")
+    : (critic >= 90 ? "媒體盛讚 (Acclaim)" : critic >= 75 ? "普遍好評 (Favorable)" : critic >= 50 ? "褒貶不一 (Mixed)" : "普遍差評 (Unfavorable)");
 
   let userLabel = "";
   let userBg = "";
   if (selectedType === "film") {
     userBg = user >= 7.5 ? "bg-emerald-600 text-white" : user >= 5.0 ? "bg-amber-500 text-slate-950" : "bg-rose-600 text-white";
-    userLabel = user >= 8.0 ? "觀眾極佳 (Great)" : user >= 6.0 ? "觀眾普通 (Mixed)" : user >= 4.0 ? "大眾反感 (Disliked)" : "群體崩潰 (Disliked)";
+    userLabel = isEn
+      ? (user >= 8.0 ? "Great Audience Appeal" : user >= 6.0 ? "Mixed / Average" : user >= 4.0 ? "Audience Backlash" : "Extreme Backlash")
+      : (user >= 8.0 ? "觀眾極佳 (Great)" : user >= 6.0 ? "觀眾普通 (Mixed)" : user >= 4.0 ? "大眾反感 (Disliked)" : "群體崩潰 (Disliked)");
   } else {
     userBg = user >= 75 ? "bg-emerald-600 text-white" : user >= 50 ? "bg-amber-500 text-slate-950" : "bg-rose-600 text-white";
-    userLabel = user >= 95 ? "壓倒性好評" : user >= 80 ? "極度好評" : user >= 70 ? "大多好評" : user >= 40 ? "褒貶不一" : user >= 20 ? "大多負評" : "壓倒性負評";
+    userLabel = isEn
+      ? (user >= 95 ? "Overwhelmingly Positive" : user >= 80 ? "Very Positive" : user >= 70 ? "Mostly Positive" : user >= 40 ? "Mixed" : user >= 20 ? "Mostly Negative" : "Overwhelmingly Negative")
+      : (user >= 95 ? "壓倒性好評" : user >= 80 ? "極度好評" : user >= 70 ? "大多好評" : user >= 40 ? "褒貶不一" : user >= 20 ? "大多負評" : "壓倒性負評");
   }
 
   return (
     <div className="mt-4 rounded-lg border border-white/10 bg-white/[0.04] p-4 shadow-inner">
-      <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-200 mb-3">市場評價預測 (Market Predictor)</h3>
+      <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-teal-200 mb-3">
+        {isEn ? "Market Predictor" : "市場評價預測 (Market Predictor)"}
+      </h3>
       <div className="grid grid-cols-2 gap-3">
         {/* Critic Score */}
         <div className="flex flex-col items-center justify-center rounded-md border border-white/5 bg-black/40 p-3 shadow-inner">
-          <span className="text-[10px] text-slate-400 font-semibold mb-1">媒體評分 (Critics)</span>
+          <span className="text-[10px] text-slate-400 font-semibold mb-1">
+            {isEn ? "Critics Score" : "媒體評分 (Critics)"}
+          </span>
           <div className={`flex h-11 w-11 items-center justify-center rounded-lg text-lg font-black ${criticBg}`}>
             {critic}
           </div>
@@ -842,7 +1231,9 @@ function CriticUserPredictor({ profile, selectedType }: { profile: UserProfile |
         {/* User Score */}
         <div className="flex flex-col items-center justify-center rounded-md border border-white/5 bg-black/40 p-3 shadow-inner">
           <span className="text-[10px] text-slate-400 font-semibold mb-1">
-            {selectedType === "film" ? "觀眾評分 (IMDb)" : "玩家好評 (Steam)"}
+            {selectedType === "film" 
+              ? (isEn ? "Audience (IMDb)" : "觀眾評分 (IMDb)") 
+              : (isEn ? "User Reviews (Steam)" : "玩家好評 (Steam)")}
           </span>
           <div className={`flex h-11 w-11 items-center justify-center rounded-lg text-lg font-black ${userBg}`}>
             {selectedType === "film" ? user.toFixed(1) : `${user}%`}
@@ -851,7 +1242,9 @@ function CriticUserPredictor({ profile, selectedType }: { profile: UserProfile |
         </div>
       </div>
       <p className="mt-3 text-[10px] leading-4 text-slate-400 text-center">
-        預測值隨製作決策即時波動。ESG進步價值拉高媒體分，但過度置入或背離原作會重創玩家口碑。
+        {isEn 
+          ? "Predictions fluctuate with production choices. High ESG values boost critic scores, but excessive preaching or lore deviations will crash user goodwill."
+          : "預測值隨製作決策即時波動。ESG進步價值拉高媒體分，但過度置入或背離原作會重創玩家口碑。"}
       </p>
     </div>
   );
@@ -860,16 +1253,21 @@ function CriticUserPredictor({ profile, selectedType }: { profile: UserProfile |
 function DiscourseAlert({ 
   alert, 
   controversyRisk = 50,
-  onOpenDetails
+  onOpenDetails,
+  lang = "zh"
 }: { 
   alert: MockAlert | null; 
   controversyRisk?: number;
   onOpenDetails?: (alert: MockAlert) => void;
+  lang?: "zh" | "en";
 }) {
+  const isEn = lang === "en";
   const currentAlert: MockAlert = alert ?? {
     source: "Slack",
-    senderOrPublication: "公關主管 #pr-monitoring",
-    content: "「輿論與市場監控模組已連線。正在評估首期製作決策... 請進行您的下一步選擇。」"
+    senderOrPublication: isEn ? "PR Lead #pr-monitoring" : "公關主管 #pr-monitoring",
+    content: isEn
+      ? "“Public opinion and market monitoring module connected. Evaluating initial production decisions... please proceed to your next choice.”"
+      : "「輿論與市場監控模組已連線。正在評估首期製作決策... 請進行您的下一步選擇。」"
   };
 
   const [isHovered, setIsHovered] = useState(false);
@@ -895,7 +1293,7 @@ function DiscourseAlert({
           </div>
           {isLocked && (
             <span className="flex items-center gap-1 text-rose-300 font-bold bg-rose-950/40 px-2 py-0.5 rounded border border-rose-500/25">
-              <span>已鎖帖</span>
+              <span>{isEn ? "Locked" : "已鎖帖"}</span>
               <span className="text-[9px]">🔒</span>
             </span>
           )}
@@ -911,11 +1309,11 @@ function DiscourseAlert({
               <span>▼</span>
             </div>
             <div className="rounded-full bg-white/5 px-3 py-1 hover:bg-white/10 cursor-pointer">
-              <span>💬 {isLocked ? "3.2k" : "1.1k"} Comments</span>
+              <span>💬 {isLocked ? (isEn ? "3.2k Comments" : "3.2k 條評論") : (isEn ? "1.1k Comments" : "1.1k 條評論")}</span>
             </div>
           </div>
           <span className="text-[10px] text-orange-400 font-normal animate-pulse group-hover:underline">
-            💬 點擊進入討論區...
+            {isEn ? "💬 Click to enter thread..." : "💬 點擊進入討論區..."}
           </span>
         </div>
 
@@ -926,11 +1324,11 @@ function DiscourseAlert({
             : "opacity-0 translate-y-2 scale-95 invisible"
         }`}>
           <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-white/5 text-xs text-orange-400 font-bold">
-            <span>💬 討論區即時熱帖預覽 (r/gaming)</span>
+            <span>{isEn ? "💬 Live Thread Preview (r/gaming)" : "💬 討論區即時熱帖預覽 (r/gaming)"}</span>
           </div>
-          <h4 className="text-sm font-bold text-white mb-2 line-clamp-1">{getDetailedContent(currentAlert).title}</h4>
+          <h4 className="text-sm font-bold text-white mb-2 line-clamp-1">{getDetailedContent(currentAlert, lang).title}</h4>
           <div className="space-y-2.5 border-t border-white/5 pt-2 mt-1">
-            {(getDetailedContent(currentAlert) as any).comments?.slice(0, 2).map((comment: any, idx: number) => (
+            {(getDetailedContent(currentAlert, lang) as any).comments?.slice(0, 2).map((comment: any, idx: number) => (
               <div key={idx} className="border-l border-white/10 pl-2 text-[11px] mb-2">
                 <div className="flex items-center gap-1.5 text-slate-400 mb-0.5">
                   <span className="font-semibold text-slate-300">{comment.user}</span>
@@ -942,7 +1340,7 @@ function DiscourseAlert({
             ))}
           </div>
           <div className="mt-3 text-[10px] text-center text-orange-400 border-t border-white/5 pt-1.5 font-semibold">
-            👉 點擊卡片進入完整討論區查看更多評論
+            {isEn ? "👉 Click card to enter the full forum thread" : "👉 點擊卡片進入完整討論區查看更多評論"}
           </div>
         </div>
       </div>
@@ -987,24 +1385,24 @@ function DiscourseAlert({
             </div>
           </div>
           <div className="flex justify-between text-[9px] uppercase tracking-widest text-stone-500 mt-2 font-sans font-bold border-t border-stone-300 pt-1">
-            <span>Special Report</span>
-            <span>Sunday Edition</span>
+            <span>{isEn ? "Special Report" : "專題特報"}</span>
+            <span>{isEn ? "Sunday Edition" : "週日版"}</span>
           </div>
         </div>
 
         <div className="min-w-0">
           <div className="flex gap-2 items-center mb-3">
             <span className="bg-red-600 text-white text-[9px] font-bold px-2 py-0.5 rounded font-sans tracking-wider uppercase shrink-0">
-              {isMic ? "EXCLUSIVE INTERVIEW" : "HOT NEWS"}
+              {isMic ? (isEn ? "EXCLUSIVE INTERVIEW" : "獨家專訊") : (isEn ? "HOT NEWS" : "即時熱點")}
             </span>
             <span className="text-[10px] text-stone-500 uppercase font-sans tracking-wider font-semibold">
-              {isMic ? "獨家專訪" : "輿情頭條新聞"}
+              {isMic ? (isEn ? "EXCLUSIVE INTERVIEW" : "獨家專訪") : (isEn ? "PR HEADLINE" : "輿情頭條新聞")}
             </span>
             <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse ml-auto" />
           </div>
 
           <h3 className="text-lg font-black text-stone-900 leading-snug mb-3 font-serif border-b border-stone-200 pb-2">
-            {currentAlert.senderOrPublication} — {isMic ? "專訪分析報導" : "最新專題評論"}
+            {currentAlert.senderOrPublication} — {isMic ? (isEn ? "Interview & Analysis" : "專訪分析報導") : (isEn ? "Latest Column" : "最新專題評論")}
           </h3>
 
           <div className="text-stone-800 leading-relaxed font-serif text-sm">
@@ -1015,9 +1413,9 @@ function DiscourseAlert({
               {currentAlert.content}
             </span>
             <div className="mt-3 text-xs text-stone-500 font-sans border-t border-stone-200 pt-2 flex items-center justify-between">
-              <span>記者：社群輿情觀測組 報導</span>
+              <span>{isEn ? "Reporter: PR Special Task Force" : "記者：社群輿情觀測組 報導"}</span>
               <span className="text-[10px] text-stone-900 font-bold animate-pulse group-hover:underline">
-                👉 點擊閱讀完整報紙頭條...
+                {isEn ? "👉 Click to read full newspaper coverage..." : "👉 點擊閱讀完整報紙頭條..."}
               </span>
             </div>
           </div>
@@ -1031,19 +1429,19 @@ function DiscourseAlert({
         }`}>
           <div className="flex items-center gap-1.5 mb-2 pb-1.5 border-b border-stone-300 text-[10px] font-sans font-bold text-red-600">
             <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />
-            <span>📰 報紙頭條社論預覽 ({mediaTag} DAILY)</span>
+            <span>{isEn ? "📰 Newspaper Editorial Preview (" + mediaTag + " DAILY)" : "📰 報紙頭條社論預覽 (" + mediaTag + " DAILY)"}</span>
           </div>
           <h4 className="text-sm font-black text-stone-900 mb-2 font-serif leading-tight line-clamp-1">
-            {(getDetailedContent(currentAlert) as any).headline}
+            {(getDetailedContent(currentAlert, lang) as any).headline}
           </h4>
           <p className="text-[11px] text-stone-700 leading-relaxed font-serif line-clamp-2 italic bg-stone-100 p-1.5 rounded border-l-2 border-stone-800 mb-2">
             「 {currentAlert.content} 」
           </p>
           <p className="text-[11px] text-stone-800 font-serif line-clamp-2">
-            {(getDetailedContent(currentAlert) as any).paragraphs?.[0]}
+            {(getDetailedContent(currentAlert, lang) as any).paragraphs?.[0]}
           </p>
           <div className="mt-3 text-[10px] text-center text-stone-900 border-t border-stone-200 pt-1.5 font-sans font-bold">
-            👉 點擊卡片閱讀完整報紙頭條報導
+            {isEn ? "👉 Click card to read full newspaper coverage" : "👉 點擊卡片閱讀完整報紙頭條報導"}
           </div>
         </div>
       </div>
@@ -1086,9 +1484,9 @@ function DiscourseAlert({
         </div>
       </div>
       <div className="mt-3 text-xs text-slate-500 border-t border-white/5 pt-2 flex items-center justify-between">
-        <span className="text-[10px] text-slate-400 font-normal">Slack 團隊頻道</span>
+        <span className="text-[10px] text-slate-400 font-normal">{isEn ? "Slack Channel" : "Slack 團隊頻道"}</span>
         <span className="text-[10px] text-indigo-400 font-bold animate-pulse group-hover:underline">
-          👉 點擊查看內部討論...
+          {isEn ? "👉 Click to read internal discussion..." : "👉 點擊查看內部討論..."}
         </span>
       </div>
 
@@ -1099,40 +1497,41 @@ function DiscourseAlert({
           : "opacity-0 translate-y-2 scale-95 invisible"
       }`}>
         <div className="flex items-center gap-2 mb-2 pb-1.5 border-b border-white/5 text-xs text-indigo-400 font-bold">
-          <span>💬 團隊內部 Slack 頻道預覽 ({currentAlert.senderOrPublication.split(" ")[0]})</span>
+          <span>{isEn ? "📢 Live Channel Preview (#marketing-pr-channel)" : "📢 內部頻道即時對話預覽 (#marketing-pr-channel)"}</span>
         </div>
-        <div className="space-y-2.5 mt-1">
-          {(getDetailedContent(currentAlert) as any).messages?.slice(0, 2).map((msg: any, idx: number) => (
-            <div key={idx} className="flex gap-2 text-[11px] mb-2 border-l border-white/5 pl-2">
-              <div className="h-5 w-5 rounded bg-teal-600 flex items-center justify-center font-bold text-white text-[9px] shrink-0">
-                {msg.avatar}
-              </div>
+        <div className="space-y-2.5 mt-1 border-t border-white/5 pt-2">
+          {(getDetailedContent(currentAlert, lang) as any).messages?.map((msg: any, idx: number) => (
+            <div key={idx} className="flex gap-2 items-start text-[11px] mb-2">
+              <span className="h-5 w-5 rounded bg-white/5 flex items-center justify-center text-xs shrink-0">{msg.avatar}</span>
               <div className="min-w-0">
                 <div className="flex items-baseline gap-1 text-[10px] text-slate-400">
                   <span className="font-bold text-slate-300">{msg.user}</span>
                   <span>{msg.time}</span>
                 </div>
-                <p className="text-slate-200 line-clamp-1">{msg.text}</p>
+                <p className="text-slate-200 line-clamp-1 mt-0.5">{msg.text}</p>
               </div>
             </div>
           ))}
         </div>
         <div className="mt-3 text-[10px] text-center text-indigo-400 border-t border-white/5 pt-1.5 font-semibold">
-          👉 點擊卡片查看內部討論詳情
+          {isEn ? "👉 Click card to enter channel for full discussion" : "👉 點擊卡片進入完整工作群組查看更多討論"}
         </div>
       </div>
     </div>
   );
 }
 
-function AdvisoryBubbles({ questionId, isEvent }: { questionId: string; isEvent: boolean }) {
-  const opinions = getAdviserOpinion(questionId, isEvent);
+function AdvisoryBubbles({ questionId, isEvent, lang = "zh" }: { questionId: string; isEvent: boolean; lang?: "zh" | "en" }) {
+  const isEn = lang === "en";
+  const opinions = getAdviserOpinion(questionId, isEvent, lang);
   return (
     <div className="grid gap-3 sm:grid-cols-2 mb-4">
       <div className="rounded-lg border border-purple-500/30 bg-white/[0.06] p-4 text-slate-200 shadow-glow backdrop-blur-xl saturate-150">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-lg animate-pulse">👩‍💼</span>
-          <span className="text-[11px] uppercase tracking-wider text-purple-300 font-bold">ESG價值合規顧問</span>
+          <span className="text-[11px] uppercase tracking-wider text-purple-300 font-bold">
+            {isEn ? "ESG Compliance Advisor" : "ESG價值合規顧問"}
+          </span>
         </div>
         <p className="text-xs leading-5 text-slate-300 italic">{opinions.consultant}</p>
       </div>
@@ -1140,7 +1539,9 @@ function AdvisoryBubbles({ questionId, isEvent }: { questionId: string; isEvent:
       <div className="rounded-lg border border-amber-500/30 bg-white/[0.06] p-4 text-slate-200 shadow-glow backdrop-blur-xl saturate-150">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-lg animate-pulse">👨‍💻</span>
-          <span className="text-[11px] uppercase tracking-wider text-amber-300 font-bold">研發製作組長</span>
+          <span className="text-[11px] uppercase tracking-wider text-amber-300 font-bold">
+            {isEn ? "Lead R&D Producer" : "研發製作組長"}
+          </span>
         </div>
         <p className="text-xs leading-5 text-slate-300 italic">{opinions.dev}</p>
       </div>
@@ -1151,14 +1552,21 @@ function AdvisoryBubbles({ questionId, isEvent }: { questionId: string; isEvent:
 function AxisPanel({
   profile,
   selectedType,
+  lang = "zh"
 }: {
   profile: UserProfile | null;
   selectedType: WorkType;
+  lang?: "zh" | "en";
 }) {
+  const isEn = lang === "en";
   const [isExpanded, setIsExpanded] = useState(false);
   const current = axisFromProfile(profile);
-  const deiLevel = current.x >= 72 ? "價值高度合規" : current.x >= 45 ? "中度合規定位" : "保守大眾傾向";
-  const controversyLevel = current.y >= 72 ? "高輿論反彈" : current.y >= 45 ? "中度敏感" : "社群輿論平穩";
+  const deiLevel = isEn
+    ? (current.x >= 72 ? "High ESG/DEI Alignment" : current.x >= 45 ? "Medium Alignment" : "Conservative / Mass Appeal")
+    : (current.x >= 72 ? "價值高度合規" : current.x >= 45 ? "中度合規定位" : "保守大眾傾向");
+  const controversyLevel = isEn
+    ? (current.y >= 72 ? "High Backlash Risk" : current.y >= 45 ? "Moderate Sensitivity" : "Stable Public Opinion")
+    : (current.y >= 72 ? "高輿論反彈" : current.y >= 45 ? "中度敏感" : "社群輿論平穩");
 
   return (
     <aside className="rounded-lg border border-white/20 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-5 shadow-glow backdrop-blur-xl saturate-150 flex flex-col gap-4">
@@ -1171,9 +1579,9 @@ function AxisPanel({
         <div>
           <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-teal-200">POSITIONING & PREDICTOR</p>
           <h2 className="text-sm font-bold text-white flex items-center gap-2 mt-0.5">
-            📊 目前數據評估與預測 
+            {isEn ? "📊 Live Assessment & Predictor" : "📊 目前數據評估與預測"} 
             <span className="text-[10px] text-teal-200 bg-teal-950/40 border border-teal-500/20 px-2 py-0.5 rounded font-mono font-bold shrink-0">
-              {isExpanded ? "收合 ▲" : "點擊展開 ▼"}
+              {isExpanded ? (isEn ? "Collapse ▲" : "收合 ▲") : (isEn ? "Expand ▼" : "點擊展開 ▼")}
             </span>
           </h2>
         </div>
@@ -1185,10 +1593,12 @@ function AxisPanel({
           <div className="mb-4 hidden lg:flex items-center justify-between gap-4">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-200">POSITIONING</p>
-              <h2 className="mt-1 text-lg font-bold text-white">文化價值定位儀</h2>
+              <h2 className="mt-1 text-lg font-bold text-white">
+                {isEn ? "Cultural Value Map" : "文化價值定位儀"}
+              </h2>
             </div>
             <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-300">
-              {selectedType === "film" ? "影視" : "遊戲"}
+              {selectedType === "film" ? (isEn ? "Film" : "影視") : (isEn ? "Game" : "遊戲")}
             </span>
           </div>
 
@@ -1205,25 +1615,38 @@ function AxisPanel({
               <Crosshair size={14} className="text-slate-950" />
             </div>
 
-            <span className="absolute left-4 top-3 text-[10px] font-semibold text-slate-400">輿論反彈高 (Backlash)</span>
-            <span className="absolute bottom-3 left-4 text-[10px] font-semibold text-slate-400">傳統保守</span>
-            <span className="absolute bottom-3 right-4 text-[10px] font-semibold text-slate-400">價值合規 (ESG/DEI)</span>
-            <span className="absolute bottom-10 left-4 text-[10px] font-semibold text-slate-500">輿論反彈低</span>
+            <span className="absolute left-4 top-3 text-[10px] font-semibold text-slate-400">
+              {isEn ? "High Backlash" : "輿論反彈高 (Backlash)"}
+            </span>
+            <span className="absolute bottom-3 left-4 text-[10px] font-semibold text-slate-400">
+              {isEn ? "Traditionalist" : "傳統保守"}
+            </span>
+            <span className="absolute bottom-3 right-4 text-[10px] font-semibold text-slate-400">
+              {isEn ? "ESG/DEI Aligned" : "價值合規 (ESG/DEI)"}
+            </span>
+            <span className="absolute bottom-10 left-4 text-[10px] font-semibold text-slate-500">
+              {isEn ? "Low Backlash" : "輿論反彈低"}
+            </span>
           </div>
 
           <div className="mt-3 rounded-md border border-white/10 bg-white/[0.04] p-3 text-sm shadow-inner">
             <p className="font-semibold text-white">
               {deiLevel} / {controversyLevel}
             </p>
-            <p className="mt-1 text-xs leading-5 text-slate-400">每個決策都會改變你作品的價值對齊與公關壓力位置。</p>
+            <p className="mt-1 text-xs leading-5 text-slate-400">
+              {isEn 
+                ? "Every decision shifts your project's ESG/DEI alignment and PR pressure."
+                : "每個決策都會改變你作品的價值對齊與公關壓力位置。"}
+            </p>
           </div>
         </div>
 
-        <CriticUserPredictor profile={profile} selectedType={selectedType} />
+        <CriticUserPredictor profile={profile} selectedType={selectedType} lang={lang} />
       </div>
     </aside>
   );
 }
+
 
 const shuffle = <T,>(array: T[]): T[] => {
   const next = [...array];
@@ -1281,11 +1704,26 @@ const optionThemes: Record<
 
 export default function QuizPage() {
   const router = useRouter();
+  const [lang, setLang] = useState<"zh" | "en">("zh");
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem("pc-quiz-lang");
+    if (saved === "en" || saved === "zh") {
+      setLang(saved);
+    }
+  }, []);
+
+  const toggleLang = () => {
+    const next = lang === "zh" ? "en" : "zh";
+    setLang(next);
+    window.localStorage.setItem("pc-quiz-lang", next);
+  };
   const [selectedType, setSelectedType] = useState<WorkType | null>(null);
   const [step, setStep] = useState(0);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [lastAlert, setLastAlert] = useState<MockAlert | null>(null);
   const [currentEvent, setCurrentEvent] = useState<SuddenEvent | null>(null);
+  const translatedCrisisEvent = currentEvent ? translateCrisis(currentEvent, lang) : null;
   const [gameQuestions, setGameQuestions] = useState<typeof questions>([]);
   const [activeDetailAlert, setActiveDetailAlert] = useState<MockAlert | null>(null);
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
@@ -1303,38 +1741,56 @@ export default function QuizPage() {
     
     if (currentEvent.id === "leak") {
       timeoutEffects = { controversyRisk: 25, audienceAcceptance: -15 };
-      message = "「因未能及時公關，洩漏版本大範圍傳播，輿論徹底失控！」";
+      message = lang === "en"
+        ? "“Due to lack of timely PR, the leaked build went viral. Public opinion is completely out of control!”"
+        : "「因未能及時公關，洩漏版本大範圍傳播，輿論徹底失控！」";
     } else if (currentEvent.id === "consultant") {
       timeoutEffects = { representation: -15, controversyRisk: 10, studioRisk: 25 };
-      message = "「融資死線已過，未能在規定時間內提交報告，資金遭遇凍結！」";
+      message = lang === "en"
+        ? "“Funding deadline passed. Failed to submit report on time, and funding has been frozen!”"
+        : "「融資死線已過，未能在規定時間內提交報告，資金遭遇凍結！」";
     } else if (currentEvent.id === "journalist") {
       timeoutEffects = { mediaFriendly: -25, controversyRisk: 20 };
-      message = "「由於您沉默未答，媒體頭條發布《沉默代表默認？製作組逃避輿論監督》，信任度大跌！」";
+      message = lang === "en"
+        ? "“Since you remained silent, the media published the headline 'Silence Means Consent? Devs Evading Public Scrutiny', crashing trust!”"
+        : "「由於您沉默未答，媒體頭條發布《沉默代表默認？製作組逃避輿論監督》，信任度大跌！」";
     } else if (currentEvent.id === "budget_cut") {
       timeoutEffects = { commercialEntertainment: -10, studioRisk: 20 };
-      message = "「融資談判超時，未能及時確定商業模式，資金鏈吃緊，研發進度受阻！」";
+      message = lang === "en"
+        ? "“Monetization talks timed out. Failed to secure business model on time, causing funding crunch and delayed research!”"
+        : "「融資談判超時，未能及時確定商業模式，資金鏈吃緊，研發進度受阻！」";
     } else if (currentEvent.id === "streamer_boycott") {
       timeoutEffects = { controversyRisk: 15, audienceAcceptance: -10 };
-      message = "「由於您遲遲未作回應，主播抵制標籤發酵擴大，玩家流失加劇！」";
+      message = lang === "en"
+        ? "“As you delayed response, the streamer boycott tag gained traction, accelerating user loss!”"
+        : "「由於您遲遲未作回應，主播抵制標籤發酵擴大，玩家流失加劇！」";
     } else if (currentEvent.id === "staff_protest") {
       timeoutEffects = { representation: -10, studioRisk: 15 };
-      message = "「內部矛盾未及時處理，研發小組消極怠工，專案進度遭受拖延！」";
+      message = lang === "en"
+        ? "“Internal conflict went unresolved, leading to work slowdowns and project schedule delays!”"
+        : "「內部矛盾未及時處理，研發小組消極怠工，專案進度遭受拖延！」";
     } else if (currentEvent.id === "review_bomb") {
       timeoutEffects = { controversyRisk: 15, audienceAcceptance: -10 };
-      message = "「未採取任何社群維護措施，商店頁面遭差評刷爆，期待度大幅下降！」";
+      message = lang === "en"
+        ? "“No community protection measures taken. The store page is flooded with review bombing, crashing anticipation!”"
+        : "「未採取任何社群維護措施，商店頁面遭差評刷爆，期待度大幅下降！」";
     } else if (currentEvent.id === "actor_scandal") {
       timeoutEffects = { controversyRisk: 15, studioRisk: 10 };
-      message = "「演員爭議事件持續升溫，官方未能及時表態，導致品牌形象受損！」";
+      message = lang === "en"
+        ? "“Actor controversy continues to escalate. Studio failed to take a stand in time, damaging brand image!”"
+        : "「演員爭議事件持續升溫，官方未能及時表態，導致品牌形象受損！」";
     } else {
       timeoutEffects = { controversyRisk: 15 };
-      message = "「未能在時限內做出決策，公關事件持續發酵！」";
+      message = lang === "en"
+        ? "“Failed to make a decision in time. PR incident continues to bubble!”"
+        : "「未能在時限內做出決策，公關事件持續發酵！」";
     }
 
     const nextProfile = applyEffects(profile, timeoutEffects, undefined);
     
     const timeoutAlert: MockAlert = {
       source: "Slack",
-      senderOrPublication: "🚨 公關危機超時",
+      senderOrPublication: lang === "en" ? "🚨 PR Crisis Timeout" : "🚨 公關危機超時",
       content: message
     };
     
@@ -1508,6 +1964,16 @@ export default function QuizPage() {
 
     return (
       <main className="relative isolate min-h-screen flex items-center justify-center overflow-hidden px-5 py-8">
+              {/* Floating Language Toggle Button */}
+      <div className="absolute top-6 right-6 z-50">
+        <button
+          onClick={toggleLang}
+          className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.06] hover:bg-white/[0.12] px-3.5 py-2 text-xs font-bold text-white shadow-glow backdrop-blur-md transition-all active:scale-95 cursor-pointer"
+        >
+          <span>🌐</span>
+          <span>{lang === "zh" ? "EN" : "繁中"}</span>
+        </button>
+      </div>
         <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_center,rgba(239,68,68,0.14),transparent_48%),linear-gradient(135deg,#0a0505,#110808_46%,#070202)]" />
         <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,0,0,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-70 animate-pulse" />
         
@@ -1523,27 +1989,50 @@ export default function QuizPage() {
 
           <p className="text-xs uppercase tracking-[0.25em] text-red-400 font-bold">PROJECT CANCELLED</p>
           <h1 className="text-3xl font-black text-white mt-2 mb-4 leading-tight">
-            {gameOverReason === "esg_bankruptcy" && "❌ ESG 融資斷鏈，專案夭折"}
-            {gameOverReason === "pr_firestorm" && "💥 輿論大爆炸，製作組解散"}
-            {gameOverReason === "user_rating_death" && "☠️ 玩家口碑死亡，工作室倒閉"}
+            {lang === "en" ? (
+              <>
+                {gameOverReason === "esg_bankruptcy" && "❌ ESG Funding Frozen, Project Cancelled"}
+                {gameOverReason === "pr_firestorm" && "💥 Public Relations Disaster, Studio Disbanded"}
+                {gameOverReason === "user_rating_death" && "☠️ User Backlash Fatal, Studio Bankrupt"}
+              </>
+            ) : (
+              <>
+                {gameOverReason === "esg_bankruptcy" && "❌ ESG 融資斷鏈，專案夭折"}
+                {gameOverReason === "pr_firestorm" && "💥 輿論大爆炸，製作組解散"}
+                {gameOverReason === "user_rating_death" && "☠️ 玩家口碑死亡，工作室倒閉"}
+              </>
+            )}
           </h1>
 
           <p className="text-sm leading-7 text-slate-300 text-left mb-6 bg-red-950/20 border border-red-950/40 p-4 rounded-lg">
-            {gameOverReason === "esg_bankruptcy" && 
-              "由於您多次拒絕配合外部文化合規指標，進步價值合規度 (ESG/DEI) 低於紅線。外部顧問公司判定項目「不合規」，黑石基金等風投機構隨即撤回了第二期開發資金。在研發資金耗盡的窘境下，專案被迫取消。"}
-            {gameOverReason === "pr_firestorm" && 
-              "您的極端人設與高爭議決策徹底引爆了玩家社群。論壇伺服器被憤怒的玩家沖垮，Steam 討論區湧入大量退款請願。各大銷售平台因輿論壓力強制將您的作品下架，董事會決定將您開除以平息眾怒。"}
-            {gameOverReason === "user_rating_death" && 
-              "作品發售後，Metacritic 玩家評分慘遭洗到歷史低點（Steam 壓倒性負評）。核心玩家強烈唾棄作品中僵硬的政治說教台詞與支離破碎的魔改人設。首週退款率高達 90%，工作室面臨巨額虧損宣告破產。"}
+            {lang === "en" ? (
+              <>
+                {gameOverReason === "esg_bankruptcy" && 
+                  "Due to repeated rejections of external culture compliance standards, your ESG/DEI score fell below the red line. The audit agency failed the project, and venture capital withdrew phase-two funding. Lacking cash, the project is cancelled."}
+                {gameOverReason === "pr_firestorm" && 
+                  "Your extreme character setups and controversial decisions triggered massive player backlash. Forums crashed, Steam discussions were flooded with refund petitions, platforms pulled the title, and the board fired you."}
+                {gameOverReason === "user_rating_death" && 
+                  "Upon release, player ratings hit rock bottom (Overwhelmingly Negative on Steam). Core players rejected the rigid preachy lines and butchered character settings. First-week refunds hit 90%, bankrupting the studio."}
+              </>
+            ) : (
+              <>
+                {gameOverReason === "esg_bankruptcy" && 
+                  "由於您多次拒絕配合外部文化合規指標，進步價值合規度 (ESG/DEI) 低於紅線。外部顧問公司判定項目「不合規」，黑石基金等風投機構隨即撤回了第二期開發資金。在研發資金耗盡的窘境下，專案被迫取消。"}
+                {gameOverReason === "pr_firestorm" && 
+                  "您的極端人設與高爭議決策徹底引爆了玩家社群。論壇伺服器被憤怒的玩家沖垮，Steam 討論區湧入大量退款請願。各大銷售平台因輿論壓力強制將您的作品下架，董事會決定將您開除以平息眾怒。"}
+                {gameOverReason === "user_rating_death" && 
+                  "作品發售後，Metacritic 玩家評分慘遭洗到歷史低點（Steam 壓倒性負評）。核心玩家強烈唾棄作品中僵硬的政治說教台詞與支離破碎的魔改人設。首週退款率高達 90%，工作室面臨巨額虧損宣告破產。"}
+              </>
+            )}
           </p>
 
           <div className="grid grid-cols-2 gap-3 mb-8 bg-white/[0.03] border border-white/5 p-4 rounded-lg text-sm text-slate-400 font-mono">
             <div>
-              <p>最終媒體預測</p>
-              <p className="text-xl font-bold text-white mt-1">{critic} 分</p>
+              <p>{lang === "en" ? "Final Critics Score" : "最終媒體預測"}</p>
+              <p className="text-xl font-bold text-white mt-1">{critic} {lang === "en" ? "pts" : "分"}</p>
             </div>
             <div>
-              <p>最終玩家滿意</p>
+              <p>{lang === "en" ? "Final User Rating" : "最終玩家滿意"}</p>
               <p className="text-xl font-bold text-white mt-1">
                 {selectedType === "film" ? `${user.toFixed(1)} / 10` : `${user}%`}
               </p>
@@ -1555,7 +2044,7 @@ export default function QuizPage() {
             onClick={() => start(selectedType!)}
             className="w-full inline-flex justify-center items-center gap-2 rounded-lg bg-red-600 hover:bg-red-500 text-white px-5 py-3 font-semibold transition shadow-lg hover:shadow-red-500/20"
           >
-            🔁 重新開始項目
+            {lang === "en" ? "🔁 Restart Project" : "🔁 重新開始項目"}
           </button>
         </div>
       </main>
@@ -1565,6 +2054,16 @@ export default function QuizPage() {
   if (!selectedType) {
     return (
       <main className="relative isolate min-h-screen overflow-hidden px-5 py-10">
+              {/* Floating Language Toggle Button */}
+      <div className="absolute top-6 right-6 z-50">
+        <button
+          onClick={toggleLang}
+          className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.06] hover:bg-white/[0.12] px-3.5 py-2 text-xs font-bold text-white shadow-glow backdrop-blur-md transition-all active:scale-95 cursor-pointer"
+        >
+          <span>🌐</span>
+          <span>{lang === "zh" ? "EN" : "繁中"}</span>
+        </button>
+      </div>
         <div className="absolute inset-0 -z-20 bg-[linear-gradient(135deg,#080b12,#121019_45%,#071313)]" />
         <div className="absolute inset-x-0 top-8 -z-10 h-14 border-y border-white/10 bg-[repeating-linear-gradient(90deg,rgba(255,255,255,0.16)_0_1.25rem,transparent_1.25rem_2.4rem)] opacity-30" />
         <div className="absolute bottom-0 right-0 -z-10 h-2/3 w-3/4 bg-[linear-gradient(rgba(94,234,212,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(251,191,36,0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-60" />
@@ -1577,9 +2076,13 @@ export default function QuizPage() {
 
         <div className="mx-auto flex min-h-[calc(100vh-5rem)] max-w-5xl flex-col justify-center">
           <p className="mb-3 text-sm font-medium uppercase tracking-[0.25em] text-teal-200">Step 0</p>
-          <h1 className="text-4xl font-black text-white sm:text-5xl">你要製作哪一種作品？</h1>
+          <h1 className="text-4xl font-black text-white sm:text-5xl">
+            {lang === "en" ? "What kind of project are you making?" : "你要製作哪一種作品？"}
+          </h1>
           <p className="mt-4 max-w-2xl leading-7 text-slate-300">
-            先選媒介，後續題目會依影視或遊戲切換，最後只會在同類作品中比對推薦。
+            {lang === "en"
+              ? "Choose your medium first. Questions will adapt to film or game, and recommendations will be compared within the same category."
+              : "先選媒介，後續題目會依影視或遊戲切換，最後只會在同類作品中比對推薦。"}
           </p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -1589,12 +2092,16 @@ export default function QuizPage() {
               className="group rounded-lg border border-white/10 bg-white/[0.05] p-6 text-left transition hover:border-teal-200/60 hover:bg-white/[0.1] backdrop-blur-xl saturate-150 shadow-glow"
             >
               <Clapperboard className="mb-8 text-teal-200" size={34} />
-              <h2 className="text-2xl font-semibold text-white">影視作品</h2>
+              <h2 className="text-2xl font-semibold text-white">
+                {lang === "en" ? "Film Project" : "影視作品"}
+              </h2>
               <p className="mt-3 text-sm leading-6 text-slate-300">
-                偏向選角、獎季、票房、原作改編與影評語境。
+                {lang === "en"
+                  ? "Focuses on casting, award seasons, box office, adaptations, and critic reviews."
+                  : "偏向選角、獎季、票房、原作改編與影評語境。"}
               </p>
               <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-teal-200">
-                選擇影視
+                {lang === "en" ? "Select Film" : "選擇影視"}
                 <ArrowRight size={16} className="transition group-hover:translate-x-1" />
               </span>
             </button>
@@ -1605,12 +2112,16 @@ export default function QuizPage() {
               className="group rounded-lg border border-white/10 bg-white/[0.05] p-6 text-left transition hover:border-amber-200/60 hover:bg-white/[0.1] backdrop-blur-xl saturate-150 shadow-glow"
             >
               <Gamepad2 className="mb-8 text-amber-200" size={34} />
-              <h2 className="text-2xl font-semibold text-white">遊戲作品</h2>
+              <h2 className="text-2xl font-semibold text-white">
+                {lang === "en" ? "Game Project" : "遊戲作品"}
+              </h2>
               <p className="mt-3 text-sm leading-6 text-slate-300">
-                加入商業模式、玩家自由度、劇情導向與社群反應。
+                {lang === "en"
+                  ? "Adds monetization models, player freedom, narrative focus, and community backlash."
+                  : "加入商業模式、玩家自由度、劇情導向與社群反應。"}
               </p>
               <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-amber-200">
-                選擇遊戲
+                {lang === "en" ? "Select Game" : "選擇遊戲"}
                 <ArrowRight size={16} className="transition group-hover:translate-x-1" />
               </span>
             </button>
@@ -1623,12 +2134,23 @@ export default function QuizPage() {
   const current = gameQuestions[step];
   const progress = Math.round(((step + 1) / gameQuestions.length) * 100);
 
-  const displayTitle = current?.title;
-  const displaySubtitle = current?.subtitle;
-  const displayOptions = current?.options ?? [];
+  const translatedCurrent = current ? translateQuestion(current, lang) : current;
+  const displayTitle = translatedCurrent?.title;
+  const displaySubtitle = translatedCurrent?.subtitle;
+  const displayOptions = translatedCurrent?.options ?? [];
 
   return (
     <main className="relative isolate min-h-screen overflow-hidden px-5 py-8">
+            {/* Floating Language Toggle Button */}
+      <div className="absolute top-6 right-6 z-50">
+        <button
+          onClick={toggleLang}
+          className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.06] hover:bg-white/[0.12] px-3.5 py-2 text-xs font-bold text-white shadow-glow backdrop-blur-md transition-all active:scale-95 cursor-pointer"
+        >
+          <span>🌐</span>
+          <span>{lang === "zh" ? "EN" : "繁中"}</span>
+        </button>
+      </div>
       <div className="absolute inset-0 -z-20 bg-[linear-gradient(135deg,#080b12,#111827_46%,#071313)]" />
       <div className="absolute left-0 top-0 -z-10 h-full w-20 border-r border-white/10 bg-[repeating-linear-gradient(180deg,rgba(255,255,255,0.14)_0_1.2rem,transparent_1.2rem_2.5rem)] opacity-25" />
       <div className="absolute right-0 top-0 -z-10 h-full w-1/2 bg-[linear-gradient(rgba(94,234,212,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(251,191,36,0.08)_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] opacity-60" />
@@ -1654,7 +2176,7 @@ export default function QuizPage() {
             className="mb-6 inline-flex items-center gap-2 text-sm text-slate-300 transition hover:text-white"
           >
             <ArrowLeft size={16} />
-            返回
+            {lang === "en" ? "Back" : "返回"}
           </button>
 
           <div className="mb-4 h-2 overflow-hidden rounded-full bg-white/10">
@@ -1662,7 +2184,9 @@ export default function QuizPage() {
           </div>
           <div className="flex items-center justify-between gap-4 text-sm text-slate-300">
             <span>
-              {selectedType === "film" ? "影視作品" : "遊戲作品"}
+              {selectedType === "film" 
+                ? (lang === "en" ? "Film Project" : "影視作品") 
+                : (lang === "en" ? "Game Project" : "遊戲作品")}
             </span>
             <span>
               {`${step + 1} / ${gameQuestions.length}`}
@@ -1676,6 +2200,7 @@ export default function QuizPage() {
             <AdvisoryBubbles 
               questionId={current?.id} 
               isEvent={false} 
+              lang={lang}
             />
 
             <section className="rounded-lg border border-white/20 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-5 shadow-glow backdrop-blur-xl saturate-150 sm:p-8 transition-all duration-300">
@@ -1686,7 +2211,7 @@ export default function QuizPage() {
               {displaySubtitle ? <p className="mt-3 text-slate-300 leading-7">{displaySubtitle}</p> : null}
 
               <div className="mt-8 grid gap-3">
-                {displayOptions.map((option) => {
+                {displayOptions.map((option: any) => {
                   return (
                     <button
                       type="button"
@@ -1721,15 +2246,16 @@ export default function QuizPage() {
               alert={lastAlert} 
               controversyRisk={profile ? axisFromProfile(profile).y : 50} 
               onOpenDetails={(alert) => setActiveDetailAlert(alert)}
+              lang={lang}
             />
           </div>
 
-          <AxisPanel profile={profile} selectedType={selectedType} />
+          <AxisPanel profile={profile} selectedType={selectedType} lang={lang} />
         </div>
       </div>
 
       {/* Sudden Crisis Modal Overlay */}
-      {currentEvent && (
+      {currentEvent && translatedCrisisEvent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
           <div className="relative max-w-2xl w-full rounded-xl border-2 border-red-500/40 bg-gradient-to-b from-[#180a0a] to-[#0a0303] p-6 sm:p-8 shadow-[0_0_50px_rgba(239,68,68,0.35)] text-slate-100 max-h-[92vh] overflow-y-auto animate-in zoom-in-95 duration-200">
             {/* Pulsing red alarm border glow */}
@@ -1741,7 +2267,7 @@ export default function QuizPage() {
             <div className="flex items-center justify-between text-red-500 font-bold text-xs uppercase tracking-widest mb-2">
               <div className="flex items-center gap-2">
                 <span className="animate-ping h-2.5 w-2.5 rounded-full bg-red-500 inline-block shrink-0" />
-                <span>🚨 突發公關危機 (CRISIS EVENT)</span>
+                <span>{lang === "en" ? "🚨 SUDDEN PR CRISIS (CRISIS EVENT)" : "🚨 突發公關危機 (CRISIS EVENT)"}</span>
               </div>
               {timeLeft !== null && (
                 <div className={`px-2.5 py-1 rounded border font-mono text-[11px] flex items-center gap-1.5 ${
@@ -1749,7 +2275,7 @@ export default function QuizPage() {
                     ? "bg-red-950 border-red-500 text-red-400 animate-pulse font-black animate-bounce" 
                     : "bg-black/40 border-red-500/30 text-red-500"
                 }`}>
-                  <span>⏱️ 剩餘決策時間：</span>
+                  <span>{lang === "en" ? "⏱️ Time Left: " : "⏱️ 剩餘決策時間："}</span>
                   <span className="text-sm font-black text-white">{timeLeft}s</span>
                 </div>
               )}
@@ -1766,31 +2292,31 @@ export default function QuizPage() {
             )}
             
             <h2 className="text-2xl font-black text-white leading-tight mb-3 sm:text-3xl">
-              {currentEvent.title}
+              {translatedCrisisEvent.title}
             </h2>
             <p className="text-sm leading-6 text-slate-300 mb-6 bg-red-950/20 border border-red-900/30 p-4 rounded-lg">
-              {currentEvent.subtitle}
+              {translatedCrisisEvent.subtitle}
             </p>
 
             {/* Advisory in Crisis */}
             <div className="grid gap-3 sm:grid-cols-2 mb-6 text-left">
               <div className="rounded-lg border border-purple-500/20 bg-purple-950/20 p-4 text-xs text-slate-300">
-                <div className="font-bold text-purple-300 mb-1">👩‍💼 ESG價值合規顧問</div>
+                <div className="font-bold text-purple-300 mb-1">{lang === "en" ? "👩‍💼 ESG Compliance Advisor" : "👩‍💼 ESG價值合規顧問"}</div>
                 <div className="italic leading-5">
-                  {getAdviserOpinion(currentEvent.id, true).consultant}
+                  {getAdviserOpinion(currentEvent.id, true, lang).consultant}
                 </div>
               </div>
               <div className="rounded-lg border border-amber-500/20 bg-amber-950/20 p-4 text-xs text-slate-300">
-                <div className="font-bold text-amber-300 mb-1">👨‍💻 研發製作組長</div>
+                <div className="font-bold text-amber-300 mb-1">{lang === "en" ? "👨‍💻 Lead R&D Producer" : "👨‍💻 研發製作組長"}</div>
                 <div className="italic leading-5">
-                  {getAdviserOpinion(currentEvent.id, true).dev}
+                  {getAdviserOpinion(currentEvent.id, true, lang).dev}
                 </div>
               </div>
             </div>
 
             <div className="grid gap-3">
-              {currentEvent.options.map((option) => {
-                const style = optionThemes[option.theme] || optionThemes.slate;
+              {translatedCrisisEvent.options.map((option: any) => {
+                const style = (optionThemes as any)[option.theme] || optionThemes.slate;
                 return (
                   <button
                     type="button"
@@ -1814,12 +2340,22 @@ export default function QuizPage() {
                       
                       {/* Projected crisis impact indicators */}
                       <div className="mt-3.5 flex flex-wrap gap-1.5 border-t border-white/5 pt-3">
-                        <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold mr-1 flex items-center">📊 預估輿論衝擊：</span>
+                        <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold mr-1 flex items-center">{lang === "en" ? "📊 Projected PR Impact: " : "📊 預估輿論衝擊："}</span>
                         {Object.entries(option.effects).map(([key, val]) => {
                           const value = val as number;
                           if (value === 0) return null;
                           const isPositive = value > 0;
-                          const label = {
+                          const label = lang === "en" ? ({
+                            representation: "DEI Representation",
+                            controversyRisk: "Controversy Risk",
+                            audienceAcceptance: "Audience Acceptance",
+                            studioRisk: "Studio & Funding Risk",
+                            mediaFriendly: "Media Sentiment",
+                            commercialEntertainment: "Entertainment Value",
+                            canonFaithful: "Canon Fidelity",
+                            genderPowerShift: "Gender Role Swaps",
+                            issueInsertion: "Dialogue Preachiness",
+                          }[key] || key) : ({
                             representation: "DEI多元代表性",
                             controversyRisk: "輿論爭議風險",
                             audienceAcceptance: "大眾受眾接受度",
@@ -1829,7 +2365,7 @@ export default function QuizPage() {
                             canonFaithful: "原作忠實度",
                             genderPowerShift: "性別翻轉程度",
                             issueInsertion: "議題說教感",
-                          }[key] || key;
+                          }[key] || key);
 
                           // Thematic color-coding
                           let colorClass = "text-slate-300 bg-slate-950/40 border-slate-500/20";
@@ -1894,7 +2430,7 @@ export default function QuizPage() {
                   onClick={() => setActiveDetailAlert(null)}
                   className="absolute top-4 right-4 bg-stone-900 text-white font-sans text-xs uppercase tracking-wider font-bold px-3 py-1.5 rounded hover:bg-stone-700 transition"
                 >
-                  關閉本頁 [X]
+                  {lang === "en" ? "Close Page [X]" : "關閉本頁 [X]"}
                 </button>
 
                 {/* Newspaper Masthead */}
@@ -1942,7 +2478,7 @@ export default function QuizPage() {
                 </div>
 
                 <div className="flex justify-between items-center text-xs text-stone-500 font-sans">
-                  <span>責任編輯：社群輿情專題組</span>
+                  <span>{lang === "en" ? "Reporter: PR Monitoring Task Force" : "責任編輯：社群輿情專題組"}</span>
                   <span>© {new Date().getFullYear()} {mediaTag} Media Group. All Rights Reserved.</span>
                 </div>
               </div>
@@ -1966,7 +2502,7 @@ export default function QuizPage() {
                   onClick={() => setActiveDetailAlert(null)}
                   className="absolute top-4 right-4 text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 text-xs px-3 py-1.5 rounded transition"
                 >
-                  關閉討論區 [X]
+                  {lang === "en" ? "Close Thread [X]" : "關閉討論區 [X]"}
                 </button>
 
                 {/* Subreddit Header */}
@@ -1992,7 +2528,7 @@ export default function QuizPage() {
 
                 {/* Comments Section */}
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-4 border-b border-white/5 pb-2">
-                  熱門留言討論串 (Top Comments)
+                  {lang === "en" ? "Top Comments" : "熱門留言討論串 (Top Comments)"}
                 </h3>
 
                 <div className="flex flex-col gap-4">
@@ -2030,7 +2566,7 @@ export default function QuizPage() {
                 onClick={() => setActiveDetailAlert(null)}
                 className="absolute top-4 right-4 text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 text-xs px-3 py-1.5 rounded transition"
               >
-                關閉頻道 [X]
+                {lang === "en" ? "Close Channel [X]" : "關閉頻道 [X]"}
               </button>
 
               {/* Slack Header */}

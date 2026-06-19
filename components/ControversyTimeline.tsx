@@ -22,13 +22,270 @@ const pointStyle: Record<TimelineTone, string> = {
   bad: "bg-rose-300",
 };
 
-const toneLabel: Record<TimelineTone, string> = {
-  good: "好評",
-  mixed: "分歧",
-  bad: "爭議",
+const getToneLabel = (tone: TimelineTone, isEn: boolean) => {
+  if (isEn) {
+    return { good: "Positive", mixed: "Mixed", bad: "Discourse" }[tone];
+  }
+  return { good: "好評", mixed: "分歧", bad: "爭議" }[tone];
 };
 
-const gameTimelines: Record<string, TimelineEvent[]> = {
+const gameTimelinesEn: Record<string, TimelineEvent[]> = {
+  "last-of-us-part-ii": [
+    {
+      date: "2020-04",
+      title: "Plot Leaks Spark Polarization",
+      summary: "Players polarized before launch, focusing on main character fates and narrative perspective.",
+      detail: "This led many to support or boycott before even playing, causing discourse to dissolve into faction wars post-launch.",
+      tone: "bad",
+    },
+    {
+      date: "2020-06",
+      title: "Critical Acclaim vs. User Backlash",
+      summary: "High praise for presentation and gameplay mechanics, but narrative choices triggered intense player backlash.",
+      detail: "A classic example of high production values, high emotional impact, and high audience polarization.",
+      tone: "mixed",
+    },
+    {
+      date: "2025-04",
+      title: "PC Release Re-evaluation",
+      summary: "Steam reviews show technical praise and narrative backlash coexist, with sentiment remaining divided.",
+      detail: "Years later, discussion still centers on narrative choices rather than pure visual or mechanics quality.",
+      tone: "mixed",
+    },
+  ],
+  "baldurs-gate-3": [
+    {
+      date: "2020-10",
+      title: "Early Access Builds Trust",
+      summary: "Players participated early in systems, character and story adjustments, securing core fans before release.",
+      detail: "Its diverse representation and freedom of choice were seen as integrated RPG elements rather than forced checklist items.",
+      tone: "good",
+    },
+    {
+      date: "2023-08",
+      title: "Release and Global Acclaim",
+      summary: "Players widely praised freedom of choice, character depth, quest design, and story branches.",
+      detail: "A model of high representation with low cultural backlash, because players felt the content served gameplay and characters.",
+      tone: "good",
+    },
+    {
+      date: "2023-12",
+      title: "Awards Expand Positive Influence",
+      summary: "Awards and long-tail reviews established it as a benchmark for modern narrative RPGs.",
+      detail: "Controversies didn't disappear entirely, but mainstream reviews were overwhelmingly dominated by quality rather than culture war debates.",
+      tone: "good",
+    },
+  ],
+  "cyberpunk-2077": [
+    {
+      date: "2020-12",
+      title: "Launch Disasters Dominate",
+      summary: "Bugs, console performance, and unfulfilled promises became the primary sources of negative reviews.",
+      detail: "It featured class, poverty, bodily augmentation, and corporate control themes, but launch failure was due to technical issues.",
+      tone: "bad",
+    },
+    {
+      date: "2022-2023",
+      title: "Updates Restore Player Trust",
+      summary: "Frequent patches shifted discussion back to worldbuilding, quests, and characters.",
+      detail: "This work shows how technical disaster is separate from cultural representation controversies.",
+      tone: "mixed",
+    },
+    {
+      date: "2023-09",
+      title: "2.0 & Phantom Liberty Redemption",
+      summary: "Steam reviews saw a significant recovery, commonly cited as a successful redemption case.",
+      detail: "Not a low-controversy game, but rather a successful redemption case from quality backlash to player praise.",
+      tone: "good",
+    },
+  ],
+  "helldivers-2": [
+    {
+      date: "2024-02",
+      title: "Co-op Gameplay Goes Viral",
+      summary: "Players praised PvE cooperation, chaotic action, satirical democracy narrative, and fair content value.",
+      detail: "Acclaim was driven by gameplay loop and community goals, with political satire accepted as a stylistic choice.",
+      tone: "good",
+    },
+    {
+      date: "2024-05",
+      title: "PSN Link Requirement Trigger",
+      summary: "Forced account linking and regional locks triggered massive negative reviews on Steam in a short time.",
+      detail: "A PR crisis caused by platform operations and publisher policy rather than game content itself.",
+      tone: "bad",
+    },
+    {
+      date: "2024-05",
+      title: "Policy Reverted, Reviews Stabilize",
+      summary: "After Sony reverted requirements, player sentiment stabilized, but trust was wounded.",
+      detail: "Reminds us to separate cultural content controversies from business models and platform policies.",
+      tone: "mixed",
+    },
+  ],
+  "hogwarts-legacy": [
+    {
+      date: "2020-09",
+      title: "Author Controversy From Announcement",
+      summary: "Discussion was dominated by series author's views and community stances long before release.",
+      detail: "Buying the game was often treated by players as a political stance rather than just evaluating product quality.",
+      tone: "bad",
+    },
+    {
+      date: "2023-02",
+      title: "Strong Commercial Performance",
+      summary: "Massive player base praised Hogwarts scenes, exploration, and fan service.",
+      detail: "A prime example of high cultural controversy but high commercial acceptance.",
+      tone: "good",
+    },
+    {
+      date: "2023-03",
+      title: "Late-game Open-world Fatigue",
+      summary: "Late-game reviews shifted to open-world empty spaces, repetitive content, and lack of choices.",
+      detail: "Later negative reviews were driven by open-world design fatigue rather than cultural politics.",
+      tone: "mixed",
+    },
+  ],
+  starfield: [
+    {
+      date: "2023-06",
+      title: "High Anticipation Before Release",
+      summary: "Bethesda's pedigree led players to expect massive space exploration and absolute freedom.",
+      detail: "High expectations meant that when exploration density was lacking, player disappointment was pronounced.",
+      tone: "good",
+    },
+    {
+      date: "2023-09",
+      title: "Polarized Post-launch Feedback",
+      summary: "Some praised ship building and quest lines, while others criticized load screens, copy-pasted planets, and slow pacing.",
+      detail: "The core debate was about gameplay design and world structure rather than DEI representation.",
+      tone: "mixed",
+    },
+    {
+      date: "2024",
+      title: "Long-tail Reviews Skew Disappointed",
+      summary: "Steam reviews increasingly criticized empty planets, recycled content, and dry writing.",
+      detail: "Serves as a great control sample of low cultural controversy but high gameplay polarization.",
+      tone: "bad",
+    },
+  ],
+  dustborn: [
+    {
+      date: "2024-08",
+      title: "Agenda-First Concept Draws Eye",
+      summary: "The game focuses on identity, power of language, political oppression, and road-trip narrative.",
+      detail: "While fitting the theme of this quiz, it made players inspect characters and script much more closely.",
+      tone: "mixed",
+    },
+    {
+      date: "2024-09",
+      title: "Forums Flood with User Backlash",
+      summary: "Negative reviews targeted unlikable characters, heavy preaching, lack of choice impact, and pacing.",
+      detail: "A classic case of high agenda, high cultural pressure, and low player acceptance.",
+      tone: "bad",
+    },
+    {
+      date: "2024-10",
+      title: "Niche Players Defend Concepts",
+      summary: "Some players found unique concepts and narrative ambition, but low execution quality kept appreciation low.",
+      detail: "DEI is not a default failure condition; rather, themes must be supported by strong characters and gameplay.",
+      tone: "mixed",
+    },
+  ],
+  "dragon-age-veilguard": [
+    {
+      date: "2024-10",
+      title: "Pre-release Hype & Doubts",
+      summary: "Old fans hoped for series return, but feared changes in combat, party control, and lighthearted tone.",
+      detail: "The risk point was not just representation, but a disconnect from the series' dark fantasy and moral grey tones.",
+      tone: "mixed",
+    },
+    {
+      date: "2024-11",
+      title: "Criticism Centers on Writing",
+      summary: "Negative Steam reviews focused on dialogue, characters, faction morality, and lack of series atmosphere.",
+      detail: "An example where cultural controversy and loyalty to an established franchise clash.",
+      tone: "bad",
+    },
+    {
+      date: "2025",
+      title: "Sentiment Remains Polarized",
+      summary: "Some praised visuals and action combat, while others argued it did not feel like a true Dragon Age game.",
+      detail: "Shows that backlash should not be attributed solely to DEI, but rather the intersection of adaptation direction and writing quality.",
+      tone: "mixed",
+    },
+  ],
+  "black-myth-wukong": [
+    {
+      date: "2024-08",
+      title: "Positive User Reviews Converge",
+      summary: "Steam reviews highly praised graphics, combat mechanics, boss design, and Chinese mythology identity.",
+      detail: "A control sample representing low DEI, low content controversy, high art quality, and action-driven gameplay.",
+      tone: "good",
+    },
+    {
+      date: "2024-09",
+      title: "Controversy Outside the Game",
+      summary: "Debates centered around media scores, censorship, developer comments, and community politics.",
+      detail: "Shows that external noise should not be counted as the product's internal content controversy.",
+      tone: "mixed",
+    },
+    {
+      date: "2024-2025",
+      title: "Long-tail Reviews Stay Positive",
+      summary: "Gameplay and visuals praise continued, with minor complaints focusing on level design and narrative pacing.",
+      detail: "A useful low-DEI benchmark for comparison in the database.",
+      tone: "good",
+    },
+  ],
+  "assassins-creed-shadows": [
+    {
+      date: "2024-05",
+      title: "Character Reveal Stirs Debate",
+      summary: "Dual leads put historical accuracy, representation, and franchise direction under scrutiny.",
+      detail: "A case of a high-profile IP combining with highly representative casting, easily magnifying cultural debates.",
+      tone: "bad",
+    },
+    {
+      date: "2025-03",
+      title: "Reviews Shift to Formula Fatigue",
+      summary: "Discussion expanded from casting to open-world formula, quest pacing, and Ubisoft fatigue.",
+      detail: "Demonstrates that backlash is also driven by franchise formula fatigue, not just cultural aspects.",
+      tone: "mixed",
+    },
+    {
+      date: "2025",
+      title: "DLC & Operations Draw Negativity",
+      summary: "Technical bugs and commercial operations merged with cultural debates in player sentiment.",
+      detail: "Helps separate which parts of the backlash were cultural versus which parts were product and service issues.",
+      tone: "bad",
+    },
+  ],
+  control: [
+    {
+      date: "2019-08",
+      title: "Critics Notice Remedy's Style",
+      summary: "Initial praise focused on supernatural office aesthetic, physics, narrative atmosphere, and lore files.",
+      detail: "A highly recognized work for its art direction, sound, and weird writing, expanding Remedy's style.",
+      tone: "good",
+    },
+    {
+      date: "2020-08",
+      title: "Ultimate Edition Stabilizes Reviews",
+      summary: "Steam players praised full DLC content, visuals, and narrative atmosphere, calling it an art masterpiece.",
+      detail: "Praise was driven by art direction, lore, controls, and supernatural theme execution, not DEI.",
+      tone: "good",
+    },
+    {
+      date: "2021-2024",
+      title: "Criticism Focuses on Navigation & Pacing",
+      summary: "Negative reviews targeted bad map navigation, repetitive late-game combat, or uneven pacing.",
+      detail: "A control sample for low cultural controversy, showing player complaints were about design and not political correctness.",
+      tone: "mixed",
+    },
+  ],
+};
+
+const gameTimelinesZh: Record<string, TimelineEvent[]> = {
   "last-of-us-part-ii": [
     {
       date: "2020-04",
@@ -184,7 +441,7 @@ const gameTimelines: Record<string, TimelineEvent[]> = {
     },
     {
       date: "2024-10",
-      title: "少數玩家仍肯定概念",
+      title: "慢速玩家仍肯定概念",
       summary: "部分玩家認為它有獨特設定與敘事野心，但完成度不足讓好感難以擴散。",
       detail: "不是有 DEI 就必然失敗，而是議題需要被角色、玩法與節奏托住。",
       tone: "mixed",
@@ -284,7 +541,7 @@ const gameTimelines: Record<string, TimelineEvent[]> = {
   ],
 };
 
-const buildFallbackTimeline = (work: Work): TimelineEvent[] => {
+const buildFallbackTimeline = (work: Work, isEn: boolean): TimelineEvent[] => {
   const highControversy = work.politicalIndex.controversyRisk >= 70;
   const highReception = work.tags.audienceAcceptance >= 75;
   const highRepresentation = work.politicalIndex.representation >= 75;
@@ -294,63 +551,110 @@ const buildFallbackTimeline = (work: Work): TimelineEvent[] => {
   const highStudioRisk = work.tags.studioRisk >= 65;
   const steamRating = work.ratings.find((rating) => rating.source === "steam")?.verdict;
   const mediaRating = work.ratings.find((rating) => rating.source === "metacritic")?.value;
-  const launchPraise = highReception
-    ? work.type === "game"
-      ? `玩家端通常會先肯定核心玩法、類型爽感或內容量；Steam 口碑可參考「${steamRating ?? "玩家評價"}」。`
-      : `影評與觀眾較容易肯定完成度、表演或類型娛樂性；Metacritic 可參考 ${mediaRating ?? "媒體評分"}。`
-    : work.type === "game"
-      ? `玩家回饋比較分散，常見焦點會落在玩法節奏、操作手感、內容量或最佳化。`
-      : `影評與觀眾回饋比較分散，常見焦點會落在節奏、角色弧線、主題表達或改編取捨。`;
-  const positioning = highRepresentation
-    ? "代表性、身份書寫或社會議題會成為討論入口；支持者看見企圖，反感者會檢查是否太刻意。"
-    : highPlayerFreedom
-      ? "作品更容易被拿來討論自由度、系統深度與玩家能不能用自己的方式完成目標。"
-      : highStory
-        ? "作品更容易被拿來討論劇情節奏、角色動機、結局與文本是否站得住。"
-        : "文化議題不是主要焦點，評價多半回到娛樂性、技術、玩法或類型完成度。";
-  const complaint = highMonetization
-    ? "主要詬病點容易落在商業模式、付費設計、營運節奏或玩家是否覺得被消費。"
-    : highStudioRisk
-      ? "主要詬病點容易落在技術狀態、完成度、延期承諾或上市時是否像半成品。"
-      : highControversy
-        ? "主要詬病點容易落在立場表達、改編方向、角色處理或粉絲是否覺得被背叛。"
-        : "主要批評通常比較具體，例如節奏拖、系統重複、後期疲乏或類型公式感。";
+  
+  const launchPraise = isEn
+    ? (highReception
+      ? (work.type === "game"
+        ? `Players praised the core gameplay, genre excitement, or content amount; Steam reviews sit at "${steamRating ?? "Positive"}".`
+        : `Critics and audiences praised the production, acting, or genre entertainment; Metacritic sits at ${mediaRating ?? "Favorable"}.`)
+      : (work.type === "game"
+        ? "Player feedback was mixed, focusing on gameplay pacing, controls, content amount, or optimization."
+        : "Critic and audience feedback was mixed, focusing on pacing, character arcs, theme, or adaptation choices."))
+    : (highReception
+      ? (work.type === "game"
+        ? `玩家端通常會先肯定核心玩法、類型爽感或內容量；Steam 口碑可參考「${steamRating ?? "玩家評價"}」。`
+        : `影評與觀眾較容易肯定完成度、表演或類型娛樂性；Metacritic 可參考 ${mediaRating ?? "媒體評分"}。`)
+      : (work.type === "game"
+        ? `玩家回饋比較分散，常見焦點會落在玩法節奏、操作手感、內容量或最佳化。`
+        : `影評與觀眾回饋比較分散，常見焦點會落在節奏、角色弧線、主題表達或改編取捨。`));
+
+  const positioning = isEn
+    ? (highRepresentation
+      ? "Representation, identity, or social issues became the discussion entry point; supporters saw ambition, while detractors checked if it was forced."
+      : highPlayerFreedom
+        ? "The work was discussed mostly for player freedom, system depth, and whether players can achieve goals their own way."
+        : highStory
+          ? "The work was discussed mostly for narrative pacing, character motives, endings, and script quality."
+          : "Cultural issues were not the focus; reviews returned to entertainment, mechanics, or genre execution.")
+    : (highRepresentation
+      ? "代表性、身份書寫或社會議題會成為討論入口；支持者看見企圖，反感者會檢查是否太刻意。"
+      : highPlayerFreedom
+        ? "作品更容易被拿來討論自由度、系統深度與玩家能不能用自己的方式完成目標。"
+        : highStory
+          ? "作品更容易被拿來討論劇情節奏、角色動機、結局與文本是否站得住。"
+          : "文化議題不是主要焦點，評價多半回到娛樂性、技術、玩法或類型完成度。");
+
+  const complaint = isEn
+    ? (highMonetization
+      ? "Primary complaints centered on monetization models, microtransaction design, season passes, or player exploitation."
+      : highStudioRisk
+        ? "Primary complaints centered on technical bugs, performance, unfulfilled promises, or feeling like an unfinished product."
+        : highControversy
+          ? "Primary complaints centered on political stances, adaptation direction, character treatment, or fan betrayal."
+          : "Criticisms were specific, such as slow pacing, repetitive loops, late-game fatigue, or formulaic design.")
+    : (highMonetization
+      ? "主要詬病點容易落在商業模式、付費設計、營運節奏或玩家是否覺得被消費。"
+      : highStudioRisk
+        ? "主要詬病點容易落在技術狀態、完成度、延期承諾或上市時是否像半成品。"
+        : highControversy
+          ? "主要詬病點容易落在立場表達、改編方向、角色處理或粉絲是否覺得被背叛。"
+          : "主要批評通常比較具體，例如節奏拖、系統重複、後期疲乏或類型公式感。");
 
   return [
     {
       date: `${work.year}`,
-      title: highReception ? "上市初期口碑偏正面" : "上市初期口碑分歧",
+      title: isEn
+        ? (highReception ? "Initial Sentiment Favorable" : "Initial Sentiment Mixed")
+        : (highReception ? "上市初期口碑偏正面" : "上市初期口碑分歧"),
       summary: launchPraise,
-      detail: "這一段用本地評分與作品標籤整理口碑方向；之後若補到逐條原文，會自動替換成更具體的玩家或影評內容。",
+      detail: isEn
+        ? "This section summarizes reviews using local ratings and work tags; real reviews will replace this once available."
+        : "這一段用本地評分與作品標籤整理口碑方向；之後若補到逐條原文，會自動替換成更具體的玩家或影評內容。",
       tone: highReception ? "good" : "mixed",
     },
     {
       date: `${work.year}`,
-      title: highRepresentation ? "代表性與議題成為討論入口" : "評價核心回到作品本體",
+      title: isEn
+        ? (highRepresentation ? "Representation & Issues Take Focus" : "Reviews Focus on Core Product")
+        : (highRepresentation ? "代表性與議題成為討論入口" : "評價核心回到作品本體"),
       summary: positioning,
-      detail: "這裡刻意把內容中的 DEI、改編、議題表達，和純粹技術或商業問題拆開看。",
+      detail: isEn
+        ? "This section separates DEI, adaptation, and social issues from pure technical or business operations."
+        : "這裡刻意把內容中的 DEI、改編、議題表達，和純粹技術或商業問題拆開看。",
       tone: highRepresentation ? "mixed" : highReception ? "good" : "mixed",
     },
     {
       date: `${work.year + 1}`,
-      title: highControversy || highMonetization || highStudioRisk ? "長尾批評仍有明確靶點" : "長尾口碑相對穩定",
+      title: isEn
+        ? (highControversy || highMonetization || highStudioRisk ? "Long-tail Criticisms Remain High" : "Long-tail Sentiment Remains Stable")
+        : (highControversy || highMonetization || highStudioRisk ? "長尾批評仍有明確靶點" : "長尾口碑相對穩定"),
       summary: complaint,
-      detail: "如果這部作品之後常被測出，最值得補的是這一段的具體事件與真實短評。",
+      detail: isEn
+        ? "If this work is frequently accessed, adding concrete timeline events or real user reviews is highly recommended."
+        : "如果這部作品之後常被測出，最值得補的是這一段的具體事件與真實短評。",
       tone: highControversy || highMonetization || highStudioRisk ? "bad" : "good",
     },
   ];
 };
 
-export function ControversyTimeline({ work }: { work: Work }) {
-  const timeline = gameTimelines[work.id] ?? buildFallbackTimeline(work);
-  const title = work.type === "game" ? "遊戲口碑時間線" : "作品口碑時間線";
+export function ControversyTimeline({ work, lang = "zh" }: { work: Work; lang?: "zh" | "en" }) {
+  const isEn = lang === "en";
+  const timeline = isEn
+    ? (gameTimelinesEn[work.id] ?? buildFallbackTimeline(work, true))
+    : (gameTimelinesZh[work.id] ?? buildFallbackTimeline(work, false));
+    
+  const title = isEn
+    ? (work.type === "game" ? "Product Reception Timeline" : "Product Reception Timeline")
+    : (work.type === "game" ? "遊戲口碑時間線" : "作品口碑時間線");
 
   return (
     <section className="rounded-lg border border-white/20 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-5 backdrop-blur-xl saturate-150 shadow-glow">
       <div className="mb-5">
         <h2 className="text-lg font-semibold text-white">{title}</h2>
         <p className="mt-1 text-sm leading-6 text-slate-300">
-          拆開玩家怎麼看好、怎麼看衰，以及哪些爭議是內容本身，哪些其實是技術、商業或營運問題。
+          {isEn
+            ? "Analyze how players rate the game positively or negatively, distinguishing content issues from pure technical, business, or operational issues."
+            : "拆開玩家怎麼看好、怎麼看衰，以及哪些爭議是內容本身，哪些其實是技術、商業或營運問題。"}
         </p>
       </div>
 
@@ -368,7 +672,7 @@ export function ControversyTimeline({ work }: { work: Work }) {
                   <h3 className="mt-1 text-sm font-semibold text-white">{event.title}</h3>
                 </div>
                 <span className={`shrink-0 rounded-full border px-2 py-0.5 text-xs ${toneStyle[event.tone]}`}>
-                  {toneLabel[event.tone]}
+                  {getToneLabel(event.tone, isEn)}
                 </span>
               </div>
               <p className="text-sm leading-6 text-slate-300">{event.summary}</p>
